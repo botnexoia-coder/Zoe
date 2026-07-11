@@ -24,13 +24,19 @@ export async function onRequestPost(context) {
     const all = messages.concat([{ role: 'assistant', content: reply }]);
     const lead = await summarizeLead(env.ANTHROPIC_API_KEY, all);
     let m = '✈️ <b>NUEVO LEAD — ZOE TRAVEL SPAIN (chat)</b>\n\n📱 <b>WhatsApp: ' + esc(phone[0]) + '</b>\n';
-    if (lead.nombre)   m += '👤 Nombre: ' + esc(lead.nombre) + '\n';
-    if (lead.destino)  m += '🌍 Destino: ' + esc(lead.destino) + '\n';
-    if (lead.fechas)   m += '📅 Fechas: ' + esc(lead.fechas) + '\n';
-    if (lead.personas) m += '👥 Viajeros: ' + esc(lead.personas) + '\n';
-    if (lead.mascota)  m += '🐾 Viaja con mascota\n';
-    if (lead.motivo)   m += '💛 Motivo: ' + esc(lead.motivo) + '\n';
-    if (lead.contexto) m += '📝 ' + esc(lead.contexto) + '\n';
+    if (lead.nombre)      m += '👤 Nombre: ' + esc(lead.nombre) + '\n';
+    if (lead.origen || lead.destino) m += '🛫 Ruta: ' + esc(lead.origen || '¿?') + ' → ' + esc(lead.destino || '¿?') + '\n';
+    if (lead.tipo)        m += '🔁 Tipo: ' + esc(lead.tipo) + '\n';
+    if (lead.fechas)      m += '📅 Fechas: ' + esc(lead.fechas) + '\n';
+    var pax = [];
+    if (lead.adultos) pax.push(esc(lead.adultos) + ' adulto(s)');
+    if (lead.ninos)   pax.push(esc(lead.ninos) + ' niño(s)' + (lead.edades_ninos ? ' (' + esc(lead.edades_ninos) + ')' : ''));
+    if (pax.length)   m += '👥 Viajeros: ' + pax.join(', ') + '\n';
+    if (lead.mascota)     m += '🐾 Viaja con mascota\n';
+    if (lead.recogida)    m += '🚕 Recogida en aeropuerto\n';
+    if (lead.presupuesto) m += '💶 Presupuesto: ' + esc(lead.presupuesto) + '\n';
+    if (lead.motivo)      m += '💛 Motivo: ' + esc(lead.motivo) + '\n';
+    if (lead.contexto)    m += '📝 ' + esc(lead.contexto) + '\n';
     m += '\n⚡ <b>Preparar cotización hoy</b>';
     await notify(env, m);
   }
