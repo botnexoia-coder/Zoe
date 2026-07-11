@@ -209,6 +209,13 @@
   .mascot p{color:var(--muted);font-size:16px;line-height:1.75;margin-top:2px;max-width:580px}
   .mascot .journey{display:inline-flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:20px;font-weight:800;font-size:13.5px;color:var(--text);background:var(--surface);border:1px solid var(--line-strong);border-radius:999px;padding:10px 16px}
   .mascot .journey i{width:22px;height:0;border-top:2px dashed var(--muted);display:inline-block}
+  /* Gesto polaroid (se endereza al pasar el mouse) en Karol y el logo del hero */
+  .karol .photo{transform:rotate(-2.5deg);transition:transform .3s ease}
+  .karol .photo:hover{transform:rotate(0)}
+  .hero .art .disc,.hero .art .disc img{transition:transform .35s ease}
+  .hero .art .disc img{transform:rotate(-5deg)}
+  .hero .art:hover .disc img{transform:rotate(0)}
+  .hero .art:hover .disc{transform:scale(1.03)}
   /* Videos YouTube */
   .vid-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:38px}
   @media(max-width:860px){.vid-grid{grid-template-columns:1fr}}
