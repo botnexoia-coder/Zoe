@@ -2,3 +2,7 @@
 node_modules/
 .wrangler/
 .dev.vars
+
+# export de WordPress (solo referencia local, no se sube)
+Zoe Travel Spain – Agencia de viajes.html
+Zoe Travel Spain – Agencia de viajes_files/
