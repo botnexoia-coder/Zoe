@@ -212,6 +212,24 @@
   .rec .q{font-family:Georgia,serif;font-size:44px;line-height:.6;color:var(--orange);height:22px}
   .rec p{color:var(--text);font-size:15px;line-height:1.6;margin-top:6px;font-style:italic}
   .rec .by{margin-top:12px;font-weight:800;color:var(--muted);font-size:13px}
+  /* Testimonios en video + corazones flotando */
+  .hearts{position:absolute;inset:0;pointer-events:none;z-index:1;overflow:hidden}
+  .heart{position:absolute;bottom:-40px;opacity:0;font-size:26px;animation:floatup 9s ease-in infinite;filter:drop-shadow(0 4px 8px rgba(0,0,0,.15))}
+  @keyframes floatup{0%{transform:translateY(0) scale(.7) rotate(0);opacity:0}12%{opacity:.55}100%{transform:translateY(-340px) scale(1.1) rotate(14deg);opacity:0}}
+  .tcar-wrap{position:relative;margin-top:36px}
+  .tcar{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 2px 16px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .tcar::-webkit-scrollbar{display:none}
+  .tvid{flex:0 0 auto;width:min(250px,68vw);scroll-snap-align:center;border-radius:18px;overflow:hidden;border:1px solid var(--line);background:#000;box-shadow:0 22px 50px -30px rgba(0,0,0,.5)}
+  .tvid video{width:100%;aspect-ratio:9/16;object-fit:cover;display:block;background:#000}
+  .tcar-nav{position:absolute;top:calc(50% - 8px);transform:translateY(-50%);z-index:3;width:46px;height:46px;border-radius:50%;border:1px solid var(--line-strong);background:var(--surface);color:var(--text);cursor:pointer;display:grid;place-items:center;box-shadow:0 12px 26px -12px rgba(0,0,0,.4);transition:transform .16s ease}
+  .tcar-nav:hover{transform:translateY(-50%) scale(1.06)}
+  .tcar-nav.prev{left:-8px}
+  .tcar-nav.next{right:-8px}
+  .tcar-nav svg{width:22px;height:22px}
+  @media(max-width:760px){.tcar-nav{display:none}}
+  .tcar-empty{border:1px dashed var(--line-strong);border-radius:var(--radius);padding:44px 22px;text-align:center;color:var(--muted);margin-top:36px}
+  .tcar-empty b{display:block;color:var(--text);font-size:16px;font-weight:800;margin-bottom:6px}
+  @media(prefers-reduced-motion:reduce){.heart{display:none}}
   /* Mini Instagram */
   .ig-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:34px}
   @media(max-width:640px){.ig-grid{grid-template-columns:repeat(2,1fr)}}
@@ -391,15 +409,29 @@
 </div></section>
 
 <!-- ===== REENCUENTROS ===== -->
-<section class="block" id="reencuentros" style="background:var(--bg-2)"><div class="wrap center">
-  <span class="eyebrow" data-i18n="rec_eyebrow">Reencuentros</span>
-  <h2 data-i18n="rec_title">Momentos que nos inspiran</h2>
-  <p class="lead" data-i18n="rec_lead">Cada viaje que hacemos posible es una familia que vuelve a abrazarse. Por eso hacemos lo que hacemos. 💛</p>
-</div><div class="wrap"><div class="rec-grid">
-  <div class="rec"><div class="q">“</div><p data-i18n="rec_q1">El reencuentro entre madres e hijos es realmente reconfortante para todo nuestro equipo.</p><div class="by">— Zoe Travel Spain</div></div>
-  <div class="rec"><div class="q">“</div><p data-i18n="rec_q2">Estos momentos nos inspiran a seguir trabajando por y para ustedes.</p><div class="by">— Zoe Travel Spain</div></div>
-  <div class="rec"><div class="q">“</div><p data-i18n="rec_q3">¡Gracias y mil gracias por confiar en nosotros!</p><div class="by">— Karol 💛</div></div>
-</div></div></section>
+<section class="block" id="testimonios" style="background:var(--bg-2);position:relative;overflow:hidden">
+  <div class="hearts" aria-hidden="true">
+    <span class="heart" style="left:8%;animation-delay:0s">💛</span>
+    <span class="heart" style="left:22%;animation-delay:2.4s;font-size:20px">❤️</span>
+    <span class="heart" style="left:37%;animation-delay:1.1s">🧡</span>
+    <span class="heart" style="left:53%;animation-delay:3.6s;font-size:30px">💛</span>
+    <span class="heart" style="left:68%;animation-delay:.7s">❤️</span>
+    <span class="heart" style="left:82%;animation-delay:2.9s;font-size:22px">💛</span>
+    <span class="heart" style="left:93%;animation-delay:4.3s">🧡</span>
+  </div>
+  <div class="wrap center" style="position:relative;z-index:2">
+    <span class="eyebrow" data-i18n="rec_eyebrow">Testimonios</span>
+    <h2 data-i18n="rec_title">Esto es lo que nos da energía 💛</h2>
+    <p class="lead" data-i18n="rec_lead">Historias reales de familias que hoy están juntas. Cada reencuentro es la razón por la que hacemos esto.</p>
+  </div>
+  <div class="wrap" style="position:relative;z-index:2">
+    <div class="tcar-wrap" id="tcarWrap">
+      <button class="tcar-nav prev" id="tcarPrev" aria-label="Anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+      <div class="tcar" id="tcar"></div>
+      <button class="tcar-nav next" id="tcarNext" aria-label="Siguiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>
+    </div>
+  </div>
+</section>
 
 <!-- ===== VIDEOS (YouTube) ===== -->
 <section class="block" id="videos"><div class="wrap center">
@@ -607,7 +639,7 @@ const I18N = {
     con_cta:"Escríbenos por WhatsApp", foot:"Agencia de viajes con alma · Sevilla",
     chat_agency:"Asistente", chat_online:"En línea", chat_hi:"¡Hola! 🐱💛 Soy Zoe, de Zoe Travel Spain. Cuéntame, ¿a dónde tienes pensado viajar? ¿Vas a ver a algún familiar, o qué te motiva este viaje? Me encantan las historias ✨", chat_ph:"Escribe tu mensaje...",
     ai_title:"Habla con Zoe, nuestra gatita viajera 🐱", ai_text:"Nuestra asistente con inteligencia artificial está despierta <b>24/7</b> para ayudarte a planear tu viaje: te orienta, resuelve tus dudas y prepara tu cotización. ¡Escríbele a cualquier hora! ✈️", ai_btn:"Chatear con Zoe",
-    rec_eyebrow:"Reencuentros", rec_title:"Momentos que nos inspiran", rec_lead:"Cada viaje que hacemos posible es una familia que vuelve a abrazarse. Por eso hacemos lo que hacemos. 💛",
+    rec_eyebrow:"Testimonios", rec_title:"Esto es lo que nos da energía 💛", rec_lead:"Historias reales de familias que hoy están juntas. Cada reencuentro es la razón por la que hacemos esto.",
     rec_q1:"El reencuentro entre madres e hijos es realmente reconfortante para todo nuestro equipo.", rec_q2:"Estos momentos nos inspiran a seguir trabajando por y para ustedes.", rec_q3:"¡Gracias y mil gracias por confiar en nosotros!",
     tips_eyebrow:"Consejos", tips_title:"Tips para tu viaje y tu nueva vida", tips_lead:"Pequeños consejos que hacen grande la diferencia, con el cariño de quien también migró.",
     t1_t:"Únete a tu comunidad", t1_p:"Busca grupos de WhatsApp y Facebook de latinos/colombianos en tu ciudad: información, apoyo y nuevas amistades desde el día uno.",
@@ -652,7 +684,7 @@ const I18N = {
     con_cta:"Message us on WhatsApp", foot:"A travel agency with soul · Seville",
     chat_agency:"Assistant", chat_online:"Online", chat_hi:"Hi! 🐱💛 I'm Zoe, from Zoe Travel Spain. Tell me, where are you thinking of travelling? Are you visiting family, or what's the reason behind this trip? I love a good story ✨", chat_ph:"Type your message...",
     ai_title:"Chat with Zoe, our travelling kitty 🐱", ai_text:"Our AI assistant is awake <b>24/7</b> to help you plan your trip: she guides you, answers your questions and prepares your quote. Message her any time! ✈️", ai_btn:"Chat with Zoe",
-    rec_eyebrow:"Reunions", rec_title:"Moments that inspire us", rec_lead:"Every trip we make possible is a family hugging again. That's why we do what we do. 💛",
+    rec_eyebrow:"Testimonials", rec_title:"This is what gives us energy 💛", rec_lead:"Real stories of families now together. Every reunion is why we do this.",
     rec_q1:"The reunion between mothers and children is truly heartwarming for our whole team.", rec_q2:"These moments inspire us to keep working for you and because of you.", rec_q3:"Thank you, a thousand times, for trusting us!",
     tips_eyebrow:"Tips", tips_title:"Tips for your trip and your new life", tips_lead:"Small tips that make a big difference, with the care of someone who also migrated.",
     t1_t:"Join your community", t1_p:"Look for WhatsApp and Facebook groups of Latinos in your city: info, support and new friends from day one.",
@@ -725,5 +757,27 @@ lf.addEventListener('submit', async function(e){
       bubble(reply, 'bot'); history.push({ role:'assistant', content: reply });
     }catch(_){ t.remove(); bubble(lang === 'es' ? 'Escríbenos por WhatsApp y te ayudamos ✈️' : 'Message us on WhatsApp and we’ll help ✈️', 'bot'); }
   });
+})();
+
+// ---- Carrusel de testimonios en video (lee videos/testimonios/manifest.json) ----
+(function(){
+  var track = document.getElementById('tcar'); var wrap = document.getElementById('tcarWrap'); if(!track) return;
+  function empty(){ if(wrap){ var e=document.createElement('div'); e.className='tcar-empty'; e.innerHTML='<b>Muy pronto 💛</b>Aquí irán los videos de nuestras familias felices.'; wrap.parentNode.replaceChild(e, wrap); } }
+  fetch('videos/testimonios/manifest.json', { cache:'no-store' })
+    .then(function(r){ return r.ok ? r.json() : []; })
+    .then(function(list){
+      if(!list || !list.length){ empty(); return; }
+      list.forEach(function(name){
+        var s=document.createElement('div'); s.className='tvid';
+        var v=document.createElement('video'); v.src='videos/testimonios/'+encodeURIComponent(name);
+        v.controls=true; v.preload='metadata'; v.setAttribute('playsinline',''); v.setAttribute('webkit-playsinline','');
+        s.appendChild(v); track.appendChild(s);
+      });
+    })
+    .catch(function(){ empty(); });
+  function step(d){ var s=track.querySelector('.tvid'); var w=s?(s.offsetWidth+16):260; track.scrollBy({ left:d*w, behavior:'smooth' }); }
+  var pv=document.getElementById('tcarPrev'), nx=document.getElementById('tcarNext');
+  if(pv) pv.addEventListener('click', function(){ step(-1); });
+  if(nx) nx.addEventListener('click', function(){ step(1); });
 })();
 </script>
