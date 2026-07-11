@@ -89,6 +89,14 @@
   .hero .art .c2 svg{color:var(--orange)}
   @media(max-width:860px){.hero .art{margin-top:30px}}
 
+  /* Huellitas de gato al entrar 🐾 */
+  .hero>.wrap{position:relative;z-index:2}
+  .paws{position:absolute;inset:0;pointer-events:none;z-index:1;color:var(--orange);overflow:hidden}
+  .paw{position:absolute;width:34px;height:34px;opacity:0;animation:pawin 5s ease forwards}
+  .paw svg{width:100%;height:100%}
+  @media(max-width:640px){.paw{width:24px}}
+  @keyframes pawin{0%{opacity:0}12%{opacity:.5}78%{opacity:.42}100%{opacity:0}}
+
   .stats{display:flex;gap:34px;justify-content:center;flex-wrap:wrap;margin-top:6px;padding-bottom:14px}
   .stats div{text-align:center}
   .stats b{display:block;font-size:24px;font-weight:900;color:var(--blue)}
@@ -264,7 +272,17 @@
 <span id="top"></span>
 
 <!-- ===== HERO ===== -->
-<section class="hero"><div class="wrap">
+<section class="hero">
+<div class="paws" aria-hidden="true">
+  <span class="paw" style="left:6%;top:74%;transform:rotate(-22deg);animation-delay:.15s"><svg viewBox="0 0 100 100" fill="currentColor"><ellipse cx="50" cy="64" rx="22" ry="18"/><ellipse cx="26" cy="40" rx="8" ry="11"/><ellipse cx="44" cy="30" rx="8" ry="12"/><ellipse cx="62" cy="31" rx="8" ry="11"/><ellipse cx="78" cy="45" rx="7" ry="10"/></svg></span>
+  <span class="paw" style="left:18%;top:58%;transform:rotate(14deg);animation-delay:.5s"><svg viewBox="0 0 100 100" fill="currentColor"><ellipse cx="50" cy="64" rx="22" ry="18"/><ellipse cx="26" cy="40" rx="8" ry="11"/><ellipse cx="44" cy="30" rx="8" ry="12"/><ellipse cx="62" cy="31" rx="8" ry="11"/><ellipse cx="78" cy="45" rx="7" ry="10"/></svg></span>
+  <span class="paw" style="left:31%;top:68%;transform:rotate(-18deg);animation-delay:.85s"><svg viewBox="0 0 100 100" fill="currentColor"><ellipse cx="50" cy="64" rx="22" ry="18"/><ellipse cx="26" cy="40" rx="8" ry="11"/><ellipse cx="44" cy="30" rx="8" ry="12"/><ellipse cx="62" cy="31" rx="8" ry="11"/><ellipse cx="78" cy="45" rx="7" ry="10"/></svg></span>
+  <span class="paw" style="left:45%;top:48%;transform:rotate(12deg);animation-delay:1.2s"><svg viewBox="0 0 100 100" fill="currentColor"><ellipse cx="50" cy="64" rx="22" ry="18"/><ellipse cx="26" cy="40" rx="8" ry="11"/><ellipse cx="44" cy="30" rx="8" ry="12"/><ellipse cx="62" cy="31" rx="8" ry="11"/><ellipse cx="78" cy="45" rx="7" ry="10"/></svg></span>
+  <span class="paw" style="left:59%;top:60%;transform:rotate(-15deg);animation-delay:1.55s"><svg viewBox="0 0 100 100" fill="currentColor"><ellipse cx="50" cy="64" rx="22" ry="18"/><ellipse cx="26" cy="40" rx="8" ry="11"/><ellipse cx="44" cy="30" rx="8" ry="12"/><ellipse cx="62" cy="31" rx="8" ry="11"/><ellipse cx="78" cy="45" rx="7" ry="10"/></svg></span>
+  <span class="paw" style="left:73%;top:38%;transform:rotate(13deg);animation-delay:1.9s"><svg viewBox="0 0 100 100" fill="currentColor"><ellipse cx="50" cy="64" rx="22" ry="18"/><ellipse cx="26" cy="40" rx="8" ry="11"/><ellipse cx="44" cy="30" rx="8" ry="12"/><ellipse cx="62" cy="31" rx="8" ry="11"/><ellipse cx="78" cy="45" rx="7" ry="10"/></svg></span>
+  <span class="paw" style="left:87%;top:48%;transform:rotate(-12deg);animation-delay:2.25s"><svg viewBox="0 0 100 100" fill="currentColor"><ellipse cx="50" cy="64" rx="22" ry="18"/><ellipse cx="26" cy="40" rx="8" ry="11"/><ellipse cx="44" cy="30" rx="8" ry="12"/><ellipse cx="62" cy="31" rx="8" ry="11"/><ellipse cx="78" cy="45" rx="7" ry="10"/></svg></span>
+</div>
+<div class="wrap">
   <div>
     <span class="eyebrow" data-i18n="hero_eyebrow">Agencia de viajes con alma</span>
     <h1 data-i18n="hero_title">Donde quieras ir,<br/><span class="g">te ayudamos a llegar.</span></h1>
