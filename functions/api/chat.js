@@ -23,8 +23,10 @@ export async function onRequestPost(context) {
   if (phone) {
     const all = messages.concat([{ role: 'assistant', content: reply }]);
     const lead = await summarizeLead(env.ANTHROPIC_API_KEY, all);
-    let m = '✈️ <b>NUEVO LEAD — ZOE TRAVEL SPAIN (chat)</b>\n\n📱 <b>WhatsApp: ' + esc(phone[0]) + '</b>\n';
+    const larga = lead.estancia && String(lead.estancia).toLowerCase().indexOf('larg') === 0;
+    let m = (larga ? '🏡 <b>LEAD LARGA ESTANCIA — ZOE TRAVEL SPAIN</b>' : '✈️ <b>NUEVO LEAD — ZOE TRAVEL SPAIN (chat)</b>') + '\n\n📱 <b>WhatsApp: ' + esc(phone[0]) + '</b>\n';
     if (lead.nombre)      m += '👤 Nombre: ' + esc(lead.nombre) + '\n';
+    if (lead.estancia)    m += '🧭 Estancia: ' + esc(lead.estancia) + (lead.objetivo ? ' · Objetivo: ' + esc(lead.objetivo) : '') + '\n';
     if (lead.origen || lead.destino) m += '🛫 Ruta: ' + esc(lead.origen || '¿?') + ' → ' + esc(lead.destino || '¿?') + '\n';
     if (lead.tipo)        m += '🔁 Tipo: ' + esc(lead.tipo) + '\n';
     if (lead.fechas)      m += '📅 Fechas: ' + esc(lead.fechas) + '\n';
