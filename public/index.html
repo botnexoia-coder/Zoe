@@ -1,0 +1,435 @@
+<!-- ============================================================
+     ZOE TRAVEL SPAIN — Agencia de viajes (Karol)
+     Bilingüe ES/EN · tema claro/oscuro · asistente "Zoe" (IA)
+     ============================================================ -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Zoe Travel Spain · Agencia de viajes con alma</title>
+<meta name="description" content="Zoe Travel Spain, la agencia de viajes de Karol: vuelos, viajar con tu mascota, recogida en aeropuerto y cotización personalizada. Donde quieras ir, te ayudamos a llegar." />
+<link rel="icon" type="image/png" href="/img/zoe-logo.png" />
+<meta name="theme-color" content="#1a4fd0" />
+
+<script>try{var t=localStorage.getItem('zoe-theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+
+<style>
+  :root{
+    --bg:#ffffff; --bg-2:#eef4ff; --surface:#ffffff; --surface-2:#f5f8ff;
+    --line:rgba(18,40,80,.10); --line-strong:rgba(18,40,80,.16);
+    --text:#132038; --muted:#5b6b86;
+    --blue:#1a4fd0; --blue-d:#1740a8; --blue-soft:#4b7bef;
+    --orange:#f57a1f; --orange-d:#e06a12; --orange-soft:#ff9d4d;
+    --radius:20px; --radius-sm:13px; --max:1100px;
+    --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  :root[data-theme="dark"]{
+    --bg:#0b1020; --bg-2:#0e1428; --surface:#121a30; --surface-2:#0e1526;
+    --line:rgba(255,255,255,.10); --line-strong:rgba(255,255,255,.17);
+    --text:#eaf0ff; --muted:#9fb0cc;
+    --blue-soft:#6f9bff; --orange-soft:#ffb066;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:var(--font);color:var(--text);background:var(--bg);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  h1,h2,h3{margin:0;text-wrap:balance}
+  a{color:inherit}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 22px}
+  .eyebrow{display:inline-block;font-size:12px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;color:var(--orange);margin-bottom:10px}
+  .block{padding:70px 0}
+  .block h2{font-size:clamp(26px,4.6vw,40px);font-weight:900;letter-spacing:-.3px}
+  .lead{color:var(--muted);font-size:16.5px;line-height:1.65;max-width:620px;margin-top:14px}
+  .center{text-align:center}.center .lead{margin-left:auto;margin-right:auto}
+
+  /* nav */
+  .nav{position:sticky;top:0;z-index:40;backdrop-filter:blur(14px);background:color-mix(in srgb,var(--bg) 82%,transparent);border-bottom:1px solid var(--line)}
+  .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:66px;gap:14px}
+  .brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:900;font-size:18px}
+  .brand img{width:40px;height:40px;border-radius:10px}
+  .brand .z{color:var(--blue)} .brand .t{color:var(--orange)}
+  .nav nav{display:flex;align-items:center;gap:22px}
+  .nav nav a.lnk{font-size:14px;font-weight:600;color:var(--muted);text-decoration:none}
+  .nav nav a.lnk:hover{color:var(--text)}
+  @media(max-width:860px){.nav nav a.lnk{display:none}}
+  .icon-btn{width:38px;height:38px;border-radius:10px;border:1px solid var(--line-strong);background:var(--surface);color:var(--text);cursor:pointer;display:grid;place-items:center;font-weight:800;font-size:12px}
+  .icon-btn:hover{border-color:var(--blue-soft)}
+  .icon-btn svg{width:18px;height:18px}
+  .theme-toggle .ico-moon{display:none}
+  :root[data-theme="dark"] .theme-toggle .ico-sun{display:none}
+  :root[data-theme="dark"] .theme-toggle .ico-moon{display:block}
+  .wa-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:11px;background:#25D366;color:#fff;font-weight:800;font-size:13.5px;text-decoration:none;border:0;cursor:pointer}
+  .wa-btn svg{width:17px;height:17px}
+  @media(max-width:520px){.wa-btn span{display:none}}
+
+  /* hero */
+  .hero{position:relative;overflow:hidden;background:
+      radial-gradient(120% 90% at 90% 0%, color-mix(in srgb,var(--orange) 16%,transparent), transparent 55%),
+      radial-gradient(120% 100% at 0% 10%, color-mix(in srgb,var(--blue) 20%,transparent), transparent 55%),
+      var(--bg)}
+  .hero .wrap{padding-top:64px;padding-bottom:56px;display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center}
+  @media(max-width:860px){.hero .wrap{grid-template-columns:1fr;text-align:center}}
+  .hero h1{font-size:clamp(32px,6vw,54px);font-weight:900;line-height:1.03;letter-spacing:-.5px}
+  .hero h1 .g{background:linear-gradient(90deg,var(--blue),var(--orange));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero p{color:var(--muted);font-size:clamp(16px,2.2vw,19px);line-height:1.6;margin-top:18px;max-width:520px}
+  @media(max-width:860px){.hero p{margin-inline:auto}}
+  .hero .cta{display:flex;gap:12px;margin-top:28px;flex-wrap:wrap}
+  @media(max-width:860px){.hero .cta{justify-content:center}}
+  .btn{display:inline-flex;align-items:center;gap:9px;padding:15px 24px;border-radius:13px;font-weight:800;font-size:15px;cursor:pointer;text-decoration:none;border:0;font-family:inherit;transition:transform .16s ease}
+  .btn:hover{transform:translateY(-2px)}
+  .btn-primary{background:linear-gradient(90deg,var(--blue),var(--orange));color:#fff;box-shadow:0 16px 34px -14px color-mix(in srgb,var(--blue) 60%,transparent)}
+  .btn-ghost{background:var(--surface);color:var(--text);border:1px solid var(--line-strong)}
+  .btn svg{width:18px;height:18px}
+  .hero .art{position:relative;display:grid;place-items:center}
+  .hero .art .disc{width:min(360px,80vw);aspect-ratio:1;border-radius:50%;background:
+      radial-gradient(circle at 30% 25%, color-mix(in srgb,var(--blue) 28%,transparent), transparent 60%),
+      radial-gradient(circle at 75% 80%, color-mix(in srgb,var(--orange) 30%,transparent), transparent 60%),
+      var(--surface-2);border:1px solid var(--line);display:grid;place-items:center;box-shadow:0 40px 90px -40px rgba(0,0,0,.4)}
+  .hero .art .disc img{width:66%;height:auto;filter:drop-shadow(0 12px 24px rgba(0,0,0,.25))}
+  .hero .art .chip{position:absolute;background:var(--surface);border:1px solid var(--line-strong);border-radius:14px;padding:10px 14px;font-weight:800;font-size:13px;box-shadow:0 16px 30px -18px rgba(0,0,0,.4);display:flex;align-items:center;gap:8px}
+  .hero .art .chip svg{width:18px;height:18px;color:var(--blue)}
+  .hero .art .c1{top:6%;left:-2%} .hero .art .c2{bottom:8%;right:-2%}
+  .hero .art .c2 svg{color:var(--orange)}
+  @media(max-width:860px){.hero .art{margin-top:30px}}
+
+  .stats{display:flex;gap:34px;justify-content:center;flex-wrap:wrap;margin-top:6px;padding-bottom:14px}
+  .stats div{text-align:center}
+  .stats b{display:block;font-size:24px;font-weight:900;color:var(--blue)}
+  .stats span{font-size:12.5px;color:var(--muted);letter-spacing:.4px}
+
+  /* servicios */
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px}
+  @media(max-width:820px){.grid{grid-template-columns:1fr 1fr}}
+  @media(max-width:560px){.grid{grid-template-columns:1fr}}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px;transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease}
+  .card:hover{transform:translateY(-4px);border-color:var(--line-strong);box-shadow:0 26px 60px -40px rgba(0,0,0,.5)}
+  .card .ico{width:50px;height:50px;border-radius:13px;display:grid;place-items:center;margin-bottom:14px;background:color-mix(in srgb,var(--blue) 12%,transparent);color:var(--blue)}
+  .card:nth-child(even) .ico{background:color-mix(in srgb,var(--orange) 14%,transparent);color:var(--orange-d)}
+  .card .ico svg{width:26px;height:26px}
+  .card h3{font-size:18px;font-weight:800}
+  .card p{color:var(--muted);font-size:14.5px;line-height:1.6;margin-top:8px}
+
+  /* Karol */
+  #karol{background:var(--bg-2)}
+  .karol{display:grid;grid-template-columns:280px 1fr;gap:40px;align-items:center;margin-top:20px}
+  @media(max-width:760px){.karol{grid-template-columns:1fr;text-align:center;justify-items:center}}
+  .karol .photo{width:240px;height:240px;border-radius:24px;object-fit:cover;border:1px solid var(--line-strong);box-shadow:0 30px 60px -30px rgba(0,0,0,.5)}
+  .karol p{color:var(--muted);font-size:16px;line-height:1.7;margin-top:12px;max-width:560px}
+  .karol .sign{margin-top:14px;font-weight:900;color:var(--orange);font-size:18px}
+
+  /* cotiza (form) */
+  #cotiza{background:linear-gradient(135deg,var(--blue),var(--blue-d));color:#fff}
+  #cotiza .eyebrow{color:#ffd9b3}
+  #cotiza h2{color:#fff}
+  #cotiza .lead{color:rgba(255,255,255,.85)}
+  .form{max-width:560px;margin:34px auto 0;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);border-radius:var(--radius);padding:26px;backdrop-filter:blur(6px)}
+  .form .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media(max-width:560px){.form .row{grid-template-columns:1fr}}
+  .form label{display:block;font-size:12.5px;font-weight:700;margin:12px 0 6px;color:#eaf1ff}
+  .form input,.form textarea{width:100%;padding:13px 14px;border-radius:11px;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.12);color:#fff;font-size:15px;font-family:inherit}
+  .form input::placeholder,.form textarea::placeholder{color:rgba(255,255,255,.6)}
+  .form input:focus,.form textarea:focus{outline:none;border-color:#fff}
+  .form textarea{min-height:70px;resize:vertical}
+  .form .submit{margin-top:18px;width:100%;padding:16px;border:0;border-radius:12px;cursor:pointer;font-weight:900;font-size:15.5px;font-family:inherit;background:var(--orange);color:#fff;box-shadow:0 14px 30px -12px rgba(0,0,0,.5)}
+  .form .submit:hover{background:var(--orange-d)}
+  .form .done{display:none;text-align:center;padding:14px 0}
+  .form .done b{font-size:20px;font-weight:900;display:block;margin-bottom:6px}
+  .form .done p{color:rgba(255,255,255,.85);font-size:14.5px;margin:0}
+
+  /* contacto / footer */
+  #contacto{text-align:center}
+  .socials{display:flex;gap:12px;justify-content:center;margin-top:26px}
+  .socials a{width:48px;height:48px;border-radius:13px;display:grid;place-items:center;background:var(--surface);border:1px solid var(--line);color:var(--text)}
+  .socials a:hover{border-color:var(--line-strong);transform:translateY(-2px)}
+  .socials a svg{width:22px;height:22px}
+  footer{border-top:1px solid var(--line);padding:30px 0;text-align:center;color:var(--muted);font-size:13px;line-height:1.7;margin-top:20px}
+
+  /* WhatsApp flotante */
+  .wa-float{position:fixed;left:20px;bottom:calc(20px + env(safe-area-inset-bottom));z-index:55;width:56px;height:56px;border-radius:50%;background:#25D366;display:grid;place-items:center;box-shadow:0 14px 30px -10px rgba(37,211,102,.7);color:#fff}
+  .wa-float svg{width:30px;height:30px}
+
+  /* Chat asistente Zoe */
+  .fab{position:fixed;right:20px;bottom:calc(20px + env(safe-area-inset-bottom));z-index:55;width:60px;height:60px;border-radius:50%;border:0;cursor:pointer;display:grid;place-items:center;background:linear-gradient(135deg,var(--blue),var(--orange));box-shadow:0 16px 34px -12px rgba(26,79,208,.6)}
+  .fab svg{width:28px;height:28px;color:#fff}
+  .fab .ping{position:absolute;top:-2px;right:-2px;width:15px;height:15px;background:var(--orange);border-radius:50%;border:2px solid var(--bg)}
+  .chatbox{position:fixed;right:20px;bottom:calc(90px + env(safe-area-inset-bottom));z-index:55;width:min(350px,calc(100vw - 40px));background:var(--surface);border:1px solid var(--line-strong);border-radius:18px;overflow:hidden;box-shadow:0 30px 60px -20px rgba(0,0,0,.5);transform:translateY(16px) scale(.96);opacity:0;pointer-events:none;transform-origin:bottom right;transition:transform .24s cubic-bezier(.22,1,.36,1),opacity .24s ease}
+  .chatbox.open{transform:none;opacity:1;pointer-events:auto}
+  .chat-head{display:flex;align-items:center;gap:11px;padding:14px 16px;background:linear-gradient(90deg,color-mix(in srgb,var(--blue) 18%,transparent),color-mix(in srgb,var(--orange) 16%,transparent));border-bottom:1px solid var(--line)}
+  .chat-head img{width:34px;height:34px;border-radius:9px}
+  .chat-head b{font-size:14.5px;font-weight:800;display:block}
+  .chat-head span{font-size:11.5px;color:#1a9c4a;display:flex;align-items:center;gap:5px}
+  .chat-head span::before{content:"";width:6px;height:6px;border-radius:50%;background:#22c55e}
+  .chat-body{padding:16px;display:flex;flex-direction:column;gap:10px;max-height:300px;overflow-y:auto}
+  .bubble{max-width:84%;padding:10px 13px;border-radius:14px;font-size:13.5px;line-height:1.5}
+  .bubble.bot{align-self:flex-start;background:var(--surface-2);border:1px solid var(--line);border-bottom-left-radius:4px}
+  .bubble.me{align-self:flex-end;background:linear-gradient(90deg,var(--blue),var(--orange));color:#fff;border-bottom-right-radius:4px}
+  .bubble.typing{align-self:flex-start;display:inline-flex;gap:5px;padding:12px 14px}
+  .bubble.typing i{width:6px;height:6px;border-radius:50%;background:var(--muted);animation:blink 1.2s infinite}
+  .bubble.typing i:nth-child(2){animation-delay:.2s}.bubble.typing i:nth-child(3){animation-delay:.4s}
+  @keyframes blink{0%,60%,100%{opacity:.3}30%{opacity:1}}
+  .chat-foot{padding:12px 14px;border-top:1px solid var(--line);display:flex;gap:8px}
+  .chat-foot input{flex:1;padding:11px 13px;border-radius:11px;border:1px solid var(--line-strong);background:var(--bg-2);color:var(--text);font-size:13.5px;font-family:inherit}
+  .chat-foot input:focus{outline:none;border-color:var(--blue-soft)}
+  .chat-foot .send{flex:none;width:40px;height:40px;border-radius:11px;border:0;cursor:pointer;color:#fff;display:grid;place-items:center;background:linear-gradient(135deg,var(--blue),var(--orange))}
+  .chat-foot .send svg{width:18px;height:18px}
+  @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<!-- ===== NAV ===== -->
+<div class="nav"><div class="wrap">
+  <a class="brand" href="#top"><img src="/img/zoe-logo.png" alt="Zoe Travel Spain" /><span><span class="z">Zoe</span> <span class="t">Travel</span></span></a>
+  <nav>
+    <a class="lnk" href="#servicios" data-i18n="nav_serv">Servicios</a>
+    <a class="lnk" href="#karol" data-i18n="nav_karol">Karol</a>
+    <a class="lnk" href="#contacto" data-i18n="nav_contact">Contacto</a>
+    <button class="icon-btn" id="langBtn" title="ES / EN"><span id="langLabel">EN</span></button>
+    <button class="icon-btn theme-toggle" id="themeBtn" title="Tema">
+      <svg class="ico-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4 12H2M22 12h-2M5.6 5.6 4.2 4.2M19.8 19.8l-1.4-1.4M18.4 5.6l1.4-1.4M4.2 19.8l1.4-1.4"/></svg>
+      <svg class="ico-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+    </button>
+    <a class="wa-btn" id="waNav" href="https://wa.me/34644280183" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2Zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1-.4-.1-1-.3-1.7-.6-3-1.3-5-4.3-5.1-4.5-.2-.2-1.2-1.6-1.2-3.1s.8-2.2 1.1-2.5c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6-.3.3c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.6-.1l.7-.9c.2-.2.4-.2.6-.1l1.9.9c.3.1.5.2.5.4.1.1.1.7-.1 1.4Z"/></svg>
+      <span data-i18n="wa">WhatsApp</span>
+    </a>
+  </nav>
+</div></div>
+
+<span id="top"></span>
+
+<!-- ===== HERO ===== -->
+<section class="hero"><div class="wrap">
+  <div>
+    <span class="eyebrow" data-i18n="hero_eyebrow">Agencia de viajes con alma</span>
+    <h1 data-i18n="hero_title">Donde quieras ir,<br/><span class="g">te ayudamos a llegar.</span></h1>
+    <p data-i18n="hero_sub">Vuelos, paquetes y sueños cumplidos. Nacimos para conectar corazones y ayudar a las familias a reencontrarse. Cada viaje tiene un propósito. 💛</p>
+    <div class="cta">
+      <button class="btn btn-primary" id="ctaCotiza">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20Z"/><circle cx="12" cy="12" r="10"/></svg>
+        <span data-i18n="hero_cta">Cotiza tu viaje</span>
+      </button>
+      <a class="btn btn-ghost" href="https://wa.me/34644280183" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2Z"/></svg>
+        <span data-i18n="hero_wa">Escríbenos ahora</span>
+      </a>
+    </div>
+  </div>
+  <div class="art">
+    <div class="disc"><img src="/img/zoe-logo.png" alt="Zoe" /></div>
+    <div class="chip c1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5a2.1 2.1 0 0 0-3-3L13 8 4.8 6.2a.5.5 0 0 0-.5.8l3.9 4.2-2.2 2.2-2-.4a.5.5 0 0 0-.4.8L6 18l1.6 2.9a.5.5 0 0 0 .8-.4l-.4-2 2.2-2.2 4.2 3.9a.5.5 0 0 0 .8-.5Z"/></svg><span data-i18n="chip1">Vuelos a todo el mundo</span></div>
+    <div class="chip c2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 5.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0ZM19 5.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0ZM6 14c0-2 1.5-3.5 3-3.5s3 1.5 3 3.5M18 14c0-2-1.5-3.5-3-3.5"/><path d="M12 21c-3 0-5-2-5-4h10c0 2-2 4-5 4Z"/></svg><span data-i18n="chip2">Viaja con tu mascota</span></div>
+  </div>
+</div>
+<div class="wrap"><div class="stats">
+  <div><b>+4</b><span data-i18n="stat1">AÑOS CONECTANDO CORAZONES</span></div>
+  <div><b>∞</b><span data-i18n="stat2">DESTINOS</span></div>
+  <div><b>💛</b><span data-i18n="stat3">FAMILIAS REENCONTRADAS</span></div>
+</div></div>
+</section>
+
+<!-- ===== SERVICIOS ===== -->
+<section class="block" id="servicios"><div class="wrap center">
+  <span class="eyebrow" data-i18n="serv_eyebrow">Lo que hacemos</span>
+  <h2 data-i18n="serv_title">Todo tu viaje, en un solo lugar</h2>
+  <p class="lead" data-i18n="serv_lead">Te acompañamos de principio a fin, con la calidez de quien viaja contigo.</p>
+</div><div class="wrap"><div class="grid">
+  <div class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5a2.1 2.1 0 0 0-3-3L13 8 4.8 6.2a.5.5 0 0 0-.5.8l3.9 4.2-2.2 2.2-2-.4a.5.5 0 0 0-.4.8L6 18l1.6 2.9a.5.5 0 0 0 .8-.4l-.4-2 2.2-2.2 4.2 3.9a.5.5 0 0 0 .8-.5Z"/></svg></div><h3 data-i18n="s1_t">Vuelos y paquetes</h3><p data-i18n="s1_p">A cualquier destino, al mejor precio. Donde quieras ir, te llevamos.</p></div>
+  <div class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3 8-8"/><path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9"/></svg></div><h3 data-i18n="s2_t">Cotización personalizada</h3><p data-i18n="s2_p">Nos cuentas tu sueño y te preparamos una propuesta a tu medida, sin compromiso.</p></div>
+  <div class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10 5.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0ZM19 5.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0ZM6 14c0-2 1.5-3.5 3-3.5s3 1.5 3 3.5M18 14c0-2-1.5-3.5-3-3.5M12 21c-3 0-5-2-5-4h10c0 2-2 4-5 4Z"/></svg></div><h3 data-i18n="s3_t">Viaja con tu mascota</h3><p data-i18n="s3_p">Asesoría y gestión para que tu compañero de cuatro patas viaje seguro contigo. 🐾</p></div>
+  <div class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l19-9-9 19-2-8-8-2Z"/></svg></div><h3 data-i18n="s4_t">Recogida en aeropuerto</h3><p data-i18n="s4_p">Al llegar a tu destino, te recogemos. Para que tu único trabajo sea disfrutar.</p></div>
+  <div class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 5 6v5c0 4.5 3 8 7 10 4-2 7-5.5 7-10V6l-7-3Z"/><path d="m9 12 2 2 4-4"/></svg></div><h3 data-i18n="s5_t">Viaja seguro e informado</h3><p data-i18n="s5_p">Te orientamos con documentos y seguros de viaje. No solo viajas seguro: viajas tranquilo.</p></div>
+  <div class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 4.4a3 3 0 0 0-4.2 0l-.4.4-.4-.4a3 3 0 1 0-4.2 4.2l4.6 4.6 4.6-4.6a3 3 0 0 0 0-4.2Z"/><path d="M3 12h5l2 4 3-8 2 4h4"/></svg></div><h3 data-i18n="s6_t">Promociones</h3><p data-i18n="s6_p">Ofertas de temporada y oportunidades únicas. ¡Pregúntanos antes de que despeguen! ✈️</p></div>
+</div></div></section>
+
+<!-- ===== KAROL ===== -->
+<section class="block" id="karol"><div class="wrap">
+  <div class="center"><span class="eyebrow" data-i18n="karol_eyebrow">Nuestra historia</span><h2 data-i18n="karol_title">¿Quién es Karol?</h2></div>
+  <div class="karol">
+    <img class="photo" src="/img/karol.png" alt="Karol · Zoe Travel Spain" />
+    <div>
+      <p data-i18n="karol_p1">Hace cuatro años comencé este sueño, solo tres meses después de convertirme en mamá. Con amor, esfuerzo y mucha pasión, nació mi emprendimiento: una agencia de viajes pensada para conectar corazones.</p>
+      <p data-i18n="karol_p2">Desde Zoe Travel Spain sigo ayudando a familias a reencontrarse, a cumplir sueños y a descubrir nuevos destinos. Porque cada viaje tiene un propósito, y el nuestro es hacerlo realidad contigo.</p>
+      <div class="sign">— Karol 💛</div>
+    </div>
+  </div>
+</div></section>
+
+<!-- ===== COTIZA (form) ===== -->
+<section class="block" id="cotiza"><div class="wrap center">
+  <span class="eyebrow" data-i18n="cot_eyebrow">Empieza tu viaje</span>
+  <h2 data-i18n="cot_title">Cotiza tu viaje, gratis y sin compromiso</h2>
+  <p class="lead" data-i18n="cot_lead">Déjanos tus datos y el equipo de Zoe te prepara una propuesta a tu medida.</p>
+  <form class="form" id="leadForm" novalidate>
+    <div class="row">
+      <div><label data-i18n="f_name">Tu nombre</label><input name="nombre" type="text" data-ph="f_name_ph" placeholder="Ej: Karol" required /></div>
+      <div><label data-i18n="f_wa">Tu WhatsApp</label><input name="telefono" type="tel" inputmode="tel" data-ph="f_wa_ph" placeholder="Ej: +34 600 000 000" required /></div>
+    </div>
+    <label data-i18n="f_dest">¿A dónde quieres viajar?</label>
+    <input name="destino" type="text" data-ph="f_dest_ph" placeholder="Ej: Bogotá, en diciembre, 2 personas" />
+    <label data-i18n="f_msg">Cuéntanos tu viaje (opcional)</label>
+    <textarea name="mensaje" data-ph="f_msg_ph" placeholder="Motivo, fechas, si viajas con mascota..."></textarea>
+    <button class="submit" type="submit" id="leadBtn" data-i18n="f_send">Enviar y recibir mi cotización</button>
+    <div class="done" id="leadDone"><b data-i18n="f_done_t">¡Recibido! 💛</b><p data-i18n="f_done_p">El equipo de Zoe te escribe pronto por WhatsApp con tu cotización.</p></div>
+  </form>
+</div></section>
+
+<!-- ===== CONTACTO ===== -->
+<section class="block" id="contacto"><div class="wrap center">
+  <span class="eyebrow" data-i18n="con_eyebrow">Hablemos</span>
+  <h2 data-i18n="con_title">¿Listo para tu próximo viaje?</h2>
+  <p class="lead" data-i18n="con_lead">Escríbenos por WhatsApp o síguenos. Estamos para ayudarte a llegar.</p>
+  <div class="cta" style="justify-content:center;margin-top:26px">
+    <a class="btn btn-primary" href="https://wa.me/34644280183" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2Z"/></svg>
+      <span data-i18n="con_cta">Escríbenos por WhatsApp</span>
+    </a>
+  </div>
+  <div class="socials">
+    <a href="https://www.instagram.com/zoetravelspain" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" stroke="none"/></svg></a>
+    <a href="https://www.facebook.com/zoetravelspain" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V5h-3c-2.2 0-4 1.8-4 4v2H7v4h3v6h4v-6h3l1-4h-4V9c0-.6.4-1 1-1Z"/></svg></a>
+  </div>
+</div>
+<footer><div class="wrap">
+  <p><b>Zoe Travel Spain</b> · <span data-i18n="foot">Agencia de viajes con alma · Sevilla</span><br/>© Zoe Travel Spain — Donde quieras ir, te ayudamos a llegar.</p>
+</div></footer>
+</section>
+
+<!-- WhatsApp flotante -->
+<a class="wa-float" href="https://wa.me/34644280183" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2Zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1-.4-.1-1-.3-1.7-.6-3-1.3-5-4.3-5.1-4.5-.2-.2-1.2-1.6-1.2-3.1s.8-2.2 1.1-2.5c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6-.3.3c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.6-.1l.7-.9c.2-.2.4-.2.6-.1l1.9.9c.3.1.5.2.5.4.1.1.1.7-.1 1.4Z"/></svg>
+</a>
+
+<!-- Chat asistente Zoe -->
+<div class="chatbox" id="chatbox">
+  <div class="chat-head">
+    <img src="/img/zoe-logo.png" alt="Zoe" />
+    <div><b>Zoe · <span data-i18n="chat_agency">Asistente</span></b><span data-i18n="chat_online">En línea</span></div>
+  </div>
+  <div class="chat-body" id="chatBody">
+    <div class="bubble bot" data-i18n="chat_hi">¡Hola! 🐱✈️ Soy Zoe. ¿A dónde te gustaría viajar? Te ayudo a planearlo.</div>
+  </div>
+  <form class="chat-foot" id="chatForm">
+    <input type="text" id="chatInput" data-ph="chat_ph" placeholder="Escribe tu mensaje..." autocomplete="off" />
+    <button class="send" type="submit" aria-label="Enviar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7Z"/></svg></button>
+  </form>
+</div>
+<button class="fab" id="fab" aria-label="Chat"><span class="ping"></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-12.2 7.6L3 21l1.9-5.7A8.5 8.5 0 1 1 21 11.5Z"/></svg></button>
+
+<script>
+/* ---------- i18n ES/EN ---------- */
+const I18N = {
+  es: {
+    nav_serv:"Servicios", nav_karol:"Karol", nav_contact:"Contacto", wa:"WhatsApp",
+    hero_eyebrow:"Agencia de viajes con alma",
+    hero_title:"Donde quieras ir,<br><span class='g'>te ayudamos a llegar.</span>",
+    hero_sub:"Vuelos, paquetes y sueños cumplidos. Nacimos para conectar corazones y ayudar a las familias a reencontrarse. Cada viaje tiene un propósito. 💛",
+    hero_cta:"Cotiza tu viaje", hero_wa:"Escríbenos ahora",
+    chip1:"Vuelos a todo el mundo", chip2:"Viaja con tu mascota",
+    stat1:"AÑOS CONECTANDO CORAZONES", stat2:"DESTINOS", stat3:"FAMILIAS REENCONTRADAS",
+    serv_eyebrow:"Lo que hacemos", serv_title:"Todo tu viaje, en un solo lugar",
+    serv_lead:"Te acompañamos de principio a fin, con la calidez de quien viaja contigo.",
+    s1_t:"Vuelos y paquetes", s1_p:"A cualquier destino, al mejor precio. Donde quieras ir, te llevamos.",
+    s2_t:"Cotización personalizada", s2_p:"Nos cuentas tu sueño y te preparamos una propuesta a tu medida, sin compromiso.",
+    s3_t:"Viaja con tu mascota", s3_p:"Asesoría y gestión para que tu compañero de cuatro patas viaje seguro contigo. 🐾",
+    s4_t:"Recogida en aeropuerto", s4_p:"Al llegar a tu destino, te recogemos. Para que tu único trabajo sea disfrutar.",
+    s5_t:"Viaja seguro e informado", s5_p:"Te orientamos con documentos y seguros de viaje. No solo viajas seguro: viajas tranquilo.",
+    s6_t:"Promociones", s6_p:"Ofertas de temporada y oportunidades únicas. ¡Pregúntanos antes de que despeguen! ✈️",
+    karol_eyebrow:"Nuestra historia", karol_title:"¿Quién es Karol?",
+    karol_p1:"Hace cuatro años comencé este sueño, solo tres meses después de convertirme en mamá. Con amor, esfuerzo y mucha pasión, nació mi emprendimiento: una agencia de viajes pensada para conectar corazones.",
+    karol_p2:"Desde Zoe Travel Spain sigo ayudando a familias a reencontrarse, a cumplir sueños y a descubrir nuevos destinos. Porque cada viaje tiene un propósito, y el nuestro es hacerlo realidad contigo.",
+    cot_eyebrow:"Empieza tu viaje", cot_title:"Cotiza tu viaje, gratis y sin compromiso",
+    cot_lead:"Déjanos tus datos y el equipo de Zoe te prepara una propuesta a tu medida.",
+    f_name:"Tu nombre", f_name_ph:"Ej: Karol", f_wa:"Tu WhatsApp", f_wa_ph:"Ej: +34 600 000 000",
+    f_dest:"¿A dónde quieres viajar?", f_dest_ph:"Ej: Bogotá, en diciembre, 2 personas",
+    f_msg:"Cuéntanos tu viaje (opcional)", f_msg_ph:"Motivo, fechas, si viajas con mascota...",
+    f_send:"Enviar y recibir mi cotización", f_done_t:"¡Recibido! 💛", f_done_p:"El equipo de Zoe te escribe pronto por WhatsApp con tu cotización.",
+    con_eyebrow:"Hablemos", con_title:"¿Listo para tu próximo viaje?",
+    con_lead:"Escríbenos por WhatsApp o síguenos. Estamos para ayudarte a llegar.",
+    con_cta:"Escríbenos por WhatsApp", foot:"Agencia de viajes con alma · Sevilla",
+    chat_agency:"Asistente", chat_online:"En línea", chat_hi:"¡Hola! 🐱✈️ Soy Zoe. ¿A dónde te gustaría viajar? Te ayudo a planearlo.", chat_ph:"Escribe tu mensaje..."
+  },
+  en: {
+    nav_serv:"Services", nav_karol:"Karol", nav_contact:"Contact", wa:"WhatsApp",
+    hero_eyebrow:"A travel agency with soul",
+    hero_title:"Wherever you want to go,<br><span class='g'>we help you get there.</span>",
+    hero_sub:"Flights, packages and dreams come true. We were born to connect hearts and help families reunite. Every trip has a purpose. 💛",
+    hero_cta:"Get a quote", hero_wa:"Message us now",
+    chip1:"Flights worldwide", chip2:"Travel with your pet",
+    stat1:"YEARS CONNECTING HEARTS", stat2:"DESTINATIONS", stat3:"FAMILIES REUNITED",
+    serv_eyebrow:"What we do", serv_title:"Your whole trip, in one place",
+    serv_lead:"We're with you from start to finish, with the warmth of someone travelling alongside you.",
+    s1_t:"Flights & packages", s1_p:"To any destination, at the best price. Wherever you want to go, we take you.",
+    s2_t:"Personalized quote", s2_p:"Tell us your dream and we prepare a tailored proposal, no strings attached.",
+    s3_t:"Travel with your pet", s3_p:"Guidance and paperwork so your four-legged friend travels safely with you. 🐾",
+    s4_t:"Airport pickup", s4_p:"When you land, we pick you up. So your only job is to enjoy.",
+    s5_t:"Travel safe & informed", s5_p:"We guide you with documents and travel insurance. Not just safe travel: peace of mind.",
+    s6_t:"Deals", s6_p:"Seasonal offers and unique opportunities. Ask us before they take off! ✈️",
+    karol_eyebrow:"Our story", karol_title:"Who is Karol?",
+    karol_p1:"Four years ago I began this dream, just three months after becoming a mom. With love, effort and passion, my project was born: a travel agency made to connect hearts.",
+    karol_p2:"From Zoe Travel Spain I keep helping families reunite, fulfill dreams and discover new destinations. Because every trip has a purpose, and ours is to make yours come true.",
+    cot_eyebrow:"Start your trip", cot_title:"Get a free quote, no commitment",
+    cot_lead:"Leave us your details and the Zoe team prepares a proposal made just for you.",
+    f_name:"Your name", f_name_ph:"e.g. Karol", f_wa:"Your WhatsApp", f_wa_ph:"e.g. +34 600 000 000",
+    f_dest:"Where do you want to travel?", f_dest_ph:"e.g. Bogotá, in December, 2 people",
+    f_msg:"Tell us about your trip (optional)", f_msg_ph:"Reason, dates, travelling with a pet...",
+    f_send:"Send and get my quote", f_done_t:"Received! 💛", f_done_p:"The Zoe team will message you soon on WhatsApp with your quote.",
+    con_eyebrow:"Let's talk", con_title:"Ready for your next trip?",
+    con_lead:"Message us on WhatsApp or follow us. We're here to help you get there.",
+    con_cta:"Message us on WhatsApp", foot:"A travel agency with soul · Seville",
+    chat_agency:"Assistant", chat_online:"Online", chat_hi:"Hi! 🐱✈️ I'm Zoe. Where would you like to travel? I'll help you plan it.", chat_ph:"Type your message..."
+  }
+};
+var lang = (function(){ try{ return localStorage.getItem('zoe-lang') || 'es'; }catch(e){ return 'es'; } })();
+function applyLang(l){
+  lang = l;
+  var d = I18N[l];
+  document.querySelectorAll('[data-i18n]').forEach(function(el){ var k = el.getAttribute('data-i18n'); if(d[k] != null) el.innerHTML = d[k]; });
+  document.querySelectorAll('[data-ph]').forEach(function(el){ var k = el.getAttribute('data-ph'); if(d[k] != null) el.setAttribute('placeholder', d[k]); });
+  document.getElementById('langLabel').textContent = l === 'es' ? 'EN' : 'ES';
+  document.documentElement.lang = l;
+  try{ localStorage.setItem('zoe-lang', l); }catch(e){}
+}
+document.getElementById('langBtn').addEventListener('click', function(){ applyLang(lang === 'es' ? 'en' : 'es'); });
+applyLang(lang);
+
+/* ---------- tema ---------- */
+document.getElementById('themeBtn').addEventListener('click', function(){
+  var root = document.documentElement;
+  var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  root.setAttribute('data-theme', next);
+  try{ localStorage.setItem('zoe-theme', next); }catch(e){}
+  var meta = document.querySelector('meta[name="theme-color"]'); if(meta) meta.setAttribute('content', next === 'dark' ? '#0b1020' : '#1a4fd0');
+});
+
+/* ---------- cotiza (form) ---------- */
+document.getElementById('ctaCotiza').addEventListener('click', function(){ document.getElementById('cotiza').scrollIntoView({ behavior:'smooth' }); });
+var lf = document.getElementById('leadForm');
+lf.addEventListener('submit', async function(e){
+  e.preventDefault();
+  var b = document.getElementById('leadBtn');
+  var data = { nombre: lf.nombre.value.trim(), telefono: lf.telefono.value.trim(), destino: lf.destino.value.trim(), mensaje: lf.mensaje.value.trim() };
+  if(!data.nombre || !data.telefono) return;
+  b.disabled = true; b.textContent = lang === 'es' ? 'Enviando...' : 'Sending...';
+  try{ await fetch('/api/lead', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(data) }); }catch(_){}
+  lf.querySelectorAll('input,textarea,label,.row,button.submit').forEach(function(el){ el.style.display='none'; });
+  document.getElementById('leadDone').style.display = 'block';
+});
+
+/* ---------- chat Zoe ---------- */
+(function(){
+  var fab = document.getElementById('fab'), box = document.getElementById('chatbox');
+  fab.addEventListener('click', function(){ box.classList.toggle('open'); });
+  var body = document.getElementById('chatBody'), form = document.getElementById('chatForm'), input = document.getElementById('chatInput');
+  var history = [];
+  function bubble(t, who){ var el = document.createElement('div'); el.className = 'bubble ' + who; el.textContent = t; body.appendChild(el); body.scrollTop = body.scrollHeight; return el; }
+  function typing(){ var el = document.createElement('div'); el.className = 'bubble bot typing'; el.innerHTML = '<i></i><i></i><i></i>'; body.appendChild(el); body.scrollTop = body.scrollHeight; return el; }
+  form.addEventListener('submit', async function(e){
+    e.preventDefault();
+    var text = input.value.trim(); if(!text) return;
+    bubble(text, 'me'); history.push({ role:'user', content:text }); input.value = '';
+    var t = typing();
+    try{
+      var r = await fetch('/api/chat', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ messages: history }) });
+      var d = await r.json(); t.remove();
+      var reply = (d && d.reply) ? d.reply : (lang === 'es' ? 'Perdona, inténtalo de nuevo 💛' : 'Sorry, please try again 💛');
+      bubble(reply, 'bot'); history.push({ role:'assistant', content: reply });
+    }catch(_){ t.remove(); bubble(lang === 'es' ? 'Escríbenos por WhatsApp y te ayudamos ✈️' : 'Message us on WhatsApp and we’ll help ✈️', 'bot'); }
+  });
+})();
+</script>
