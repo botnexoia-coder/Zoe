@@ -759,25 +759,27 @@ lf.addEventListener('submit', async function(e){
   });
 })();
 
-// ---- Carrusel de testimonios en video (lee videos/testimonios/manifest.json) ----
+// ---- Carrusel de testimonios en video (auto: 1, 2, 3... en videos/testimonios/) ----
 (function(){
   var track = document.getElementById('tcar'); var wrap = document.getElementById('tcarWrap'); if(!track) return;
-  function empty(){ if(wrap){ var e=document.createElement('div'); e.className='tcar-empty'; e.innerHTML='<b>Muy pronto 💛</b>Aquí irán los videos de nuestras familias felices.'; wrap.parentNode.replaceChild(e, wrap); } }
-  fetch('videos/testimonios/manifest.json', { cache:'no-store' })
-    .then(function(r){ return r.ok ? r.json() : []; })
-    .then(function(list){
-      if(!list || !list.length){ empty(); return; }
-      list.forEach(function(name){
-        var s=document.createElement('div'); s.className='tvid';
-        var v=document.createElement('video'); v.src='videos/testimonios/'+encodeURIComponent(name);
-        v.controls=true; v.preload='metadata'; v.setAttribute('playsinline',''); v.setAttribute('webkit-playsinline','');
-        s.appendChild(v); track.appendChild(s);
-      });
-    })
-    .catch(function(){ empty(); });
+  var found = 0, finished = false, EXTS = ['mp4','MP4','mov','MOV','webm','m4v'];
+  function done(){ if(finished) return; finished = true; if(found===0 && wrap){ var e=document.createElement('div'); e.className='tcar-empty'; e.innerHTML='<b>Muy pronto 💛</b>Aquí irán los videos de nuestras familias felices.'; wrap.parentNode.replaceChild(e, wrap); } }
+  function probe(i){
+    if(i>25){ done(); return; }
+    var ei = 0;
+    (function att(){
+      if(ei>=EXTS.length){ done(); return; }
+      var v = document.createElement('video');
+      v.preload='metadata'; v.controls=true; v.setAttribute('playsinline',''); v.setAttribute('webkit-playsinline','');
+      v.addEventListener('loadedmetadata', function(){ var s=document.createElement('div'); s.className='tvid'; s.appendChild(v); track.appendChild(s); found++; probe(i+1); });
+      v.addEventListener('error', function(){ ei++; att(); });
+      v.src = 'videos/testimonios/' + i + '.' + EXTS[ei];
+    })();
+  }
   function step(d){ var s=track.querySelector('.tvid'); var w=s?(s.offsetWidth+16):260; track.scrollBy({ left:d*w, behavior:'smooth' }); }
   var pv=document.getElementById('tcarPrev'), nx=document.getElementById('tcarNext');
   if(pv) pv.addEventListener('click', function(){ step(-1); });
   if(nx) nx.addEventListener('click', function(){ step(1); });
+  probe(1);
 })();
 </script>
