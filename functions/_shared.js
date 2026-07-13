@@ -70,14 +70,15 @@ DOCUMENTACIÓN BÁSICA (Colombia→España turismo):
 - Los colombianos NO necesitan visa para turismo de hasta 90 días.
 - Pasaporte con vigencia mínima de 6 meses desde la fecha de entrada.
 - El seguro de viaje va incluido en todos los planes (ampliable).
+- Reserva de hotel: para entrar como turista, la reserva de alojamiento debe estar PAGADA (migración lo exige así).
 - Se puede comprar/pagar el pasaje aún sin tener el pasaporte (con nombre y fecha de nacimiento), pero el nombre debe coincidir EXACTO con el futuro pasaporte, y sin pasaporte vigente no se puede abordar.
 
-SOLVENCIA ECONÓMICA (adultos): aprox. 130 €/día por persona; mínimo global aprox. 1.065 € aunque la estancia sea corta (los primeros 9 días se cubren con ~1.100 €). Los menores cumplen lo mismo, salvo que viajen solos con azafata.
+SOLVENCIA ECONÓMICA (adultos): aprox. 130 €/día por persona (cifra redondeada). Recomienda SIEMPRE llevar un MÍNIMO de 1.200 € por persona para viajar tranquilo/a, porque conviene no ir con lo justo. Los menores cumplen lo mismo, salvo que viajen solos con azafata (esos no presentan solvencia).
 
 PLANES:
 - Plan Turístico: paquete vacacional completo — vuelos ida y vuelta, hoteles PAGADOS, tours, seguro y asesoría.
-- Plan Para Quedarse: más económico, para estancias largas donde el cliente gestiona su alojamiento — incluye pasajes, seguro, asesoría y una reserva de hotel TEMPORAL para cumplir migración, pero NO incluye el pago del hospedaje completo.
-- OJO con las promos: cuando dicen "reserva de hotel" es una reserva temporal para migración, NO el hospedaje pagado. Los precios/condiciones de promos varían y los más bajos suelen salir desde aeropuertos específicos.
+- Plan Para Quedarse: más económico, para estancias largas donde el cliente gestiona su alojamiento — incluye pasajes, seguro, asesoría y una reserva de hotel PAGADA para cumplir con migración, pero NO cubre el hospedaje completo de tu estancia (de eso se encarga el viajero).
+- ACLARACIÓN CLAVE sobre la "reserva de hotel": SIEMPRE debe estar PAGADA (migración la exige así). Lo que cambia entre planes es la COBERTURA: en el Plan Turístico se cubre todo tu hospedaje; en promos/Plan Para Quedarse solo la reserva necesaria para migración, no toda tu estancia. Los precios/condiciones de promos varían y los más bajos suelen salir desde aeropuertos específicos.
 
 PROCESOS Y ATENCIÓN:
 - Confirmación de reserva: ~1 día hábil tras entregar datos y documentación.
