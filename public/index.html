@@ -570,6 +570,25 @@
       <li data-i18n="g4_i4">Llega al aeropuerto con <b>más tiempo</b> y evita conexiones muy justas.</li>
     </ul><p class="gnote" data-i18n="g_note3">ℹ️ Los requisitos varían por país y aerolínea. El equipo de Zoe te guía en cada paso.</p></div>
   </details>
+
+  <style>
+  .gcta{margin:26px 0 0;background:linear-gradient(135deg,var(--blue),var(--blue-d));color:#fff;border-radius:var(--radius);padding:28px;text-align:center;box-shadow:0 20px 44px -24px rgba(26,79,208,.6)}
+  .gcta h3{margin:0;font-size:20px;font-weight:900}
+  .gcta p{margin:8px auto 16px;max-width:540px;color:rgba(255,255,255,.9);font-size:14.5px;line-height:1.55}
+  .gcta .btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  .gcta .b{display:inline-flex;align-items:center;gap:8px;padding:13px 22px;border-radius:12px;font-weight:800;font-size:14px;cursor:pointer;border:0;font-family:inherit;text-decoration:none;transition:transform .16s ease}
+  .gcta .b:hover{transform:translateY(-2px)}
+  .gcta .b.chat{background:var(--orange);color:#fff}
+  .gcta .b.blog{background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.45)}
+  </style>
+  <div class="gcta">
+    <h3 data-i18n="g_cta_t">Cada caso es diferente 💛</h3>
+    <p data-i18n="g_cta_p">Esto son pautas generales para orientarte. Tu situación —fechas, documentos, con quién viajas— puede cambiarlo todo. Para el detalle exacto de TU viaje:</p>
+    <div class="btns">
+      <button class="b chat" id="guiaChat" type="button" data-i18n="g_cta_chat">Habla con Zoe 🐱</button>
+      <a class="b blog" href="/blog/" data-i18n="g_cta_blog">Leer el blog →</a>
+    </div>
+  </div>
 </div></section>
 
 <!-- ===== INSTAGRAM ===== -->
@@ -647,6 +666,7 @@
 const I18N = {
   es: {
     nav_serv:"Servicios", nav_karol:"Karol", nav_contact:"Contacto", wa:"WhatsApp", nav_videos:"Videos", nav_guias:"Guías", nav_testi:"Testimonios", mas_spain:"España",
+    g_cta_t:"Cada caso es diferente 💛", g_cta_p:"Esto son pautas generales para orientarte. Tu situación —fechas, documentos, con quién viajas— puede cambiarlo todo. Para el detalle exacto de TU viaje:", g_cta_chat:"Habla con Zoe 🐱", g_cta_blog:"Leer el blog →",
     hero_eyebrow:"Agencia de viajes con alma",
     hero_title:"Donde quieras ir,<br><span class='g'>te ayudamos a llegar.</span>",
     hero_sub:"Vuelos, paquetes y sueños cumplidos. Nacimos para conectar corazones y ayudar a las familias a reencontrarse. Cada viaje tiene un propósito. 💛",
@@ -692,6 +712,7 @@ const I18N = {
   },
   en: {
     nav_serv:"Services", nav_karol:"Karol", nav_contact:"Contact", wa:"WhatsApp", nav_videos:"Videos", nav_guias:"Guides", nav_testi:"Testimonials", mas_spain:"Spain",
+    g_cta_t:"Every case is different 💛", g_cta_p:"These are general guidelines. Your situation —dates, documents, who you travel with— can change everything. For the exact details of YOUR trip:", g_cta_chat:"Chat with Zoe 🐱", g_cta_blog:"Read the blog →",
     hero_eyebrow:"A travel agency with soul",
     hero_title:"Wherever you want to go,<br><span class='g'>we help you get there.</span>",
     hero_sub:"Flights, packages and dreams come true. We were born to connect hearts and help families reunite. Every trip has a purpose. 💛",
@@ -776,7 +797,7 @@ lf.addEventListener('submit', async function(e){
 (function(){
   var fab = document.getElementById('fab'), box = document.getElementById('chatbox');
   fab.addEventListener('click', function(){ box.classList.toggle('open'); });
-  ['openZoe','openZoe2','navChat','cotChat'].forEach(function(id){ var el=document.getElementById(id); if(el) el.addEventListener('click', function(){ box.classList.add('open'); setTimeout(function(){ var ci=document.getElementById('chatInput'); if(ci) ci.focus(); }, 300); }); });
+  ['openZoe','openZoe2','navChat','cotChat','guiaChat'].forEach(function(id){ var el=document.getElementById(id); if(el) el.addEventListener('click', function(){ box.classList.add('open'); setTimeout(function(){ var ci=document.getElementById('chatInput'); if(ci) ci.focus(); }, 300); }); });
   var body = document.getElementById('chatBody'), form = document.getElementById('chatForm'), input = document.getElementById('chatInput');
   var history = [];
   function bubble(t, who){ var el = document.createElement('div'); el.className = 'bubble ' + who; el.textContent = t; body.appendChild(el); body.scrollTop = body.scrollHeight; return el; }
