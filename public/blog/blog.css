@@ -1,0 +1,81 @@
+/* ===== Blog Zoe Travel Spain — claro, azul + naranja ===== */
+:root{
+  --bg:#ffffff; --bg-2:#eef4ff; --surface:#ffffff; --surface-2:#f5f8ff;
+  --line:rgba(18,40,80,.10); --line-strong:rgba(18,40,80,.16);
+  --text:#132038; --muted:#5b6b86;
+  --blue:#1a4fd0; --blue-d:#1740a8; --blue-soft:#4b7bef;
+  --orange:#f57a1f; --orange-d:#e06a12; --orange-soft:#ff9d4d;
+  --radius:20px; --radius-sm:13px; --max:1080px;
+  --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:var(--font);color:var(--text);background:var(--bg);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+h1,h2,h3{margin:0;text-wrap:balance}
+.bgwrap{position:fixed;inset:0;z-index:-1;background:linear-gradient(180deg,var(--bg-2),var(--bg))}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 22px}
+.wrap-narrow{max-width:760px;margin:0 auto;padding:0 22px}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.85);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:66px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:900;color:var(--blue);font-size:1.05rem}
+.logo img{height:34px;width:auto}
+.logo b{color:var(--orange)}
+.nav nav{display:flex;gap:20px;align-items:center}
+.nav nav a{text-decoration:none;color:var(--muted);font-size:14px;font-weight:700}
+.nav nav a:hover{color:var(--text)}
+.nav .cta{padding:9px 16px;border-radius:11px;background:var(--orange);color:#fff;font-weight:800;font-size:13.5px}
+@media(max-width:640px){.nav nav a.hide-m{display:none}}
+
+/* hero */
+.bhero{padding:56px 0 18px;text-align:center}
+.bhero .eyebrow{display:inline-block;font-size:12px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;color:var(--orange);margin-bottom:12px}
+.bhero h1{font-size:clamp(29px,5vw,46px);font-weight:900;line-height:1.05;color:var(--blue-d)}
+.bhero p{max-width:600px;margin:16px auto 0;color:var(--muted);font-size:17px;line-height:1.6}
+
+/* grid */
+.posts{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;padding:34px 0 68px}
+@media(max-width:860px){.posts{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.posts{grid-template-columns:1fr}}
+.post{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px;text-decoration:none;box-shadow:0 12px 30px -22px rgba(18,40,80,.4);transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
+.post:hover{transform:translateY(-4px);border-color:var(--blue-soft);box-shadow:0 22px 44px -26px rgba(26,79,208,.5)}
+.post .cat{align-self:flex-start;font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--blue);background:rgba(26,79,208,.08);border:1px solid rgba(26,79,208,.2);padding:4px 10px;border-radius:999px;margin-bottom:14px}
+.post h3{font-size:19px;font-weight:800;line-height:1.22;color:var(--text)}
+.post p{color:var(--muted);font-size:14px;line-height:1.6;margin:10px 0 0;flex:1}
+.post .meta{margin-top:16px;font-size:12px;color:var(--muted);font-weight:700}
+
+/* articulo */
+.article{padding:42px 0 10px}
+.article .cat{display:inline-block;font-size:11px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:var(--blue);background:rgba(26,79,208,.08);border:1px solid rgba(26,79,208,.2);padding:5px 12px;border-radius:999px;margin-bottom:16px}
+.article h1{font-size:clamp(27px,4.6vw,40px);font-weight:900;line-height:1.1;color:var(--blue-d)}
+.article .meta{margin-top:14px;color:var(--muted);font-size:13.5px;font-weight:700;display:flex;gap:10px;flex-wrap:wrap}
+.article .body{margin-top:28px;color:#2a3852;font-size:17px;line-height:1.75}
+.article .body h2{color:var(--blue-d);font-size:23px;font-weight:800;margin:34px 0 10px}
+.article .body h3{color:var(--text);font-size:18px;font-weight:800;margin:24px 0 6px}
+.article .body p{margin:0 0 15px}
+.article .body a{color:var(--blue);text-decoration:underline;text-underline-offset:3px}
+.article .body strong{color:var(--text)}
+.article .body ul,.article .body ol{margin:0 0 17px;padding-left:2px;list-style:none;display:flex;flex-direction:column;gap:10px}
+.article .body ul li{display:flex;gap:11px;align-items:flex-start}
+.article .body ul li::before{content:"✓";color:var(--orange);font-weight:900;flex:none}
+.article .body ol{counter-reset:n}
+.article .body ol li{display:flex;gap:12px;align-items:flex-start}
+.article .body ol li::before{counter-increment:n;content:counter(n);flex:none;width:25px;height:25px;border-radius:50%;background:rgba(26,79,208,.1);border:1px solid rgba(26,79,208,.28);color:var(--blue);font-size:13px;font-weight:800;display:grid;place-items:center}
+.article .body blockquote{margin:22px 0;padding:15px 20px;border-left:4px solid var(--orange);background:var(--surface-2);border-radius:0 12px 12px 0;color:#2a3852;font-style:italic}
+.callout{margin:20px 0;padding:16px 20px;border-radius:14px;background:rgba(245,122,31,.08);border:1px solid rgba(245,122,31,.28);font-size:15px;color:#2a3852}
+.callout strong{color:var(--orange-d)}
+
+/* CTA */
+.blog-cta{margin:40px 0 6px;border-radius:var(--radius);padding:30px;text-align:center;background:linear-gradient(135deg,var(--blue),var(--blue-d));color:#fff}
+.blog-cta h3{font-size:22px;font-weight:900}
+.blog-cta p{color:rgba(255,255,255,.9);font-size:15px;margin:8px auto 18px;max-width:470px;line-height:1.55}
+.blog-cta a{display:inline-flex;align-items:center;gap:9px;background:var(--orange);color:#fff;padding:14px 26px;border-radius:13px;font-weight:800;font-size:15px;text-decoration:none;box-shadow:0 14px 30px -12px rgba(0,0,0,.4)}
+.blog-cta a:hover{background:var(--orange-d)}
+.back{display:inline-flex;gap:7px;color:var(--muted);font-weight:700;font-size:14px;text-decoration:none;margin-bottom:6px}
+.back:hover{color:var(--blue)}
+
+footer{border-top:1px solid var(--line);padding:32px 0;margin-top:38px;text-align:center;color:var(--muted);font-size:13px;line-height:1.7}
+footer a{color:var(--blue);text-decoration:none}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
