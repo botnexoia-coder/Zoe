@@ -1,9 +1,11 @@
-import { CORS, esc, json, notify } from '../_shared.js';
+import { CORS, esc, json, notify, rateLimited } from '../_shared.js';
 
 export function onRequestOptions() { return new Response(null, { headers: CORS }); }
 
 export async function onRequestPost(context) {
   const { request, env } = context;
+  const ip = request.headers.get('CF-Connecting-IP') || '';
+  if (await rateLimited(env, ip, 'lead', 5)) return json({ error: 'Demasiadas peticiones, inténtalo en un momento.' }, 429);
   let body;
   try { body = await request.json(); } catch (e) { return json({ error: 'JSON inválido' }, 400); }
 

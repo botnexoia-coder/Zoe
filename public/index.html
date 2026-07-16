@@ -1,3 +1,6 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
 <!-- ============================================================
      ZOE TRAVEL SPAIN — Agencia de viajes (Karol)
      Bilingüe ES/EN · tema claro/oscuro · asistente "Zoe" (IA)
@@ -168,6 +171,9 @@
   .form textarea{min-height:70px;resize:vertical}
   .form .submit{margin-top:18px;width:100%;padding:16px;border:0;border-radius:12px;cursor:pointer;font-weight:900;font-size:15.5px;font-family:inherit;background:var(--orange);color:#fff;box-shadow:0 14px 30px -12px rgba(0,0,0,.5)}
   .form .submit:hover{background:var(--orange-d)}
+  .form .consent{display:flex;gap:8px;align-items:flex-start;margin-top:16px;font-size:12.5px;line-height:1.5;color:rgba(255,255,255,.8);text-align:left;cursor:pointer}
+  .form .consent input{margin-top:2px;flex-shrink:0;width:16px;height:16px;accent-color:var(--orange)}
+  .form .consent a{color:#fff;text-decoration:underline}
   .form .done{display:none;text-align:center;padding:14px 0}
   .form .done b{font-size:20px;font-weight:900;display:block;margin-bottom:6px}
   .form .done p{color:rgba(255,255,255,.85);font-size:14.5px;margin:0}
@@ -296,6 +302,8 @@
 
   @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
+</head>
+<body>
 
 <!-- ===== NAV ===== -->
 <div class="nav"><div class="wrap">
@@ -505,8 +513,10 @@
     <input name="destino" type="text" data-ph="f_dest_ph" placeholder="Ej: Bogotá, en diciembre, 2 personas" />
     <label data-i18n="f_msg">Cuéntanos tu viaje (opcional)</label>
     <textarea name="mensaje" data-ph="f_msg_ph" placeholder="Motivo, fechas, si viajas con mascota..."></textarea>
+    <label class="consent"><input type="checkbox" id="leadConsent" required /> <span data-i18n="f_consent">Acepto que Zoe Travel trate mis datos para contactarme sobre mi viaje. Ver <a href="/privacidad/" target="_blank" rel="noopener">Política de Privacidad</a>.</span></label>
     <button class="submit" type="submit" id="leadBtn" data-i18n="f_send">Enviar y recibir mi cotización</button>
     <div class="done" id="leadDone"><b data-i18n="f_done_t">¡Recibido! 💛</b><p data-i18n="f_done_p">El equipo de Zoe te escribe pronto por WhatsApp con tu cotización.</p></div>
+    <div class="done" id="leadErr" style="display:none"><b data-i18n="f_err_t">No se pudo enviar 😢</b><p data-i18n="f_err_p">Escríbenos directo por WhatsApp y te ayudamos igual:</p><a class="submit" style="display:inline-block;margin-top:8px;text-decoration:none" href="https://wa.me/34644280183" target="_blank" rel="noopener">WhatsApp →</a></div>
   </form>
 </div></section>
 
@@ -637,6 +647,7 @@
 </div>
 <footer><div class="wrap">
   <p><b>Zoe Travel Spain</b> · <span data-i18n="foot">Agencia de viajes con alma · Sevilla</span><br/>© Zoe Travel Spain — Donde quieras ir, te ayudamos a llegar.</p>
+  <p style="margin-top:8px"><a href="/privacidad/" style="color:inherit">Política de Privacidad</a></p>
 </div></footer>
 </section>
 
@@ -690,6 +701,7 @@ const I18N = {
     f_dest:"¿A dónde quieres viajar?", f_dest_ph:"Ej: Bogotá, en diciembre, 2 personas",
     f_msg:"Cuéntanos tu viaje (opcional)", f_msg_ph:"Motivo, fechas, si viajas con mascota...",
     f_send:"Enviar y recibir mi cotización", f_done_t:"¡Recibido! 💛", f_done_p:"El equipo de Zoe te escribe pronto por WhatsApp con tu cotización.",
+    f_consent:'Acepto que Zoe Travel trate mis datos para contactarme sobre mi viaje. Ver <a href="/privacidad/" target="_blank" rel="noopener">Política de Privacidad</a>.', f_err_t:"No se pudo enviar 😢", f_err_p:"Escríbenos directo por WhatsApp y te ayudamos igual:",
     con_eyebrow:"Hablemos", con_title:"¿Listo para tu próximo viaje?",
     con_lead:"Escríbenos por WhatsApp o síguenos. Estamos para ayudarte a llegar.",
     con_cta:"Escríbenos por WhatsApp", foot:"Agencia de viajes con alma · Sevilla",
@@ -736,6 +748,7 @@ const I18N = {
     f_dest:"Where do you want to travel?", f_dest_ph:"e.g. Bogotá, in December, 2 people",
     f_msg:"Tell us about your trip (optional)", f_msg_ph:"Reason, dates, travelling with a pet...",
     f_send:"Send and get my quote", f_done_t:"Received! 💛", f_done_p:"The Zoe team will message you soon on WhatsApp with your quote.",
+    f_consent:'I agree that Zoe Travel may process my data to contact me about my trip. See <a href="/privacidad/" target="_blank" rel="noopener">Privacy Policy</a>.', f_err_t:"Couldn’t send 😢", f_err_p:"Message us directly on WhatsApp and we’ll help you anyway:",
     con_eyebrow:"Let's talk", con_title:"Ready for your next trip?",
     con_lead:"Message us on WhatsApp or follow us. We're here to help you get there.",
     con_cta:"Message us on WhatsApp", foot:"A travel agency with soul · Seville",
@@ -786,11 +799,18 @@ lf.addEventListener('submit', async function(e){
   e.preventDefault();
   var b = document.getElementById('leadBtn');
   var data = { nombre: lf.nombre.value.trim(), telefono: lf.telefono.value.trim(), destino: lf.destino.value.trim(), mensaje: lf.mensaje.value.trim() };
-  if(!data.nombre || !data.telefono) return;
+  if(!data.nombre || !data.telefono) { alert(lang === 'es' ? 'Por favor déjanos tu nombre y WhatsApp.' : 'Please leave your name and WhatsApp.'); return; }
+  if(!document.getElementById('leadConsent').checked) { alert(lang === 'es' ? 'Marca la casilla de privacidad para continuar.' : 'Please tick the privacy box to continue.'); return; }
   b.disabled = true; b.textContent = lang === 'es' ? 'Enviando...' : 'Sending...';
-  try{ await fetch('/api/lead', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(data) }); }catch(_){}
-  lf.querySelectorAll('input,textarea,label,.row,button.submit').forEach(function(el){ el.style.display='none'; });
-  document.getElementById('leadDone').style.display = 'block';
+  var ok = false;
+  try{ var r = await fetch('/api/lead', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(data) }); ok = r.ok; }catch(_){ ok = false; }
+  if(ok){
+    lf.querySelectorAll('input,textarea,label,.row,button.submit').forEach(function(el){ el.style.display='none'; });
+    document.getElementById('leadDone').style.display = 'block';
+  } else {
+    b.disabled = false; b.textContent = lang === 'es' ? 'Enviar y recibir mi cotización' : 'Send and get my quote';
+    document.getElementById('leadErr').style.display = 'block';
+  }
 });
 
 /* ---------- chat Zoe ---------- */
@@ -840,3 +860,6 @@ lf.addEventListener('submit', async function(e){
   probe(1);
 })();
 </script>
+
+</body>
+</html>

@@ -1,4 +1,4 @@
-import { CORS, SYSTEM, esc, json, notify, callClaude, summarizeLead } from '../_shared.js';
+import { CORS, SYSTEM, esc, json, notify, callClaude, summarizeLead, rateLimited, sanitizeMessages } from '../_shared.js';
 
 export function onRequestOptions() { return new Response(null, { headers: CORS }); }
 
@@ -7,11 +7,12 @@ export async function onRequestPost(context) {
   if (!env.ANTHROPIC_API_KEY) {
     return json({ reply: 'El asistente aún no está configurado. ¡Escríbenos por WhatsApp mientras tanto! ✈️' });
   }
+  const ip = request.headers.get('CF-Connecting-IP') || '';
+  if (await rateLimited(env, ip, 'chat', 20)) return json({ error: 'Demasiadas peticiones, inténtalo en un momento.' }, 429);
   let body;
   try { body = await request.json(); } catch (e) { return json({ error: 'JSON inválido' }, 400); }
-  let messages = body.messages;
-  if (!messages || !Array.isArray(messages)) return json({ error: 'Faltan mensajes' }, 400);
-  if (messages.length > 24) messages = messages.slice(-24);
+  let messages = sanitizeMessages(body.messages);
+  if (!messages) return json({ error: 'Faltan mensajes' }, 400);
 
   const reply = await callClaude(env.ANTHROPIC_API_KEY, 'claude-sonnet-4-6', SYSTEM, messages, 450);
 
