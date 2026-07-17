@@ -820,7 +820,8 @@ lf.addEventListener('submit', async function(e){
   ['openZoe','openZoe2','navChat','cotChat','guiaChat'].forEach(function(id){ var el=document.getElementById(id); if(el) el.addEventListener('click', function(){ box.classList.add('open'); setTimeout(function(){ var ci=document.getElementById('chatInput'); if(ci) ci.focus(); }, 300); }); });
   var body = document.getElementById('chatBody'), form = document.getElementById('chatForm'), input = document.getElementById('chatInput');
   var history = [];
-  function bubble(t, who){ var el = document.createElement('div'); el.className = 'bubble ' + who; el.textContent = t; body.appendChild(el); body.scrollTop = body.scrollHeight; return el; }
+  function clean(t){ return String(t||'').replace(/\*\*(.*?)\*\*/g,'$1').replace(/(^|\n)#{1,6}\s*/g,'$1').replace(/`/g,''); }
+  function bubble(t, who){ var el = document.createElement('div'); el.className = 'bubble ' + who; el.textContent = who==='bot' ? clean(t) : t; body.appendChild(el); body.scrollTop = body.scrollHeight; return el; }
   function typing(){ var el = document.createElement('div'); el.className = 'bubble bot typing'; el.innerHTML = '<i></i><i></i><i></i>'; body.appendChild(el); body.scrollTop = body.scrollHeight; return el; }
   form.addEventListener('submit', async function(e){
     e.preventDefault();
