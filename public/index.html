@@ -209,6 +209,7 @@
   .wa-float svg{width:30px;height:30px}
   button.wa-float{border:0;cursor:pointer;font-family:inherit}
   .wa-choice{position:fixed;left:20px;bottom:calc(88px + env(safe-area-inset-bottom));z-index:56;width:min(330px,calc(100vw - 40px));padding:22px;background:var(--surface);border:1px solid var(--line-strong);border-radius:16px;box-shadow:0 28px 60px -22px rgba(0,0,0,.48);display:none}
+  .wa-choice.from-nav{top:78px;right:22px;bottom:auto;left:auto}
   .wa-choice.open{display:block;animation:waChoiceIn .2s ease-out}
   @keyframes waChoiceIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
   .wa-choice .x{position:absolute;right:10px;top:9px;border:0;background:transparent;color:var(--muted);font-size:20px;cursor:pointer;padding:5px}
@@ -870,15 +871,17 @@ lf.addEventListener('submit', async function(e){
 
 /* ---------- chat Zoe ---------- */
 (function(){
-  var fab = document.getElementById('fab'), box = document.getElementById('chatbox'), waFloat = document.getElementById('waFloat'), waChoice = document.getElementById('waChoice');
+  var fab = document.getElementById('fab'), box = document.getElementById('chatbox'), waFloat = document.getElementById('waFloat'), waNav = document.getElementById('waNav'), waChoice = document.getElementById('waChoice');
   fab.addEventListener('click', function(){ box.classList.toggle('open'); });
   ['openZoe','openZoe2','navChat','cotChat','guiaChat'].forEach(function(id){ var el=document.getElementById(id); if(el) el.addEventListener('click', function(){ box.classList.add('open'); setTimeout(function(){ var ci=document.getElementById('chatInput'); if(ci) ci.focus(); }, 300); }); });
   var body = document.getElementById('chatBody'), form = document.getElementById('chatForm'), input = document.getElementById('chatInput');
   var history = [];
-  waFloat.addEventListener('click', function(){ var open=waChoice.classList.toggle('open');waFloat.setAttribute('aria-expanded',String(open));if(open)box.classList.remove('open'); });
-  document.getElementById('waChoiceClose').addEventListener('click', function(){ waChoice.classList.remove('open');waFloat.setAttribute('aria-expanded','false'); });
-  document.getElementById('waAskZoe').addEventListener('click', function(){ waChoice.classList.remove('open');waFloat.setAttribute('aria-expanded','false');box.classList.add('open');setTimeout(function(){ input.focus(); },300); });
-  document.getElementById('waDirect').addEventListener('click', function(){ waChoice.classList.remove('open');waFloat.setAttribute('aria-expanded','false'); });
+  function closeWaChoice(){ waChoice.classList.remove('open','from-nav');waFloat.setAttribute('aria-expanded','false'); }
+  waFloat.addEventListener('click', function(){ waChoice.classList.remove('from-nav');var open=waChoice.classList.toggle('open');waFloat.setAttribute('aria-expanded',String(open));if(open)box.classList.remove('open'); });
+  if(waNav)waNav.addEventListener('click',function(e){e.preventDefault();waChoice.classList.add('from-nav','open');waFloat.setAttribute('aria-expanded','true');box.classList.remove('open');});
+  document.getElementById('waChoiceClose').addEventListener('click', closeWaChoice);
+  document.getElementById('waAskZoe').addEventListener('click', function(){ closeWaChoice();box.classList.add('open');setTimeout(function(){ input.focus(); },300); });
+  document.getElementById('waDirect').addEventListener('click', closeWaChoice);
   function clean(t){ return String(t||'').replace(/\*\*(.*?)\*\*/g,'$1').replace(/(^|\n)#{1,6}\s*/g,'$1').replace(/`/g,''); }
   function bubble(t, who){ var el = document.createElement('div'); el.className = 'bubble ' + who; el.textContent = who==='bot' ? clean(t) : t; body.appendChild(el); body.scrollTop = body.scrollHeight; return el; }
   function typing(){ var el = document.createElement('div'); el.className = 'bubble bot typing'; el.innerHTML = '<i></i><i></i><i></i>'; body.appendChild(el); body.scrollTop = body.scrollHeight; return el; }
