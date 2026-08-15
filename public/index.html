@@ -153,7 +153,7 @@
   .journey::before{content:"";position:absolute;top:31px;left:16%;right:16%;height:2px;background:linear-gradient(90deg,var(--blue),var(--orange));opacity:.22}
   .journey-plane{position:absolute;z-index:2;top:15px;left:15%;width:34px;height:34px;display:grid;place-items:center;color:var(--blue);filter:drop-shadow(0 5px 7px color-mix(in srgb,var(--blue) 28%,transparent));animation:journeyFly 7s cubic-bezier(.45,.05,.55,.95) infinite}
   .journey-plane svg{width:31px;height:31px;display:block;transform:rotate(90deg)}
-  @keyframes journeyFly{0%{left:15%;opacity:0;transform:translateY(3px) rotate(5deg)}9%{opacity:1}46%{transform:translateY(-3px) rotate(-2deg)}82%{opacity:1}92%,100%{left:82%;opacity:0;transform:translateY(2px) rotate(4deg)}}
+  @keyframes journeyFly{0%{left:14%;top:29px;opacity:0;transform:rotate(8deg) scale(.92)}9%{opacity:1}30%{left:34%;top:9px;transform:rotate(-8deg) scale(1)}56%{left:57%;top:-10px;transform:rotate(-4deg) scale(1.04)}76%{left:75%;top:-2px;opacity:1;transform:rotate(5deg) scale(1)}92%,100%{left:83%;top:20px;opacity:0;transform:rotate(11deg) scale(.94)}}
   .journey-step{position:relative;text-align:center;padding:0 18px}
   .journey-n{position:relative;z-index:3;width:62px;height:62px;margin:0 auto 18px;border-radius:50%;display:grid;place-items:center;background:var(--surface);border:2px solid color-mix(in srgb,var(--blue) 28%,var(--line));box-shadow:0 12px 28px -18px rgba(26,79,208,.65);color:var(--blue);font-size:18px;font-weight:900}
   .journey-n>svg{width:27px;height:27px}
@@ -164,7 +164,7 @@
   .journey-step h3{font-size:18px;font-weight:850}
   .journey-step p{max-width:280px;margin:8px auto 0;color:var(--muted);font-size:14px;line-height:1.6}
   @media(max-width:680px){.journey{grid-template-columns:1fr;gap:28px}.journey::before{top:28px;bottom:28px;left:30px;right:auto;width:2px;height:auto}.journey-plane{top:4%;left:14px;animation-name:journeyFlyMobile}.journey-plane svg{transform:rotate(180deg)}.journey-step{display:grid;grid-template-columns:62px 1fr;text-align:left;gap:16px;padding:0}.journey-n{margin:0}.journey-step h3{align-self:end}.journey-step p{grid-column:2;margin:0;max-width:none}}
-  @keyframes journeyFlyMobile{0%{top:4%;opacity:0;transform:translateX(3px)}9%{opacity:1}46%{transform:translateX(-3px)}82%{opacity:1}92%,100%{top:88%;opacity:0;transform:translateX(2px)}}
+  @keyframes journeyFlyMobile{0%{top:4%;opacity:0;transform:translateX(5px) scale(.92)}9%{opacity:1}32%{top:32%;transform:translateX(-5px) scale(1)}58%{top:57%;transform:translateX(6px) scale(1.04)}82%{opacity:1;transform:translateX(-3px) scale(1)}92%,100%{top:88%;opacity:0;transform:translateX(4px) scale(.94)}}
 
   /* Karol */
   #karol{background:var(--bg-2)}
