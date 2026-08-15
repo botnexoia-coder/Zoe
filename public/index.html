@@ -314,6 +314,9 @@
   @media(max-width:860px){.vid-grid{grid-template-columns:1fr}}
   .vid{position:relative;aspect-ratio:16/9;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:#000}
   .vid iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  .vid-consent{position:absolute;inset:0;display:grid;place-items:center;padding:24px;text-align:center;background:linear-gradient(145deg,#132038,#1a4fd0);color:#fff}
+  .vid-consent div{max-width:250px}.vid-consent svg{width:34px;height:34px;margin-bottom:10px}.vid-consent b{display:block;font-size:15px}.vid-consent span{display:block;margin-top:6px;font-size:12.5px;line-height:1.45;opacity:.82}
+  .vid-consent button{margin-top:13px;border:1px solid rgba(255,255,255,.52);border-radius:10px;background:rgba(255,255,255,.14);color:#fff;padding:9px 13px;font:800 12.5px var(--font);cursor:pointer}
   /* Blog / guías (desplegables) */
   .guide{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);margin-top:14px;overflow:hidden;text-align:left}
   .guide summary{cursor:pointer;list-style:none;padding:20px 22px;display:flex;align-items:center;gap:14px;font-weight:800;font-size:16.5px}
@@ -331,6 +334,19 @@
   .guide .gnote{margin-top:14px;font-size:12.5px;color:var(--muted);opacity:.85}
 
   @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+  /* consentimiento de cookies y contenido externo */
+  .cookie-banner{position:fixed;left:20px;right:20px;bottom:20px;z-index:100;display:none;max-width:1040px;margin:auto;padding:20px;background:color-mix(in srgb,var(--surface) 96%,transparent);border:1px solid var(--line-strong);border-radius:18px;box-shadow:0 24px 70px -22px rgba(0,0,0,.55);backdrop-filter:blur(16px)}
+  .cookie-banner.open{display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center;animation:cookieIn .22s ease-out}
+  .cookie-copy strong{display:block;font-size:17px;font-weight:900}.cookie-copy p{margin:6px 0 0;color:var(--muted);font-size:13.5px;line-height:1.55;max-width:660px}.cookie-copy a{color:var(--blue);font-weight:700}
+  .cookie-actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}.cookie-actions button{min-height:42px;padding:0 15px;border-radius:11px;font:800 13px var(--font);cursor:pointer;border:1px solid var(--blue);background:var(--surface);color:var(--blue)}.cookie-actions .cookie-primary{background:var(--blue);color:#fff}
+  .cookie-settings{position:fixed;inset:0;z-index:110;display:none;place-items:center;padding:20px;background:rgba(8,16,34,.56);backdrop-filter:blur(5px)}.cookie-settings.open{display:grid}
+  .cookie-panel{width:min(500px,100%);background:var(--surface);border:1px solid var(--line-strong);border-radius:20px;padding:25px;box-shadow:0 30px 90px -24px rgba(0,0,0,.65)}
+  .cookie-panel h2{font-size:22px}.cookie-panel>p{color:var(--muted);font-size:13.5px;line-height:1.55;margin:8px 0 18px}.cookie-row{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:15px 0;border-top:1px solid var(--line)}.cookie-row b{display:block;font-size:14px}.cookie-row span{display:block;color:var(--muted);font-size:12.5px;line-height:1.45;margin-top:3px}.cookie-always{color:var(--blue)!important;font-weight:800;white-space:nowrap}
+  .cookie-switch{position:relative;width:48px;height:27px;flex:none}.cookie-switch input{position:absolute;opacity:0}.cookie-switch i{position:absolute;inset:0;border-radius:999px;background:#aab3c2;cursor:pointer;transition:.2s}.cookie-switch i::after{content:"";position:absolute;width:21px;height:21px;left:3px;top:3px;border-radius:50%;background:#fff;transition:.2s;box-shadow:0 2px 5px rgba(0,0,0,.25)}.cookie-switch input:checked+i{background:var(--blue)}.cookie-switch input:checked+i::after{transform:translateX(21px)}
+  .cookie-panel-actions{display:flex;justify-content:flex-end;margin-top:18px}.cookie-panel-actions button{border:0;border-radius:11px;background:var(--blue);color:#fff;padding:12px 18px;font:800 13px var(--font);cursor:pointer}.cookie-link{border:0;background:none;color:inherit;text-decoration:underline;font:inherit;cursor:pointer;padding:0}
+  @keyframes cookieIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  @media(max-width:720px){.cookie-banner.open{grid-template-columns:1fr}.cookie-actions{display:grid;grid-template-columns:1fr 1fr;justify-content:stretch}.cookie-actions button{padding:0 9px}.cookie-actions .cookie-config{grid-column:1/-1}.cookie-banner{left:12px;right:12px;bottom:12px;padding:17px}}
 </style>
 </head>
 <body>
@@ -520,9 +536,9 @@
   <h2 data-i18n="vid_title">Míranos en acción</h2>
   <p class="lead" data-i18n="vid_lead">Historias, reencuentros y consejos de viaje en nuestro canal. 🎥</p>
 </div><div class="wrap"><div class="vid-grid">
-  <div class="vid"><iframe src="https://www.youtube-nocookie.com/embed/4rkN-v4io5Q" title="Zoe Travel" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
-  <div class="vid"><iframe src="https://www.youtube-nocookie.com/embed/R_dgZ6pKmfI" title="Zoe Travel" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
-  <div class="vid"><iframe src="https://www.youtube-nocookie.com/embed/oHDI7np5zNg" title="Zoe Travel" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+  <div class="vid" data-video="https://www.youtube-nocookie.com/embed/4rkN-v4io5Q"></div>
+  <div class="vid" data-video="https://www.youtube-nocookie.com/embed/R_dgZ6pKmfI"></div>
+  <div class="vid" data-video="https://www.youtube-nocookie.com/embed/oHDI7np5zNg"></div>
 </div></div></section>
 
 <!-- ===== TIPS / BLOG ===== -->
@@ -689,9 +705,22 @@
 </div>
 <footer><div class="wrap">
   <p><b>Zoe Travel Spain</b> · <span data-i18n="foot">Agencia de viajes con alma · Sevilla</span><br/>© Zoe Travel Spain — Donde quieras ir, te ayudamos a llegar.</p>
-  <p style="margin-top:8px"><a href="/privacidad/" style="color:inherit">Política de Privacidad</a></p>
+  <p style="margin-top:8px"><a href="/privacidad/" style="color:inherit">Política de Privacidad</a> · <button class="cookie-link" id="cookieManage" type="button" data-i18n="cookie_manage">Configurar cookies</button></p>
 </div></footer>
 </section>
+
+<!-- Consentimiento de cookies -->
+<aside class="cookie-banner" id="cookieBanner" role="dialog" aria-live="polite" aria-label="Preferencias de cookies">
+  <div class="cookie-copy"><strong data-i18n="cookie_title">Tu privacidad, sin letra pequeña</strong><p data-i18n="cookie_text">Usamos almacenamiento necesario para recordar tus preferencias. Los vídeos de YouTube solo se activan si nos das permiso. <a href="/privacidad/">Más información</a>.</p></div>
+  <div class="cookie-actions"><button class="cookie-primary" id="cookieAccept" type="button" data-i18n="cookie_accept">Aceptar</button><button id="cookieReject" type="button" data-i18n="cookie_reject">Rechazar</button><button class="cookie-config" id="cookieConfig" type="button" data-i18n="cookie_config">Configurar</button></div>
+</aside>
+<div class="cookie-settings" id="cookieSettings" role="dialog" aria-modal="true" aria-labelledby="cookieSettingsTitle">
+  <div class="cookie-panel"><h2 id="cookieSettingsTitle" data-i18n="cookie_settings_t">Preferencias de privacidad</h2><p data-i18n="cookie_settings_p">Tú decides qué contenido externo puede cargarse. Puedes cambiar esta elección cuando quieras.</p>
+    <div class="cookie-row"><div><b data-i18n="cookie_needed_t">Necesarias</b><span data-i18n="cookie_needed_p">Guardan el idioma, el tema y tu elección de privacidad.</span></div><span class="cookie-always" data-i18n="cookie_always">Siempre activas</span></div>
+    <div class="cookie-row"><div><b id="cookieExternalLabel" data-i18n="cookie_external_t">Contenido de YouTube</b><span data-i18n="cookie_external_p">Permite reproducir los vídeos integrados.</span></div><label class="cookie-switch"><input type="checkbox" id="cookieExternal" aria-labelledby="cookieExternalLabel" /><i></i></label></div>
+    <div class="cookie-panel-actions"><button id="cookieSave" type="button" data-i18n="cookie_save">Guardar preferencias</button></div>
+  </div>
+</div>
 
 <!-- WhatsApp flotante -->
 <button class="wa-float" id="waFloat" type="button" aria-label="WhatsApp" aria-expanded="false">
@@ -757,6 +786,7 @@ const I18N = {
     con_cta:"Escríbenos por WhatsApp", foot:"Agencia de viajes con alma · Sevilla",
     chat_agency:"Asistente", chat_online:"En línea", chat_hi:"¡Hola! Soy Zoe 🐱 ¿A dónde sueñas viajar?", chat_ph:"Escribe tu mensaje...",
     wa_q_t:"¿Quieres que Zoe te ayude primero?", wa_q_p:"Puede aclarar tu viaje y ayudarte a llegar a WhatsApp con la información organizada.", wa_q_ai:"Sí, hablar con Zoe", wa_q_direct:"Ir directamente a WhatsApp",
+    cookie_title:"Tu privacidad, sin letra pequeña", cookie_text:'Usamos almacenamiento necesario para recordar tus preferencias. Los vídeos de YouTube solo se activan si nos das permiso. <a href="/privacidad/">Más información</a>.', cookie_accept:"Aceptar", cookie_reject:"Rechazar", cookie_config:"Configurar", cookie_manage:"Configurar cookies", cookie_settings_t:"Preferencias de privacidad", cookie_settings_p:"Tú decides qué contenido externo puede cargarse. Puedes cambiar esta elección cuando quieras.", cookie_needed_t:"Necesarias", cookie_needed_p:"Guardan el idioma, el tema y tu elección de privacidad.", cookie_always:"Siempre activas", cookie_external_t:"Contenido de YouTube", cookie_external_p:"Permite reproducir los vídeos integrados.", cookie_save:"Guardar preferencias", cookie_video_t:"Vídeo de YouTube bloqueado", cookie_video_p:"Activa el contenido externo para reproducirlo.", cookie_video_btn:"Activar vídeos",
     ai_title:"Habla con Zoe, nuestra gatita viajera 🐱", ai_text:"Nuestra asistente con inteligencia artificial está despierta <b>24/7</b> para ayudarte a planear tu viaje: te orienta, resuelve tus dudas y prepara tu cotización. ¡Escríbele a cualquier hora! ✈️", ai_btn:"Chatear con Zoe",
     rec_eyebrow:"Testimonios", rec_title:"Esto es lo que nos da energía 💛", rec_lead:"Historias reales de familias que hoy están juntas. Cada reencuentro es la razón por la que hacemos esto.",
     rec_q1:"El reencuentro entre madres e hijos es realmente reconfortante para todo nuestro equipo.", rec_q2:"Estos momentos nos inspiran a seguir trabajando por y para ustedes.", rec_q3:"¡Gracias y mil gracias por confiar en nosotros!",
@@ -807,6 +837,7 @@ const I18N = {
     con_cta:"Message us on WhatsApp", foot:"A travel agency with soul · Seville",
     chat_agency:"Assistant", chat_online:"Online", chat_hi:"Hi! I'm Zoe 🐱 Where do you dream of travelling?", chat_ph:"Type your message...",
     wa_q_t:"Would you like Zoe to help first?", wa_q_p:"She can clarify your trip and help you reach WhatsApp with the details organized.", wa_q_ai:"Yes, chat with Zoe", wa_q_direct:"Go directly to WhatsApp",
+    cookie_title:"Your privacy, in plain language", cookie_text:'We use necessary storage to remember your preferences. YouTube videos are only enabled with your permission. <a href="/privacidad/">More information</a>.', cookie_accept:"Accept", cookie_reject:"Reject", cookie_config:"Settings", cookie_manage:"Cookie settings", cookie_settings_t:"Privacy preferences", cookie_settings_p:"You decide which external content may load. You can change this choice at any time.", cookie_needed_t:"Necessary", cookie_needed_p:"Stores your language, theme and privacy choice.", cookie_always:"Always active", cookie_external_t:"YouTube content", cookie_external_p:"Allows embedded videos to play.", cookie_save:"Save preferences", cookie_video_t:"YouTube video blocked", cookie_video_p:"Enable external content to play it.", cookie_video_btn:"Enable videos",
     ai_title:"Chat with Zoe, our travelling kitty 🐱", ai_text:"Our AI assistant is awake <b>24/7</b> to help you plan your trip: she guides you, answers your questions and prepares your quote. Message her any time! ✈️", ai_btn:"Chat with Zoe",
     rec_eyebrow:"Testimonials", rec_title:"This is what gives us energy 💛", rec_lead:"Real stories of families now together. Every reunion is why we do this.",
     rec_q1:"The reunion between mothers and children is truly heartwarming for our whole team.", rec_q2:"These moments inspire us to keep working for you and because of you.", rec_q3:"Thank you, a thousand times, for trusting us!",
@@ -838,6 +869,31 @@ function applyLang(l){
 }
 document.getElementById('langBtn').addEventListener('click', function(){ applyLang(lang === 'es' ? 'en' : 'es'); });
 applyLang(lang);
+
+/* ---------- consentimiento de cookies ---------- */
+(function(){
+  var KEY='zoe-consent-v1', banner=document.getElementById('cookieBanner'), settings=document.getElementById('cookieSettings'), external=document.getElementById('cookieExternal');
+  function read(){ try{return JSON.parse(localStorage.getItem(KEY));}catch(e){return null;} }
+  function write(value){ try{localStorage.setItem(KEY,JSON.stringify({external:value,updated:new Date().toISOString()}));}catch(e){} }
+  function videoPlaceholder(box){
+    var d=I18N[lang], ph=document.createElement('div'); ph.className='vid-consent';
+    ph.innerHTML='<div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m10 9 5 3-5 3V9Z"/></svg><b data-i18n="cookie_video_t">'+d.cookie_video_t+'</b><span data-i18n="cookie_video_p">'+d.cookie_video_p+'</span><button type="button" data-i18n="cookie_video_btn">'+d.cookie_video_btn+'</button></div>';
+    ph.querySelector('button').addEventListener('click',function(){openSettings();}); box.appendChild(ph);
+  }
+  function renderVideos(allowed){
+    document.querySelectorAll('.vid[data-video]').forEach(function(box){box.innerHTML='';if(allowed){var f=document.createElement('iframe');f.src=box.dataset.video;f.title='Zoe Travel';f.loading='lazy';f.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';f.allowFullscreen=true;box.appendChild(f);}else videoPlaceholder(box);});
+  }
+  function openSettings(){var c=read();external.checked=!!(c&&c.external);settings.classList.add('open');}
+  function save(value){write(value);renderVideos(value);banner.classList.remove('open');settings.classList.remove('open');}
+  var saved=read(); if(saved){renderVideos(!!saved.external);}else{renderVideos(false);banner.classList.add('open');}
+  document.getElementById('cookieAccept').addEventListener('click',function(){save(true);});
+  document.getElementById('cookieReject').addEventListener('click',function(){save(false);});
+  document.getElementById('cookieConfig').addEventListener('click',openSettings);
+  document.getElementById('cookieManage').addEventListener('click',openSettings);
+  document.getElementById('cookieSave').addEventListener('click',function(){save(external.checked);});
+  settings.addEventListener('click',function(e){if(e.target===settings)settings.classList.remove('open');});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')settings.classList.remove('open');});
+})();
 
 /* ---------- tema ---------- */
 document.getElementById('themeBtn').addEventListener('click', function(){
