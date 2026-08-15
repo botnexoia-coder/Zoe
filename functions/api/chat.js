@@ -14,7 +14,7 @@ export async function onRequestPost(context) {
   let messages = sanitizeMessages(body.messages);
   if (!messages) return json({ error: 'Faltan mensajes' }, 400);
 
-  const reply = await callClaude(env.ANTHROPIC_API_KEY, 'claude-sonnet-4-6', SYSTEM, messages, 450);
+  const reply = await callClaude(env.ANTHROPIC_API_KEY, 'claude-sonnet-4-6', SYSTEM, messages, 220);
 
   let lastUser = '';
   for (let i = messages.length - 1; i >= 0; i--) {

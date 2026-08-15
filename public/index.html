@@ -148,6 +148,16 @@
   .card h3{font-size:18px;font-weight:800}
   .card p{color:var(--muted);font-size:14.5px;line-height:1.6;margin-top:8px}
 
+  /* cómo funciona */
+  .journey{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:38px;position:relative}
+  .journey::before{content:"";position:absolute;top:31px;left:16%;right:16%;height:2px;background:linear-gradient(90deg,var(--blue),var(--orange));opacity:.22}
+  .journey-step{position:relative;text-align:center;padding:0 18px}
+  .journey-n{position:relative;z-index:1;width:62px;height:62px;margin:0 auto 18px;border-radius:50%;display:grid;place-items:center;background:var(--surface);border:2px solid color-mix(in srgb,var(--blue) 28%,var(--line));box-shadow:0 12px 28px -18px rgba(26,79,208,.65);color:var(--blue);font-size:18px;font-weight:900}
+  .journey-step:nth-child(2) .journey-n{border-color:color-mix(in srgb,var(--orange) 34%,var(--line));color:var(--orange-d)}
+  .journey-step h3{font-size:18px;font-weight:850}
+  .journey-step p{max-width:280px;margin:8px auto 0;color:var(--muted);font-size:14px;line-height:1.6}
+  @media(max-width:680px){.journey{grid-template-columns:1fr;gap:28px}.journey::before{top:28px;bottom:28px;left:30px;right:auto;width:2px;height:auto}.journey-step{display:grid;grid-template-columns:62px 1fr;text-align:left;gap:16px;padding:0}.journey-n{margin:0}.journey-step h3{align-self:end}.journey-step p{grid-column:2;margin:0;max-width:none}}
+
   /* Karol */
   #karol{background:var(--bg-2)}
   .karol{display:grid;grid-template-columns:280px 1fr;gap:40px;align-items:center;margin-top:20px}
@@ -189,6 +199,17 @@
   /* WhatsApp flotante */
   .wa-float{position:fixed;left:20px;bottom:calc(20px + env(safe-area-inset-bottom));z-index:55;width:56px;height:56px;border-radius:50%;background:#25D366;display:grid;place-items:center;box-shadow:0 14px 30px -10px rgba(37,211,102,.7);color:#fff}
   .wa-float svg{width:30px;height:30px}
+  button.wa-float{border:0;cursor:pointer;font-family:inherit}
+  .wa-choice{position:fixed;left:20px;bottom:calc(88px + env(safe-area-inset-bottom));z-index:56;width:min(330px,calc(100vw - 40px));padding:22px;background:var(--surface);border:1px solid var(--line-strong);border-radius:16px;box-shadow:0 28px 60px -22px rgba(0,0,0,.48);display:none}
+  .wa-choice.open{display:block;animation:waChoiceIn .2s ease-out}
+  @keyframes waChoiceIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .wa-choice .x{position:absolute;right:10px;top:9px;border:0;background:transparent;color:var(--muted);font-size:20px;cursor:pointer;padding:5px}
+  .wa-choice strong{display:block;padding-right:24px;font-size:17px;font-weight:900}
+  .wa-choice p{margin:8px 0 17px;color:var(--muted);font-size:13.5px;line-height:1.55}
+  .wa-choice-actions{display:grid;gap:8px}
+  .wa-choice-actions button,.wa-choice-actions a{min-height:44px;display:flex;align-items:center;justify-content:center;border-radius:11px;padding:0 14px;font-family:inherit;font-size:13px;font-weight:850;text-align:center;text-decoration:none;cursor:pointer}
+  .wa-choice .ask-zoe{border:0;background:linear-gradient(135deg,var(--blue),var(--orange));color:#fff}
+  .wa-choice .direct-wa{border:1px solid color-mix(in srgb,#25D366 45%,var(--line));background:var(--surface);color:#16843e}
 
   /* Chat asistente Zoe */
   .fab{position:fixed;right:20px;bottom:calc(20px + env(safe-area-inset-bottom));z-index:55;width:60px;height:60px;border-radius:50%;border:0;cursor:pointer;display:grid;place-items:center;background:linear-gradient(135deg,var(--blue),var(--orange));box-shadow:0 16px 34px -12px rgba(26,79,208,.6)}
@@ -395,6 +416,17 @@
   <div class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l19-9-9 19-2-8-8-2Z"/></svg></div><h3 data-i18n="s4_t">Recogida en aeropuerto</h3><p data-i18n="s4_p">Al llegar a tu destino, te recogemos. Para que tu único trabajo sea disfrutar.</p></div>
   <div class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 5 6v5c0 4.5 3 8 7 10 4-2 7-5.5 7-10V6l-7-3Z"/><path d="m9 12 2 2 4-4"/></svg></div><h3 data-i18n="s5_t">Viaja seguro e informado</h3><p data-i18n="s5_p">Te orientamos con documentos y seguros de viaje. No solo viajas seguro: viajas tranquilo.</p></div>
   <div class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 4.4a3 3 0 0 0-4.2 0l-.4.4-.4-.4a3 3 0 1 0-4.2 4.2l4.6 4.6 4.6-4.6a3 3 0 0 0 0-4.2Z"/><path d="M3 12h5l2 4 3-8 2 4h4"/></svg></div><h3 data-i18n="s6_t">Promociones</h3><p data-i18n="s6_p">Ofertas de temporada y oportunidades únicas. ¡Pregúntanos antes de que despeguen! ✈️</p></div>
+</div></div></section>
+
+<!-- ===== CÓMO FUNCIONA ===== -->
+<section class="block" id="como-funciona" style="background:var(--bg-2)"><div class="wrap center">
+  <span class="eyebrow" data-i18n="proc_eyebrow">Así de fácil</span>
+  <h2 data-i18n="proc_title">Tu viaje empieza en tres pasos</h2>
+  <p class="lead" data-i18n="proc_lead">Nos cuentas lo que tienes en mente y te acompañamos hasta que estés listo para volar.</p>
+</div><div class="wrap"><div class="journey">
+  <article class="journey-step"><div class="journey-n">1</div><h3 data-i18n="proc_1_t">Cuéntanos tu viaje</h3><p data-i18n="proc_1_p">Destino, fechas y quiénes viajan. Zoe puede ayudarte a organizar la idea.</p></article>
+  <article class="journey-step"><div class="journey-n">2</div><h3 data-i18n="proc_2_t">Recibe tu cotización</h3><p data-i18n="proc_2_p">El equipo prepara una propuesta personalizada, clara y sin compromiso.</p></article>
+  <article class="journey-step"><div class="journey-n">3</div><h3 data-i18n="proc_3_t">Viaja acompañado</h3><p data-i18n="proc_3_p">Te orientamos antes y durante el viaje para que disfrutes con tranquilidad.</p></article>
 </div></div></section>
 
 <!-- ===== HABLA CON ZOE (IA) ===== -->
@@ -652,9 +684,15 @@
 </section>
 
 <!-- WhatsApp flotante -->
-<a class="wa-float" href="https://wa.me/34644280183" target="_blank" rel="noopener" aria-label="WhatsApp">
+<button class="wa-float" id="waFloat" type="button" aria-label="WhatsApp" aria-expanded="false">
   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2Zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1-.4-.1-1-.3-1.7-.6-3-1.3-5-4.3-5.1-4.5-.2-.2-1.2-1.6-1.2-3.1s.8-2.2 1.1-2.5c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6-.3.3c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.6-.1l.7-.9c.2-.2.4-.2.6-.1l1.9.9c.3.1.5.2.5.4.1.1.1.7-.1 1.4Z"/></svg>
-</a>
+</button>
+<div class="wa-choice" id="waChoice" role="dialog" aria-label="Elegir cómo recibir ayuda">
+  <button class="x" id="waChoiceClose" type="button" aria-label="Cerrar">×</button>
+  <strong data-i18n="wa_q_t">¿Quieres que Zoe te ayude primero?</strong>
+  <p data-i18n="wa_q_p">Puede aclarar tu viaje y ayudarte a llegar a WhatsApp con la información organizada.</p>
+  <div class="wa-choice-actions"><button class="ask-zoe" id="waAskZoe" type="button" data-i18n="wa_q_ai">Sí, hablar con Zoe</button><a class="direct-wa" id="waDirect" href="https://wa.me/34644280183" target="_blank" rel="noopener" data-i18n="wa_q_direct">Ir directamente a WhatsApp</a></div>
+</div>
 
 <!-- Chat asistente Zoe -->
 <div class="chatbox" id="chatbox">
@@ -663,7 +701,7 @@
     <div><b>Zoe · <span data-i18n="chat_agency">Asistente</span></b><span data-i18n="chat_online">En línea</span></div>
   </div>
   <div class="chat-body" id="chatBody">
-    <div class="bubble bot" data-i18n="chat_hi">¡Hola! 🐱💛 Soy Zoe, de Zoe Travel Spain. Cuéntame, ¿a dónde tienes pensado viajar? ¿Vas a ver a algún familiar, o qué te motiva este viaje? Me encantan las historias ✨</div>
+    <div class="bubble bot" data-i18n="chat_hi">¡Hola! Soy Zoe 🐱 ¿A dónde sueñas viajar?</div>
   </div>
   <form class="chat-foot" id="chatForm">
     <input type="text" id="chatInput" data-ph="chat_ph" placeholder="Escribe tu mensaje..." autocomplete="off" />
@@ -686,6 +724,8 @@ const I18N = {
     stat1:"AÑOS CONECTANDO CORAZONES", stat2:"DESTINOS", stat3:"FAMILIAS REENCONTRADAS",
     serv_eyebrow:"Lo que hacemos", serv_title:"Todo tu viaje, en un solo lugar",
     serv_lead:"Te acompañamos de principio a fin, con la calidez de quien viaja contigo.",
+    proc_eyebrow:"Así de fácil", proc_title:"Tu viaje empieza en tres pasos", proc_lead:"Nos cuentas lo que tienes en mente y te acompañamos hasta que estés listo para volar.",
+    proc_1_t:"Cuéntanos tu viaje", proc_1_p:"Destino, fechas y quiénes viajan. Zoe puede ayudarte a organizar la idea.", proc_2_t:"Recibe tu cotización", proc_2_p:"El equipo prepara una propuesta personalizada, clara y sin compromiso.", proc_3_t:"Viaja acompañado", proc_3_p:"Te orientamos antes y durante el viaje para que disfrutes con tranquilidad.",
     s1_t:"Vuelos y paquetes", s1_p:"A cualquier destino, al mejor precio. Donde quieras ir, te llevamos.",
     s2_t:"Cotización personalizada", s2_p:"Nos cuentas tu sueño y te preparamos una propuesta a tu medida, sin compromiso.",
     s3_t:"Viaja con tu mascota", s3_p:"Asesoría y gestión para que tu compañero de cuatro patas viaje seguro contigo. 🐾",
@@ -705,7 +745,8 @@ const I18N = {
     con_eyebrow:"Hablemos", con_title:"¿Listo para tu próximo viaje?",
     con_lead:"Escríbenos por WhatsApp o síguenos. Estamos para ayudarte a llegar.",
     con_cta:"Escríbenos por WhatsApp", foot:"Agencia de viajes con alma · Sevilla",
-    chat_agency:"Asistente", chat_online:"En línea", chat_hi:"¡Hola! 🐱💛 Soy Zoe, de Zoe Travel Spain. Cuéntame, ¿a dónde tienes pensado viajar? ¿Vas a ver a algún familiar, o qué te motiva este viaje? Me encantan las historias ✨", chat_ph:"Escribe tu mensaje...",
+    chat_agency:"Asistente", chat_online:"En línea", chat_hi:"¡Hola! Soy Zoe 🐱 ¿A dónde sueñas viajar?", chat_ph:"Escribe tu mensaje...",
+    wa_q_t:"¿Quieres que Zoe te ayude primero?", wa_q_p:"Puede aclarar tu viaje y ayudarte a llegar a WhatsApp con la información organizada.", wa_q_ai:"Sí, hablar con Zoe", wa_q_direct:"Ir directamente a WhatsApp",
     ai_title:"Habla con Zoe, nuestra gatita viajera 🐱", ai_text:"Nuestra asistente con inteligencia artificial está despierta <b>24/7</b> para ayudarte a planear tu viaje: te orienta, resuelve tus dudas y prepara tu cotización. ¡Escríbele a cualquier hora! ✈️", ai_btn:"Chatear con Zoe",
     rec_eyebrow:"Testimonios", rec_title:"Esto es lo que nos da energía 💛", rec_lead:"Historias reales de familias que hoy están juntas. Cada reencuentro es la razón por la que hacemos esto.",
     rec_q1:"El reencuentro entre madres e hijos es realmente reconfortante para todo nuestro equipo.", rec_q2:"Estos momentos nos inspiran a seguir trabajando por y para ustedes.", rec_q3:"¡Gracias y mil gracias por confiar en nosotros!",
@@ -733,6 +774,8 @@ const I18N = {
     stat1:"YEARS CONNECTING HEARTS", stat2:"DESTINATIONS", stat3:"FAMILIES REUNITED",
     serv_eyebrow:"What we do", serv_title:"Your whole trip, in one place",
     serv_lead:"We're with you from start to finish, with the warmth of someone travelling alongside you.",
+    proc_eyebrow:"It's that easy", proc_title:"Your trip starts in three steps", proc_lead:"Tell us what you have in mind and we'll support you until you're ready to fly.",
+    proc_1_t:"Tell us about your trip", proc_1_p:"Destination, dates and who's travelling. Zoe can help you organize the idea.", proc_2_t:"Get your quote", proc_2_p:"The team prepares a clear, personalized proposal with no commitment.", proc_3_t:"Travel with support", proc_3_p:"We guide you before and during the trip, so you can enjoy it with peace of mind.",
     s1_t:"Flights & packages", s1_p:"To any destination, at the best price. Wherever you want to go, we take you.",
     s2_t:"Personalized quote", s2_p:"Tell us your dream and we prepare a tailored proposal, no strings attached.",
     s3_t:"Travel with your pet", s3_p:"Guidance and paperwork so your four-legged friend travels safely with you. 🐾",
@@ -752,7 +795,8 @@ const I18N = {
     con_eyebrow:"Let's talk", con_title:"Ready for your next trip?",
     con_lead:"Message us on WhatsApp or follow us. We're here to help you get there.",
     con_cta:"Message us on WhatsApp", foot:"A travel agency with soul · Seville",
-    chat_agency:"Assistant", chat_online:"Online", chat_hi:"Hi! 🐱💛 I'm Zoe, from Zoe Travel Spain. Tell me, where are you thinking of travelling? Are you visiting family, or what's the reason behind this trip? I love a good story ✨", chat_ph:"Type your message...",
+    chat_agency:"Assistant", chat_online:"Online", chat_hi:"Hi! I'm Zoe 🐱 Where do you dream of travelling?", chat_ph:"Type your message...",
+    wa_q_t:"Would you like Zoe to help first?", wa_q_p:"She can clarify your trip and help you reach WhatsApp with the details organized.", wa_q_ai:"Yes, chat with Zoe", wa_q_direct:"Go directly to WhatsApp",
     ai_title:"Chat with Zoe, our travelling kitty 🐱", ai_text:"Our AI assistant is awake <b>24/7</b> to help you plan your trip: she guides you, answers your questions and prepares your quote. Message her any time! ✈️", ai_btn:"Chat with Zoe",
     rec_eyebrow:"Testimonials", rec_title:"This is what gives us energy 💛", rec_lead:"Real stories of families now together. Every reunion is why we do this.",
     rec_q1:"The reunion between mothers and children is truly heartwarming for our whole team.", rec_q2:"These moments inspire us to keep working for you and because of you.", rec_q3:"Thank you, a thousand times, for trusting us!",
@@ -815,11 +859,15 @@ lf.addEventListener('submit', async function(e){
 
 /* ---------- chat Zoe ---------- */
 (function(){
-  var fab = document.getElementById('fab'), box = document.getElementById('chatbox');
+  var fab = document.getElementById('fab'), box = document.getElementById('chatbox'), waFloat = document.getElementById('waFloat'), waChoice = document.getElementById('waChoice');
   fab.addEventListener('click', function(){ box.classList.toggle('open'); });
   ['openZoe','openZoe2','navChat','cotChat','guiaChat'].forEach(function(id){ var el=document.getElementById(id); if(el) el.addEventListener('click', function(){ box.classList.add('open'); setTimeout(function(){ var ci=document.getElementById('chatInput'); if(ci) ci.focus(); }, 300); }); });
   var body = document.getElementById('chatBody'), form = document.getElementById('chatForm'), input = document.getElementById('chatInput');
   var history = [];
+  waFloat.addEventListener('click', function(){ var open=waChoice.classList.toggle('open');waFloat.setAttribute('aria-expanded',String(open));if(open)box.classList.remove('open'); });
+  document.getElementById('waChoiceClose').addEventListener('click', function(){ waChoice.classList.remove('open');waFloat.setAttribute('aria-expanded','false'); });
+  document.getElementById('waAskZoe').addEventListener('click', function(){ waChoice.classList.remove('open');waFloat.setAttribute('aria-expanded','false');box.classList.add('open');setTimeout(function(){ input.focus(); },300); });
+  document.getElementById('waDirect').addEventListener('click', function(){ waChoice.classList.remove('open');waFloat.setAttribute('aria-expanded','false'); });
   function clean(t){ return String(t||'').replace(/\*\*(.*?)\*\*/g,'$1').replace(/(^|\n)#{1,6}\s*/g,'$1').replace(/`/g,''); }
   function bubble(t, who){ var el = document.createElement('div'); el.className = 'bubble ' + who; el.textContent = who==='bot' ? clean(t) : t; body.appendChild(el); body.scrollTop = body.scrollHeight; return el; }
   function typing(){ var el = document.createElement('div'); el.className = 'bubble bot typing'; el.innerHTML = '<i></i><i></i><i></i>'; body.appendChild(el); body.scrollTop = body.scrollHeight; return el; }
