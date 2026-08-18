@@ -733,21 +733,8 @@
   <div class="wa-choice-actions"><button class="ask-zoe" id="waAskZoe" type="button" data-i18n="wa_q_ai">Sí, hablar con Zoe</button><a class="direct-wa" id="waDirect" href="https://wa.me/34644280183?text=Hola%2C%20vengo%20de%20la%20web%20de%20Zoe%20Travel%20Spain.%20Quiero%20informaci%C3%B3n%20para%20organizar%20mi%20viaje%20%E2%9C%88%EF%B8%8F" target="_blank" rel="noopener" data-i18n="wa_q_direct">Ir directamente a WhatsApp</a></div>
 </div>
 
-<!-- Chat asistente Zoe -->
-<div class="chatbox" id="chatbox">
-  <div class="chat-head">
-    <img src="/img/zoe-logo.png" alt="Zoe" />
-    <div><b>Zoe · <span data-i18n="chat_agency">Asistente</span></b><span data-i18n="chat_online">En línea</span></div>
-  </div>
-  <div class="chat-body" id="chatBody">
-    <div class="bubble bot" data-i18n="chat_hi">¡Hola! Soy Zoe 🐱 ¿A dónde sueñas viajar?</div>
-  </div>
-  <form class="chat-foot" id="chatForm">
-    <input type="text" id="chatInput" data-ph="chat_ph" placeholder="Escribe tu mensaje..." autocomplete="off" />
-    <button class="send" type="submit" aria-label="Enviar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7Z"/></svg></button>
-  </form>
-</div>
-<button class="fab" id="fab" aria-label="Chat"><span class="ping"></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-12.2 7.6L3 21l1.9-5.7A8.5 8.5 0 1 1 21 11.5Z"/></svg></button>
+<!-- Chat propio de Zoe reemplazado por el asistente unificado Vai (widget al final del body). Los botones "Habla con Zoe" abren ese widget. -->
+
 
 <script>
 /* ---------- i18n ES/EN ---------- */
@@ -925,34 +912,18 @@ lf.addEventListener('submit', async function(e){
   }
 });
 
-/* ---------- chat Zoe ---------- */
+/* ---------- CTAs "Habla con Zoe" -> asistente unificado Vai + WhatsApp flotante ---------- */
 (function(){
-  var fab = document.getElementById('fab'), box = document.getElementById('chatbox'), waFloat = document.getElementById('waFloat'), waNav = document.getElementById('waNav'), waChoice = document.getElementById('waChoice');
-  fab.addEventListener('click', function(){ box.classList.toggle('open'); });
-  ['openZoe','openZoe2','navChat','cotChat','guiaChat'].forEach(function(id){ var el=document.getElementById(id); if(el) el.addEventListener('click', function(){ box.classList.add('open'); setTimeout(function(){ var ci=document.getElementById('chatInput'); if(ci) ci.focus(); }, 300); }); });
-  var body = document.getElementById('chatBody'), form = document.getElementById('chatForm'), input = document.getElementById('chatInput');
-  var history = [];
-  function closeWaChoice(){ waChoice.classList.remove('open','from-nav');waFloat.setAttribute('aria-expanded','false'); }
-  waFloat.addEventListener('click', function(){ waChoice.classList.remove('from-nav');var open=waChoice.classList.toggle('open');waFloat.setAttribute('aria-expanded',String(open));if(open)box.classList.remove('open'); });
-  if(waNav)waNav.addEventListener('click',function(e){e.preventDefault();waChoice.classList.add('from-nav','open');waFloat.setAttribute('aria-expanded','true');box.classList.remove('open');});
-  document.getElementById('waChoiceClose').addEventListener('click', closeWaChoice);
-  document.getElementById('waAskZoe').addEventListener('click', function(){ closeWaChoice();box.classList.add('open');setTimeout(function(){ input.focus(); },300); });
-  document.getElementById('waDirect').addEventListener('click', closeWaChoice);
-  function clean(t){ return String(t||'').replace(/\*\*(.*?)\*\*/g,'$1').replace(/(^|\n)#{1,6}\s*/g,'$1').replace(/`/g,''); }
-  function bubble(t, who){ var el = document.createElement('div'); el.className = 'bubble ' + who; el.textContent = who==='bot' ? clean(t) : t; body.appendChild(el); body.scrollTop = body.scrollHeight; return el; }
-  function typing(){ var el = document.createElement('div'); el.className = 'bubble bot typing'; el.innerHTML = '<i></i><i></i><i></i>'; body.appendChild(el); body.scrollTop = body.scrollHeight; return el; }
-  form.addEventListener('submit', async function(e){
-    e.preventDefault();
-    var text = input.value.trim(); if(!text) return;
-    bubble(text, 'me'); history.push({ role:'user', content:text }); input.value = '';
-    var t = typing();
-    try{
-      var r = await fetch('/api/chat', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ messages: history }) });
-      var d = await r.json(); t.remove();
-      var reply = (d && d.reply) ? d.reply : (lang === 'es' ? 'Perdona, inténtalo de nuevo 💛' : 'Sorry, please try again 💛');
-      bubble(reply, 'bot'); history.push({ role:'assistant', content: reply });
-    }catch(_){ t.remove(); bubble(lang === 'es' ? 'Escríbenos por WhatsApp y te ayudamos ✈️' : 'Message us on WhatsApp and we’ll help ✈️', 'bot'); }
-  });
+  function openVai(){ var v = window.VaiChat; if(!v) return; if(typeof v.open === 'function'){ v.open(); } else if(typeof v.toggle === 'function'){ v.toggle(true); } }
+  ['openZoe','openZoe2','navChat','cotChat','guiaChat'].forEach(function(id){ var el=document.getElementById(id); if(el) el.addEventListener('click', function(e){ e.preventDefault(); openVai(); }); });
+  var waFloat = document.getElementById('waFloat'), waNav = document.getElementById('waNav'), waChoice = document.getElementById('waChoice');
+  if(!waChoice) return;
+  function closeWaChoice(){ waChoice.classList.remove('open','from-nav'); if(waFloat) waFloat.setAttribute('aria-expanded','false'); }
+  if(waFloat) waFloat.addEventListener('click', function(){ waChoice.classList.remove('from-nav'); var open=waChoice.classList.toggle('open'); waFloat.setAttribute('aria-expanded',String(open)); });
+  if(waNav) waNav.addEventListener('click', function(e){ e.preventDefault(); waChoice.classList.add('from-nav','open'); if(waFloat) waFloat.setAttribute('aria-expanded','true'); });
+  var wcc = document.getElementById('waChoiceClose'); if(wcc) wcc.addEventListener('click', closeWaChoice);
+  var waAsk = document.getElementById('waAskZoe'); if(waAsk) waAsk.addEventListener('click', function(){ closeWaChoice(); openVai(); });
+  var waDir = document.getElementById('waDirect'); if(waDir) waDir.addEventListener('click', closeWaChoice);
 })();
 
 // ---- Carrusel de testimonios en video (auto: 1, 2, 3... en videos/testimonios/) ----
@@ -980,5 +951,8 @@ lf.addEventListener('submit', async function(e){
 })();
 </script>
 
+  <!-- Asistente unificado Vai (Velai) — la marca de Zoe (nombre, logo, saludo, colores) se sirve desde el panel -->
+  <script>window.VELAI_TENANT='zoe';</script>
+  <script src="https://hirevai.com/assets/vai-widget.js?v=7" defer></script>
 </body>
 </html>
