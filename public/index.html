@@ -940,6 +940,7 @@ lf.addEventListener('submit', async function(e){
       v.preload='metadata'; v.controls=true; v.setAttribute('playsinline',''); v.setAttribute('webkit-playsinline','');
       v.addEventListener('loadedmetadata', function(){ var s=document.createElement('div'); s.className='tvid'; s.appendChild(v); track.appendChild(s); found++; probe(i+1); });
       v.addEventListener('error', function(){ ei++; att(); });
+      v.poster = 'videos/testimonios/' + i + '.jpg'; // portada: fotograma del video (si no existe, se ignora)
       v.src = 'videos/testimonios/' + i + '.' + EXTS[ei];
     })();
   }
