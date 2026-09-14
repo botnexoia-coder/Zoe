@@ -351,6 +351,9 @@
   .hero .stats div{padding:0 28px;border-right:1px solid rgba(255,255,255,.22)}
   .hero .stats div:first-child{padding-left:0}.hero .stats div:last-child{border-right:0}
   .hero .stats b{color:#ff9a45}.hero .stats span{color:rgba(255,255,255,.72)}
+  .hero-mascot{position:absolute;z-index:4;left:49%;bottom:145px;width:154px;height:154px;overflow:hidden;border:4px solid rgba(255,255,255,.9);border-radius:50%;background:#fff9f2;box-shadow:0 20px 42px -18px rgba(0,0,0,.72);animation:zoeMascotFloat 4.6s ease-in-out infinite;pointer-events:none}
+  .hero-mascot img{width:266px;max-width:none;height:auto;transform:translate(-58px,-13px);filter:drop-shadow(0 9px 12px rgba(91,42,0,.2))}
+  @keyframes zoeMascotFloat{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-13px) rotate(2deg)}}
 
   #servicios{position:relative;overflow:hidden;background:linear-gradient(180deg,#fff 0%,#f7faff 100%)}
   :root[data-theme="dark"] #servicios{background:linear-gradient(180deg,#0b1020,#101a33)}
@@ -429,6 +432,8 @@
     .hero h1{font-size:49px}.hero p{font-size:16px}.hero .cta{justify-content:flex-start}
     .hero>.wrap:last-child{padding-bottom:28px}.hero .stats{gap:18px;justify-content:flex-start}
     .hero .stats div{padding:0;border:0;text-align:left}.hero .stats span{font-size:10px}
+    .hero-mascot{left:auto;right:20px;bottom:190px;width:104px;height:104px;border-width:3px}
+    .hero-mascot img{width:180px;transform:translate(-39px,-9px)}
     #como-funciona .journey-step{display:block;padding:200px 24px 28px;text-align:left}
     #como-funciona .journey-step p{margin:10px 0 0}
     .zoe-band{padding:34px 26px 210px;background-color:#071b45;background-image:linear-gradient(180deg,#071b45 0%,#0b3476 54%,rgba(11,52,118,.05) 77%),url('/img/services/mascotas.webp');background-position:center,center bottom;background-size:cover,100% 52%;background-repeat:no-repeat}
@@ -494,6 +499,7 @@
 
 <!-- ===== HERO ===== -->
 <section class="hero">
+<div class="hero-mascot" aria-hidden="true"><img src="/img/zoe-logo.png" alt="" /></div>
 <div class="paws" aria-hidden="true">
   <span class="paw" style="left:6%;top:74%;transform:rotate(-22deg);animation-delay:.15s"><svg viewBox="0 0 100 100" fill="currentColor"><ellipse cx="50" cy="64" rx="22" ry="18"/><ellipse cx="26" cy="40" rx="8" ry="11"/><ellipse cx="44" cy="30" rx="8" ry="12"/><ellipse cx="62" cy="31" rx="8" ry="11"/><ellipse cx="78" cy="45" rx="7" ry="10"/></svg></span>
   <span class="paw" style="left:18%;top:58%;transform:rotate(14deg);animation-delay:.5s"><svg viewBox="0 0 100 100" fill="currentColor"><ellipse cx="50" cy="64" rx="22" ry="18"/><ellipse cx="26" cy="40" rx="8" ry="11"/><ellipse cx="44" cy="30" rx="8" ry="12"/><ellipse cx="62" cy="31" rx="8" ry="11"/><ellipse cx="78" cy="45" rx="7" ry="10"/></svg></span>
@@ -1057,6 +1063,8 @@ lf.addEventListener('submit', async function(e){
 
   <!-- Asistente unificado Vai (Velai) — la marca de Zoe (nombre, logo, saludo, colores) se sirve desde el panel -->
   <script>window.VELAI_TENANT='zoe';</script>
-  <script src="https://hirevai.com/assets/vai.js" defer></script>
+  <script src="https://hirevai.com/assets/vai-widget.js?v=14" defer></script>
+  <script src="/assets/assistant-brand.js?v=2" defer></script>
+  <script src="/assets/velai-assistant-polish.js?v=1" defer></script>
 </body>
 </html>
