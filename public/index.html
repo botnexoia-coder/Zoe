@@ -1062,9 +1062,12 @@ lf.addEventListener('submit', async function(e){
 </script>
 
   <!-- Asistente unificado Vai (Velai) — la marca de Zoe (nombre, logo, saludo, colores) se sirve desde el panel -->
+  <!-- Vai: la marca (retrato de la gata, colores, textos de la tarjeta) se edita en
+       admin.hirevai.com y llega sola. NO volver a añadir aquí assistant-brand.js ni
+       velai-assistant-polish.js: el widget ya pinta el botón y la tarjeta, así que la
+       capa local duplica la cara y la etiqueta dentro del mismo botón. El loader no
+       lleva versión a propósito: las mejoras llegan sin tocar este HTML. -->
   <script>window.VELAI_TENANT='zoe';</script>
-  <script src="https://hirevai.com/assets/vai-widget.js?v=14" defer></script>
-  <script src="/assets/assistant-brand.js?v=2" defer></script>
-  <script src="/assets/velai-assistant-polish.js?v=1" defer></script>
+  <script src="https://hirevai.com/assets/vai.js" defer></script>
 </body>
 </html>
