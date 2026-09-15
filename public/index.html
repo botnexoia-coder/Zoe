@@ -9,7 +9,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>Zoe Travel Spain · Agencia de viajes con alma</title>
 <meta name="description" content="Zoe Travel Spain, la agencia de viajes de Karol: vuelos, viajar con tu mascota, recogida en aeropuerto y cotización personalizada. Donde quieras ir, te ayudamos a llegar." />
-<link rel="icon" type="image/png" href="/img/zoe-logo.png" />
+<link rel="icon" type="image/webp" href="/img/zoe-logo.webp" />
+<link rel="preload" as="image" href="/img/zoe-hero-editorial.webp" type="image/webp" fetchpriority="high" />
 <meta name="theme-color" content="#1a4fd0" />
 <link rel="canonical" href="https://zoetravelspain.com/" />
 <meta property="og:type" content="website" />
@@ -22,6 +23,8 @@
 <meta property="og:image:height" content="630" />
 <meta property="og:locale" content="es_ES" />
 <meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Zoe Travel Spain · Agencia de viajes con alma" />
+<meta name="twitter:description" content="Vuelos, mascotas, recogida en aeropuerto y cotización personalizada entre España y Colombia." />
 <meta name="twitter:image" content="https://zoetravelspain.com/og-zoe.jpg" />
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"TravelAgency","name":"Zoe Travel Spain","description":"Agencia de viajes especializada en España–Colombia: vuelos, viajar con mascota, recogida en aeropuerto y cotización personalizada.","url":"https://zoetravelspain.com/","telephone":"+34644280183","image":"https://zoetravelspain.com/og-zoe.jpg","areaServed":["ES","CO"],"sameAs":["https://www.instagram.com/zoetravelspain","https://www.facebook.com/zoetravelspain"]}
@@ -34,8 +37,8 @@
     --bg:#ffffff; --bg-2:#eef4ff; --surface:#ffffff; --surface-2:#f5f8ff;
     --line:rgba(18,40,80,.10); --line-strong:rgba(18,40,80,.16);
     --text:#132038; --muted:#5b6b86;
-    --blue:#1a4fd0; --blue-d:#1740a8; --blue-soft:#4b7bef;
-    --orange:#f57a1f; --orange-d:#e06a12; --orange-soft:#ff9d4d;
+    --blue:#1a4fd0; --blue-d:#1740a8; --blue-soft:#345fc3;
+    --orange:#b94700; --orange-d:#943800; --orange-soft:#ff9d4d;
     --radius:20px; --radius-sm:13px; --max:1100px;
     --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   }
@@ -81,7 +84,7 @@
   .theme-toggle .ico-moon{display:none}
   :root[data-theme="dark"] .theme-toggle .ico-sun{display:none}
   :root[data-theme="dark"] .theme-toggle .ico-moon{display:block}
-  .wa-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:11px;background:#25D366;color:#fff;font-weight:800;font-size:13.5px;text-decoration:none;border:0;cursor:pointer}
+  .wa-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:11px;background:#087a43;color:#fff;font-weight:800;font-size:13.5px;text-decoration:none;border:0;cursor:pointer}
   .wa-btn svg{width:17px;height:17px}
   .chatnav{background:linear-gradient(135deg,var(--blue),var(--orange))!important}
   @media(max-width:520px){.wa-btn span{display:none}}
@@ -89,7 +92,7 @@
   .cot-ways .b{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:12px;font-weight:800;font-size:14px;cursor:pointer;border:0;font-family:inherit;text-decoration:none}
   .cot-ways .b svg{width:18px;height:18px}
   .cot-ways .b.chat{background:rgba(255,255,255,.16);color:#fff;border:1px solid rgba(255,255,255,.4)}
-  .cot-ways .b.wa{background:#25D366;color:#fff}
+  .cot-ways .b.wa{background:#087a43;color:#fff}
   .cot-ways .b:hover{transform:translateY(-2px)}
   .cot-or{margin-top:16px;font-size:13px;color:rgba(255,255,255,.75)}
 
@@ -205,7 +208,7 @@
   footer{border-top:1px solid var(--line);padding:30px 0;text-align:center;color:var(--muted);font-size:13px;line-height:1.7;margin-top:20px}
 
   /* WhatsApp flotante */
-  .wa-float{position:fixed;left:20px;bottom:calc(20px + env(safe-area-inset-bottom));z-index:55;width:56px;height:56px;border-radius:50%;background:#25D366;display:grid;place-items:center;box-shadow:0 14px 30px -10px rgba(37,211,102,.7);color:#fff}
+  .wa-float{position:fixed;left:20px;bottom:calc(20px + env(safe-area-inset-bottom));z-index:55;width:56px;height:56px;border-radius:50%;background:#087a43;display:grid;place-items:center;box-shadow:0 14px 30px -10px rgba(8,122,67,.55);color:#fff}
   .wa-float svg{width:30px;height:30px}
   button.wa-float{border:0;cursor:pointer;font-family:inherit}
   .wa-choice{position:fixed;left:20px;bottom:calc(88px + env(safe-area-inset-bottom));z-index:56;width:min(330px,calc(100vw - 40px));padding:22px;background:var(--surface);border:1px solid var(--line-strong);border-radius:16px;box-shadow:0 28px 60px -22px rgba(0,0,0,.48);display:none}
@@ -218,7 +221,7 @@
   .wa-choice-actions{display:grid;gap:8px}
   .wa-choice-actions button,.wa-choice-actions a{min-height:44px;display:flex;align-items:center;justify-content:center;border-radius:11px;padding:0 14px;font-family:inherit;font-size:13px;font-weight:850;text-align:center;text-decoration:none;cursor:pointer}
   .wa-choice .ask-zoe{border:0;background:linear-gradient(135deg,var(--blue),var(--orange));color:#fff}
-  .wa-choice .direct-wa{border:1px solid color-mix(in srgb,#25D366 45%,var(--line));background:var(--surface);color:#16843e}
+  .wa-choice .direct-wa{border:1px solid color-mix(in srgb,#087a43 45%,var(--line));background:var(--surface);color:#087a43}
 
   /* Chat asistente Zoe */
   .fab{position:fixed;right:20px;bottom:calc(20px + env(safe-area-inset-bottom));z-index:55;width:60px;height:60px;border-radius:50%;border:0;cursor:pointer;display:grid;place-items:center;background:linear-gradient(135deg,var(--blue),var(--orange));box-shadow:0 16px 34px -12px rgba(26,79,208,.6)}
@@ -331,7 +334,7 @@
   .guide .gbody li{display:flex;gap:10px;align-items:flex-start;color:var(--muted);font-size:15px;line-height:1.55}
   .guide .gbody li b{color:var(--text)}
   .guide .gbody li::before{content:"✓";color:var(--orange);font-weight:900;flex:none}
-  .guide .gnote{margin-top:14px;font-size:12.5px;color:var(--muted);opacity:.85}
+  .guide .gnote{margin-top:14px;font-size:12.5px;color:var(--muted)}
 
   /* Rediseño editorial 2026: una ruta visual, no una pared de cajas */
   h1,h2,.card h3,.journey-step h3{font-family:Georgia,"Times New Roman",serif}
@@ -444,7 +447,7 @@
   @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 
   /* consentimiento de cookies y contenido externo */
-  .cookie-banner{position:fixed;left:20px;right:20px;bottom:20px;z-index:100;display:none;max-width:1040px;margin:auto;padding:20px;background:color-mix(in srgb,var(--surface) 96%,transparent);border:1px solid var(--line-strong);border-radius:18px;box-shadow:0 24px 70px -22px rgba(0,0,0,.55);backdrop-filter:blur(16px)}
+  .cookie-banner{position:fixed;left:20px;right:20px;bottom:20px;z-index:100;display:none;max-width:1040px;margin:auto;padding:20px;background:var(--surface);border:1px solid var(--line-strong);border-radius:18px;box-shadow:0 24px 70px -22px rgba(0,0,0,.55)}
   .cookie-banner.open{display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center;animation:cookieIn .22s ease-out}
   .cookie-copy strong{display:block;font-size:17px;font-weight:900}.cookie-copy p{margin:6px 0 0;color:var(--muted);font-size:13.5px;line-height:1.55;max-width:660px}.cookie-copy a{color:var(--blue);font-weight:700}
   .cookie-actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}.cookie-actions button{min-height:42px;padding:0 15px;border-radius:11px;font:800 13px var(--font);cursor:pointer;border:1px solid var(--blue);background:var(--surface);color:var(--blue)}.cookie-actions .cookie-primary{background:var(--blue);color:#fff}
@@ -453,15 +456,16 @@
   .cookie-panel h2{font-size:22px}.cookie-panel>p{color:var(--muted);font-size:13.5px;line-height:1.55;margin:8px 0 18px}.cookie-row{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:15px 0;border-top:1px solid var(--line)}.cookie-row b{display:block;font-size:14px}.cookie-row span{display:block;color:var(--muted);font-size:12.5px;line-height:1.45;margin-top:3px}.cookie-always{color:var(--blue)!important;font-weight:800;white-space:nowrap}
   .cookie-switch{position:relative;width:48px;height:27px;flex:none}.cookie-switch input{position:absolute;opacity:0}.cookie-switch i{position:absolute;inset:0;border-radius:999px;background:#aab3c2;cursor:pointer;transition:.2s}.cookie-switch i::after{content:"";position:absolute;width:21px;height:21px;left:3px;top:3px;border-radius:50%;background:#fff;transition:.2s;box-shadow:0 2px 5px rgba(0,0,0,.25)}.cookie-switch input:checked+i{background:var(--blue)}.cookie-switch input:checked+i::after{transform:translateX(21px)}
   .cookie-panel-actions{display:flex;justify-content:flex-end;margin-top:18px}.cookie-panel-actions button{border:0;border-radius:11px;background:var(--blue);color:#fff;padding:12px 18px;font:800 13px var(--font);cursor:pointer}.cookie-link{border:0;background:none;color:inherit;text-decoration:underline;font:inherit;cursor:pointer;padding:0}
+  body.consent-open #vaiWidget,body.consent-open .wa-float,body.consent-open .wa-choice{display:none!important}
   @keyframes cookieIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-  @media(max-width:720px){.cookie-banner.open{grid-template-columns:1fr}.cookie-actions{display:grid;grid-template-columns:1fr 1fr;justify-content:stretch}.cookie-actions button{padding:0 9px}.cookie-actions .cookie-config{grid-column:1/-1}.cookie-banner{left:12px;right:12px;bottom:12px;padding:17px}}
+  @media(max-width:720px){.cookie-banner.open{grid-template-columns:1fr;gap:14px}.cookie-copy strong{font-size:16px}.cookie-copy p{font-size:12.5px}.cookie-actions{display:grid;grid-template-columns:1fr 1fr;justify-content:stretch}.cookie-actions button{padding:0 9px}.cookie-actions .cookie-config{grid-column:1/-1}.cookie-banner{left:10px;right:10px;bottom:10px;padding:16px;max-height:calc(100dvh - 20px);overflow:auto}}
 </style>
 </head>
 <body>
 
 <!-- ===== NAV ===== -->
 <div class="nav"><div class="wrap">
-  <a class="brand" href="#top"><img src="/img/zoe-logo.png" alt="Zoe Travel Spain" /><span><span class="z">Zoe</span> <span class="t">Travel</span></span></a>
+  <a class="brand" href="#top"><img src="/img/zoe-logo.webp" alt="Zoe Travel Spain" width="338" height="338" /><span><span class="z">Zoe</span> <span class="t">Travel</span></span></a>
   <nav>
     <a class="lnk" href="#servicios" data-i18n="nav_serv">Servicios</a>
     <a class="lnk" href="#testimonios" data-i18n="nav_testi">Testimonios</a>
@@ -480,7 +484,7 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-12.2 7.6L3 21l1.9-5.7A8.5 8.5 0 1 1 21 11.5Z"/></svg>
       <span data-i18n="nav_chat">Chatea con Zoe</span>
     </button>
-    <a class="wa-btn" id="waNav" href="https://wa.me/34644280183?text=Hola%2C%20vengo%20de%20la%20web%20de%20Zoe%20Travel%20Spain.%20Quiero%20informaci%C3%B3n%20para%20organizar%20mi%20viaje%20%E2%9C%88%EF%B8%8F" target="_blank" rel="noopener">
+    <a class="wa-btn" id="waNav" aria-label="Abrir opciones de WhatsApp" href="https://wa.me/34644280183?text=Hola%2C%20vengo%20de%20la%20web%20de%20Zoe%20Travel%20Spain.%20Quiero%20informaci%C3%B3n%20para%20organizar%20mi%20viaje%20%E2%9C%88%EF%B8%8F" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2Zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1-.4-.1-1-.3-1.7-.6-3-1.3-5-4.3-5.1-4.5-.2-.2-1.2-1.6-1.2-3.1s.8-2.2 1.1-2.5c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6-.3.3c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.6-.1l.7-.9c.2-.2.4-.2.6-.1l1.9.9c.3.1.5.2.5.4.1.1.1.7-.1 1.4Z"/></svg>
       <span data-i18n="wa">WhatsApp</span>
     </a>
@@ -497,9 +501,11 @@
 
 <span id="top"></span>
 
+<main>
+
 <!-- ===== HERO ===== -->
 <section class="hero">
-<div class="hero-mascot" aria-hidden="true"><img src="/img/zoe-logo.png" alt="" /></div>
+<div class="hero-mascot" aria-hidden="true"><img src="/img/zoe-logo.webp" alt="" width="338" height="338" /></div>
 <div class="paws" aria-hidden="true">
   <span class="paw" style="left:6%;top:74%;transform:rotate(-22deg);animation-delay:.15s"><svg viewBox="0 0 100 100" fill="currentColor"><ellipse cx="50" cy="64" rx="22" ry="18"/><ellipse cx="26" cy="40" rx="8" ry="11"/><ellipse cx="44" cy="30" rx="8" ry="12"/><ellipse cx="62" cy="31" rx="8" ry="11"/><ellipse cx="78" cy="45" rx="7" ry="10"/></svg></span>
   <span class="paw" style="left:18%;top:58%;transform:rotate(14deg);animation-delay:.5s"><svg viewBox="0 0 100 100" fill="currentColor"><ellipse cx="50" cy="64" rx="22" ry="18"/><ellipse cx="26" cy="40" rx="8" ry="11"/><ellipse cx="44" cy="30" rx="8" ry="12"/><ellipse cx="62" cy="31" rx="8" ry="11"/><ellipse cx="78" cy="45" rx="7" ry="10"/></svg></span>
@@ -526,7 +532,7 @@
     </div>
   </div>
   <div class="art">
-    <div class="disc editorial-photo"><img src="/img/zoe-hero-editorial.webp" alt="Familia viajando con Zoe Travel Spain" /></div>
+    <div class="disc editorial-photo"><img src="/img/zoe-hero-editorial.webp" alt="Familia viajando con Zoe Travel Spain" width="1800" height="1014" fetchpriority="high" decoding="async" /></div>
     <div class="chip c1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5a2.1 2.1 0 0 0-3-3L13 8 4.8 6.2a.5.5 0 0 0-.5.8l3.9 4.2-2.2 2.2-2-.4a.5.5 0 0 0-.4.8L6 18l1.6 2.9a.5.5 0 0 0 .8-.4l-.4-2 2.2-2.2 4.2 3.9a.5.5 0 0 0 .8-.5Z"/></svg><span data-i18n="chip1">Vuelos a todo el mundo</span></div>
     <div class="chip c2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 5.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0ZM19 5.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0ZM6 14c0-2 1.5-3.5 3-3.5s3 1.5 3 3.5M18 14c0-2-1.5-3.5-3-3.5"/><path d="M12 21c-3 0-5-2-5-4h10c0 2-2 4-5 4Z"/></svg><span data-i18n="chip2">Viaja con tu mascota</span></div>
   </div>
@@ -568,7 +574,7 @@
 <section class="block" id="asistente" style="padding-top:20px"><div class="wrap">
   <div class="zoe-band">
     <div class="l">
-      <div class="av"><img src="/img/zoe-logo.png" alt="Zoe" /><span class="dot"></span></div>
+      <div class="av"><img src="/img/zoe-logo.webp" alt="Zoe" width="338" height="338" /><span class="dot"></span></div>
       <div>
         <h3 data-i18n="ai_title">Habla con Zoe, nuestra gatita viajera 🐱</h3>
         <p data-i18n="ai_text">Nuestra asistente con inteligencia artificial está despierta <b>24/7</b> para ayudarte a planear tu viaje: te orienta, resuelve tus dudas y prepara tu cotización. ¡Escríbele a cualquier hora! ✈️</p>
@@ -604,7 +610,7 @@
   <div class="center"><span class="eyebrow" data-i18n="mas_eyebrow">Conócenos</span><h2 data-i18n="mas_title">Ella es Zoe 🐱</h2></div>
   <div class="mascot">
     <div class="polaroid">
-      <img src="/img/zoe-cat.jpg" onerror="this.onerror=null;this.src='/img/zoe-logo.png'" alt="Zoe, la gatita" />
+      <img src="/img/zoe-cat.jpg" onerror="this.onerror=null;this.src='/img/zoe-logo.webp'" alt="Zoe, la gatita" loading="lazy" decoding="async" />
       <span class="cap">Zoe 🐱</span>
     </div>
     <div>
@@ -798,7 +804,7 @@
   <h2 data-i18n="con_title">¿Listo para tu próximo viaje?</h2>
   <p class="lead" data-i18n="con_lead">Escríbenos por WhatsApp o síguenos. Estamos para ayudarte a llegar.</p>
   <div class="cta" style="justify-content:center;margin-top:26px">
-    <a class="btn" style="background:#25D366;color:#fff" href="https://wa.me/34644280183?text=Hola%2C%20vengo%20de%20la%20web%20de%20Zoe%20Travel%20Spain.%20Quiero%20informaci%C3%B3n%20para%20organizar%20mi%20viaje%20%E2%9C%88%EF%B8%8F" target="_blank" rel="noopener">
+    <a class="btn" style="background:#087a43;color:#fff" href="https://wa.me/34644280183?text=Hola%2C%20vengo%20de%20la%20web%20de%20Zoe%20Travel%20Spain.%20Quiero%20informaci%C3%B3n%20para%20organizar%20mi%20viaje%20%E2%9C%88%EF%B8%8F" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2Z"/></svg>
       <span data-i18n="con_cta">Escríbenos por WhatsApp</span>
     </a>
@@ -811,16 +817,17 @@
     <a href="https://www.instagram.com/zoetravelspain" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" stroke="none"/></svg></a>
     <a href="https://www.facebook.com/zoetravelspain" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V5h-3c-2.2 0-4 1.8-4 4v2H7v4h3v6h4v-6h3l1-4h-4V9c0-.6.4-1 1-1Z"/></svg></a>
   </div>
-</div>
+</div></section>
+</main>
+
 <footer><div class="wrap">
   <p><b>Zoe Travel Spain</b> · <span data-i18n="foot">Agencia de viajes con alma · Sevilla</span><br/>© Zoe Travel Spain — Donde quieras ir, te ayudamos a llegar.</p>
   <p style="margin-top:8px"><a href="/privacidad/" style="color:inherit">Política de Privacidad</a> · <button class="cookie-link" id="cookieManage" type="button" data-i18n="cookie_manage">Configurar cookies</button></p>
 </div></footer>
-</section>
 
 <!-- Consentimiento de cookies -->
 <aside class="cookie-banner" id="cookieBanner" role="dialog" aria-live="polite" aria-label="Preferencias de cookies">
-  <div class="cookie-copy"><strong data-i18n="cookie_title">Tu privacidad, sin letra pequeña</strong><p data-i18n="cookie_text">Usamos almacenamiento necesario para recordar tus preferencias. Los vídeos de YouTube solo se activan si nos das permiso. <a href="/privacidad/">Más información</a>.</p></div>
+  <div class="cookie-copy"><strong data-i18n="cookie_title">Tu privacidad, sin letra pequeña</strong><p data-i18n="cookie_text">Usamos almacenamiento necesario para recordar tus preferencias. Los vídeos de YouTube solo se activan si nos das permiso. <a href="/privacidad/">Más información sobre privacidad</a>.</p></div>
   <div class="cookie-actions"><button class="cookie-primary" id="cookieAccept" type="button" data-i18n="cookie_accept">Aceptar</button><button id="cookieReject" type="button" data-i18n="cookie_reject">Rechazar</button><button class="cookie-config" id="cookieConfig" type="button" data-i18n="cookie_config">Configurar</button></div>
 </aside>
 <div class="cookie-settings" id="cookieSettings" role="dialog" aria-modal="true" aria-labelledby="cookieSettingsTitle">
@@ -882,7 +889,7 @@ const I18N = {
     con_cta:"Escríbenos por WhatsApp", foot:"Agencia de viajes con alma · Sevilla",
     chat_agency:"Asistente", chat_online:"En línea", chat_hi:"¡Hola! Soy Zoe 🐱 ¿A dónde sueñas viajar?", chat_ph:"Escribe tu mensaje...",
     wa_q_t:"¿Quieres que Zoe te ayude primero?", wa_q_p:"Puede aclarar tu viaje y ayudarte a llegar a WhatsApp con la información organizada.", wa_q_ai:"Sí, hablar con Zoe", wa_q_direct:"Ir directamente a WhatsApp",
-    cookie_title:"Tu privacidad, sin letra pequeña", cookie_text:'Usamos almacenamiento necesario para recordar tus preferencias. Los vídeos de YouTube solo se activan si nos das permiso. <a href="/privacidad/">Más información</a>.', cookie_accept:"Aceptar", cookie_reject:"Rechazar", cookie_config:"Configurar", cookie_manage:"Configurar cookies", cookie_settings_t:"Preferencias de privacidad", cookie_settings_p:"Tú decides qué contenido externo puede cargarse. Puedes cambiar esta elección cuando quieras.", cookie_needed_t:"Necesarias", cookie_needed_p:"Guardan el idioma, el tema y tu elección de privacidad.", cookie_always:"Siempre activas", cookie_external_t:"Contenido de YouTube", cookie_external_p:"Permite reproducir los vídeos integrados.", cookie_save:"Guardar preferencias", cookie_video_t:"Vídeo de YouTube bloqueado", cookie_video_p:"Activa el contenido externo para reproducirlo.", cookie_video_btn:"Activar vídeos",
+    cookie_title:"Tu privacidad, sin letra pequeña", cookie_text:'Usamos almacenamiento necesario para recordar tus preferencias. Los vídeos de YouTube solo se activan si nos das permiso. <a href="/privacidad/">Más información sobre privacidad</a>.', cookie_accept:"Aceptar", cookie_reject:"Rechazar", cookie_config:"Configurar", cookie_manage:"Configurar cookies", cookie_settings_t:"Preferencias de privacidad", cookie_settings_p:"Tú decides qué contenido externo puede cargarse. Puedes cambiar esta elección cuando quieras.", cookie_needed_t:"Necesarias", cookie_needed_p:"Guardan el idioma, el tema y tu elección de privacidad.", cookie_always:"Siempre activas", cookie_external_t:"Contenido de YouTube", cookie_external_p:"Permite reproducir los vídeos integrados.", cookie_save:"Guardar preferencias", cookie_video_t:"Vídeo de YouTube bloqueado", cookie_video_p:"Activa el contenido externo para reproducirlo.", cookie_video_btn:"Activar vídeos",
     ai_title:"Habla con Zoe, nuestra gatita viajera 🐱", ai_text:"Nuestra asistente con inteligencia artificial está despierta <b>24/7</b> para ayudarte a planear tu viaje: te orienta, resuelve tus dudas y prepara tu cotización. ¡Escríbele a cualquier hora! ✈️", ai_btn:"Chatear con Zoe",
     rec_eyebrow:"Testimonios", rec_title:"Esto es lo que nos da energía 💛", rec_lead:"Historias reales de familias que hoy están juntas. Cada reencuentro es la razón por la que hacemos esto.",
     rec_q1:"El reencuentro entre madres e hijos es realmente reconfortante para todo nuestro equipo.", rec_q2:"Estos momentos nos inspiran a seguir trabajando por y para ustedes.", rec_q3:"¡Gracias y mil gracias por confiar en nosotros!",
@@ -933,7 +940,7 @@ const I18N = {
     con_cta:"Message us on WhatsApp", foot:"A travel agency with soul · Seville",
     chat_agency:"Assistant", chat_online:"Online", chat_hi:"Hi! I'm Zoe 🐱 Where do you dream of travelling?", chat_ph:"Type your message...",
     wa_q_t:"Would you like Zoe to help first?", wa_q_p:"She can clarify your trip and help you reach WhatsApp with the details organized.", wa_q_ai:"Yes, chat with Zoe", wa_q_direct:"Go directly to WhatsApp",
-    cookie_title:"Your privacy, in plain language", cookie_text:'We use necessary storage to remember your preferences. YouTube videos are only enabled with your permission. <a href="/privacidad/">More information</a>.', cookie_accept:"Accept", cookie_reject:"Reject", cookie_config:"Settings", cookie_manage:"Cookie settings", cookie_settings_t:"Privacy preferences", cookie_settings_p:"You decide which external content may load. You can change this choice at any time.", cookie_needed_t:"Necessary", cookie_needed_p:"Stores your language, theme and privacy choice.", cookie_always:"Always active", cookie_external_t:"YouTube content", cookie_external_p:"Allows embedded videos to play.", cookie_save:"Save preferences", cookie_video_t:"YouTube video blocked", cookie_video_p:"Enable external content to play it.", cookie_video_btn:"Enable videos",
+    cookie_title:"Your privacy, in plain language", cookie_text:'We use necessary storage to remember your preferences. YouTube videos are only enabled with your permission. <a href="/privacidad/">More about our privacy policy</a>.', cookie_accept:"Accept", cookie_reject:"Reject", cookie_config:"Settings", cookie_manage:"Cookie settings", cookie_settings_t:"Privacy preferences", cookie_settings_p:"You decide which external content may load. You can change this choice at any time.", cookie_needed_t:"Necessary", cookie_needed_p:"Stores your language, theme and privacy choice.", cookie_always:"Always active", cookie_external_t:"YouTube content", cookie_external_p:"Allows embedded videos to play.", cookie_save:"Save preferences", cookie_video_t:"YouTube video blocked", cookie_video_p:"Enable external content to play it.", cookie_video_btn:"Enable videos",
     ai_title:"Chat with Zoe, our travelling kitty 🐱", ai_text:"Our AI assistant is awake <b>24/7</b> to help you plan your trip: she guides you, answers your questions and prepares your quote. Message her any time! ✈️", ai_btn:"Chat with Zoe",
     rec_eyebrow:"Testimonials", rec_title:"This is what gives us energy 💛", rec_lead:"Real stories of families now together. Every reunion is why we do this.",
     rec_q1:"The reunion between mothers and children is truly heartwarming for our whole team.", rec_q2:"These moments inspire us to keep working for you and because of you.", rec_q3:"Thank you, a thousand times, for trusting us!",
@@ -979,16 +986,18 @@ applyLang(lang);
   function renderVideos(allowed){
     document.querySelectorAll('.vid[data-video]').forEach(function(box){box.innerHTML='';if(allowed){var f=document.createElement('iframe');f.src=box.dataset.video;f.title='Zoe Travel';f.loading='lazy';f.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';f.allowFullscreen=true;box.appendChild(f);}else videoPlaceholder(box);});
   }
-  function openSettings(){var c=read();external.checked=!!(c&&c.external);settings.classList.add('open');}
-  function save(value){write(value);renderVideos(value);banner.classList.remove('open');settings.classList.remove('open');}
-  var saved=read(); if(saved){renderVideos(!!saved.external);}else{renderVideos(false);banner.classList.add('open');}
+  function setConsentOverlay(open){document.body.classList.toggle('consent-open',open);}
+  function openSettings(){var c=read();external.checked=!!(c&&c.external);settings.classList.add('open');setConsentOverlay(true);}
+  function closeSettings(){settings.classList.remove('open');if(!banner.classList.contains('open'))setConsentOverlay(false);}
+  function save(value){write(value);renderVideos(value);banner.classList.remove('open');settings.classList.remove('open');setConsentOverlay(false);}
+  var saved=read(); if(saved){renderVideos(!!saved.external);}else{renderVideos(false);banner.classList.add('open');setConsentOverlay(true);}
   document.getElementById('cookieAccept').addEventListener('click',function(){save(true);});
   document.getElementById('cookieReject').addEventListener('click',function(){save(false);});
   document.getElementById('cookieConfig').addEventListener('click',openSettings);
   document.getElementById('cookieManage').addEventListener('click',openSettings);
   document.getElementById('cookieSave').addEventListener('click',function(){save(external.checked);});
-  settings.addEventListener('click',function(e){if(e.target===settings)settings.classList.remove('open');});
-  document.addEventListener('keydown',function(e){if(e.key==='Escape')settings.classList.remove('open');});
+  settings.addEventListener('click',function(e){if(e.target===settings)closeSettings();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeSettings();});
 })();
 
 /* ---------- tema ---------- */
