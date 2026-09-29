@@ -178,6 +178,7 @@
   .karol .sign{margin-top:14px;font-weight:900;color:var(--orange);font-size:18px}
 
   /* cotiza (form) */
+  #reserva .cal{max-width:960px;margin:22px auto 0;border-radius:18px;overflow:hidden;background:#fff;box-shadow:0 10px 30px rgba(0,0,0,.08)}
   #cotiza{background:linear-gradient(135deg,var(--blue),var(--blue-d));color:#fff}
   #cotiza .eyebrow{color:#ffd9b3}
   #cotiza h2{color:#fff}
@@ -470,6 +471,7 @@
     <a class="lnk" href="#servicios" data-i18n="nav_serv">Servicios</a>
     <a class="lnk" href="#testimonios" data-i18n="nav_testi">Testimonios</a>
     <a class="lnk" href="#videos" data-i18n="nav_videos">Videos</a>
+    <a class="lnk" href="#reserva" data-i18n="nav_reserva">Agenda</a>
     <a class="lnk" href="/blog/">Blog</a>
     <a class="lnk" href="#contacto" data-i18n="nav_contact">Contacto</a>
     <button class="hamb" id="hambBtn" aria-label="Menú" onclick="document.getElementById('mobMenu').classList.toggle('open')">
@@ -495,6 +497,7 @@
   <a href="#servicios" data-i18n="nav_serv">Servicios</a>
   <a href="#testimonios" data-i18n="nav_testi">Testimonios</a>
   <a href="#videos" data-i18n="nav_videos">Videos</a>
+  <a href="#reserva" data-i18n="nav_reserva">Agenda</a>
   <a href="/blog/">Blog</a>
   <a href="#contacto" data-i18n="nav_contact">Contacto</a>
 </div>
@@ -666,6 +669,14 @@
   <div class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h0a2 2 0 0 0 2-2V2M5 11v11M13 2v20M13 8c0-3 2-6 5-6v20"/></svg></div><h3 data-i18n="t2_t">Sabores de casa</h3><p data-i18n="t2_p">Ubica restaurantes y tiendas latinas cerca de ti. Un buen sancocho o una arepa ayudan muchísimo con la morriña. 🫓</p></div>
   <div class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 5 6v5c0 4.5 3 8 7 10 4-2 7-5.5 7-10V6l-7-3Z"/><path d="m9 12 2 2 4-4"/></svg></div><h3 data-i18n="t3_t">Viaja con todo en regla</h3><p data-i18n="t3_p">Ten a mano pasaporte, billete de regreso y seguro de viaje. Te ahorra sustos en el aeropuerto y viajas tranquilo.</p></div>
 </div></div></section>
+
+<!-- ===== RESERVA (calendario Velai) ===== -->
+<section class="block" id="reserva"><div class="wrap center">
+  <span class="eyebrow" data-i18n="res_eyebrow">Agenda</span>
+  <h2 data-i18n="res_title">Reserva tu asesoría personalizada</h2>
+  <p class="lead" data-i18n="res_lead">Elige el día y la hora que mejor te vengan: por videollamada o por teléfono, 30 minutos con el equipo de Zoe.</p>
+  <div class="cal" data-vai-citas="zoe" style="min-height:640px"></div>
+</div></section>
 
 <!-- ===== COTIZA (form) ===== -->
 <section class="block" id="cotiza"><div class="wrap center">
@@ -856,7 +867,7 @@
 /* ---------- i18n ES/EN ---------- */
 const I18N = {
   es: {
-    nav_serv:"Servicios", nav_karol:"Karol", nav_contact:"Contacto", wa:"WhatsApp", nav_videos:"Videos", nav_guias:"Guías", nav_testi:"Testimonios", mas_spain:"España",
+    nav_serv:"Servicios", nav_karol:"Karol", nav_contact:"Contacto", wa:"WhatsApp", nav_videos:"Videos", nav_guias:"Guías", nav_testi:"Testimonios", nav_reserva:"Agenda", res_eyebrow:"Agenda", res_title:"Reserva tu asesoría personalizada", res_lead:"Elige el día y la hora que mejor te vengan: por videollamada o por teléfono, 30 minutos con el equipo de Zoe.", mas_spain:"España",
     g_cta_t:"Cada caso es diferente 💛", g_cta_p:"Esto son pautas generales para orientarte. Tu situación —fechas, documentos, con quién viajas— puede cambiarlo todo. Para el detalle exacto de TU viaje:", g_cta_chat:"Habla con Zoe 🐱", g_cta_blog:"Leer el blog →",
     hero_eyebrow:"Agencia de viajes con alma",
     hero_title:"Donde quieras ir,<br><span class='g'>te ayudamos a llegar.</span>",
@@ -907,7 +918,7 @@ const I18N = {
     g_note:"ℹ️ Requisitos orientativos. El equipo de Zoe confirma los tuyos según tu caso.", g_note2:"ℹ️ Cada aerolínea tiene sus reglas. Te ayudamos a gestionarlo paso a paso.", g3_t:"Viajar con hijos menores de edad", g3_i1:"Los menores viajan con su <b>pasaporte propio</b> (y permiso de residencia si aplica).", g3_i2:"Si el menor viaja <b>sin uno o ambos padres</b>, suele necesitar una <b>autorización notarial</b>.", g3_i3:"Lleva el <b>libro de familia o partida de nacimiento</b> por si lo piden.", g3_i4:"Reserva asientos juntos y el equipaje de mano con lo esencial del niño.", g4_t:"Viajar con adultos mayores", g4_i1:"Solicita <b>asistencia especial</b> (silla de ruedas, embarque prioritario) — suele ser gratis.", g4_i2:"Lleva la <b>medicación en el equipaje de mano</b>, con receta si es necesario.", g4_i3:"Un <b>seguro de viaje</b> con asistencia médica es muy recomendable.", g4_i4:"Llega al aeropuerto con <b>más tiempo</b> y evita conexiones muy justas.", g_note3:"ℹ️ Los requisitos varían por país y aerolínea. El equipo de Zoe te guía en cada paso."
   },
   en: {
-    nav_serv:"Services", nav_karol:"Karol", nav_contact:"Contact", wa:"WhatsApp", nav_videos:"Videos", nav_guias:"Guides", nav_testi:"Testimonials", mas_spain:"Spain",
+    nav_serv:"Services", nav_karol:"Karol", nav_contact:"Contact", wa:"WhatsApp", nav_videos:"Videos", nav_guias:"Guides", nav_testi:"Testimonials", nav_reserva:"Book", res_eyebrow:"Book", res_title:"Book your personal consultation", res_lead:"Pick the day and time that suit you: by video call or phone, 30 minutes with the Zoe team.", mas_spain:"Spain",
     g_cta_t:"Every case is different 💛", g_cta_p:"These are general guidelines. Your situation —dates, documents, who you travel with— can change everything. For the exact details of YOUR trip:", g_cta_chat:"Chat with Zoe 🐱", g_cta_blog:"Read the blog →",
     hero_eyebrow:"A travel agency with soul",
     hero_title:"Wherever you want to go,<br><span class='g'>we help you get there.</span>",
@@ -1078,5 +1089,6 @@ lf.addEventListener('submit', async function(e){
        lleva versión a propósito: las mejoras llegan sin tocar este HTML. -->
   <script>window.VELAI_TENANT='zoe';</script>
   <script src="https://hirevai.com/assets/vai.js" defer></script>
+  <script src="https://hirevai.com/assets/vai-citas.js?v=20" defer></script>
 </body>
 </html>
