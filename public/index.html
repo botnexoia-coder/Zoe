@@ -461,6 +461,7 @@
   @keyframes cookieIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
   @media(max-width:720px){.cookie-banner.open{grid-template-columns:1fr;gap:14px}.cookie-copy strong{font-size:16px}.cookie-copy p{font-size:12.5px}.cookie-actions{display:grid;grid-template-columns:1fr 1fr;justify-content:stretch}.cookie-actions button{padding:0 9px}.cookie-actions .cookie-config{grid-column:1/-1}.cookie-banner{left:10px;right:10px;bottom:10px;padding:16px;max-height:calc(100dvh - 20px);overflow:auto}}
 </style>
+<script src="/assets/lead-submit.js"></script>
 </head>
 <body>
 
@@ -970,6 +971,16 @@ const I18N = {
   }
 };
 var lang = (function(){ try{ return localStorage.getItem('zoe-lang') || 'es'; }catch(e){ return 'es'; } })();
+var currentLeadAcceptance = null;
+var currentLeadFailure = null;
+function leadPendingText(language){
+  return language === 'es' ? 'Solicitud guardada, pero el aviso al equipo está pendiente. Reintenta o escríbenos por WhatsApp.' : 'Request saved, but the team notice is pending. Retry or contact us on WhatsApp.';
+}
+function leadReceiptText(accepted, language){
+  return accepted.notificationSent
+    ? (language === 'es' ? 'Solicitud recibida. El aviso fue aceptado para el equipo de Zoe.' : 'Request received. The notice was accepted for the Zoe team.')
+    : (language === 'es' ? 'Solicitud guardada. El aviso al equipo está pendiente; puedes contactar por WhatsApp si necesitas atención ahora.' : 'Request saved. The team notice is pending; contact us on WhatsApp if you need help now.');
+}
 function applyLang(l){
   lang = l;
   var d = I18N[l];
@@ -979,6 +990,8 @@ function applyLang(l){
   document.querySelectorAll('a[href^="https://wa.me/34644280183"]').forEach(function(el){ el.href='https://wa.me/34644280183?text='+encodeURIComponent(waText); });
   document.getElementById('langLabel').textContent = l === 'es' ? 'EN' : 'ES';
   document.documentElement.lang = l;
+  if(currentLeadAcceptance) document.querySelector('#leadDone p').textContent = leadReceiptText(currentLeadAcceptance, l);
+  if(currentLeadFailure?.stored) document.querySelector('#leadErr p').textContent = leadPendingText(l);
   try{ localStorage.setItem('zoe-lang', l); }catch(e){}
 }
 document.getElementById('langBtn').addEventListener('click', function(){ applyLang(lang === 'es' ? 'en' : 'es'); });
@@ -1023,6 +1036,7 @@ document.getElementById('themeBtn').addEventListener('click', function(){
 /* ---------- cotiza (form) ---------- */
 document.getElementById('ctaCotiza').addEventListener('click', function(){ document.getElementById('cotiza').scrollIntoView({ behavior:'smooth' }); });
 var lf = document.getElementById('leadForm');
+var submitLead = window.LeadSubmission();
 lf.addEventListener('submit', async function(e){
   e.preventDefault();
   var b = document.getElementById('leadBtn');
@@ -1030,14 +1044,20 @@ lf.addEventListener('submit', async function(e){
   if(!data.nombre || !data.telefono) { alert(lang === 'es' ? 'Por favor déjanos tu nombre y WhatsApp.' : 'Please leave your name and WhatsApp.'); return; }
   if(!document.getElementById('leadConsent').checked) { alert(lang === 'es' ? 'Marca la casilla de privacidad para continuar.' : 'Please tick the privacy box to continue.'); return; }
   b.disabled = true; b.textContent = lang === 'es' ? 'Enviando...' : 'Sending...';
+  var accepted = null;
   var ok = false;
-  try{ var r = await fetch('/api/lead', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(data) }); ok = r.ok; }catch(_){ ok = false; }
+  try{ accepted = await submitLead(data); ok = true; }catch(_){ accepted = _.result || null; ok = false; }
+  currentLeadFailure = ok ? null : accepted;
   if(ok){
     lf.querySelectorAll('input,textarea,label,.row,button.submit').forEach(function(el){ el.style.display='none'; });
+    document.getElementById('leadErr').style.display = 'none';
     document.getElementById('leadDone').style.display = 'block';
+    currentLeadAcceptance = accepted;
+    document.querySelector('#leadDone p').textContent = leadReceiptText(accepted, lang);
   } else {
     b.disabled = false; b.textContent = lang === 'es' ? 'Enviar y recibir mi cotización' : 'Send and get my quote';
     document.getElementById('leadErr').style.display = 'block';
+    document.querySelector('#leadErr p').textContent = accepted?.stored ? leadPendingText(lang) : I18N[lang].f_err_p;
   }
 });
 

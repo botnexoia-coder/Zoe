@@ -210,28 +210,38 @@ export function json(obj, status) {
 }
 export async function sendTelegram(token, chatId, text) {
   try {
-    await fetch('https://api.telegram.org/bot' + token + '/sendMessage', {
+    const response = await fetch('https://api.telegram.org/bot' + token + '/sendMessage', {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ chat_id: chatId, text: text, parse_mode: 'HTML' }),
+      body: JSON.stringify({ chat_id: chatId, text, parse_mode: 'HTML' }),
     });
-  } catch (e) {}
+    let body; try { body = await response.json(); } catch (_) {}
+    return { channel: 'telegram', configured: true, ok: response.ok && body?.ok === true, status: response.status };
+  } catch (_) { return { channel: 'telegram', configured: true, ok: false, error: 'network_error' }; }
 }
 export async function sendWhatsApp(accountSid, authToken, text) {
-  var plain = text.replace(/<[^>]+>/g, '');
-  await Promise.all(WA_EQUIPO.map(async function (to) {
+  const plain = text.replace(/<[^>]+>/g, '');
+  if (!WA_EQUIPO.length) return { channel: 'whatsapp', configured: false, ok: false };
+  const deliveries = await Promise.all(WA_EQUIPO.map(async to => {
     try {
-      await fetch('https://api.twilio.com/2010-04-01/Accounts/' + accountSid + '/Messages.json', {
-        method: 'POST',
-        headers: { 'Authorization': 'Basic ' + btoa(accountSid + ':' + authToken), 'Content-Type': 'application/x-www-form-urlencoded' },
+      const response = await fetch('https://api.twilio.com/2010-04-01/Accounts/' + accountSid + '/Messages.json', {
+        method: 'POST', headers: { Authorization: 'Basic ' + btoa(accountSid + ':' + authToken), 'Content-Type': 'application/x-www-form-urlencoded' },
         body: new URLSearchParams({ From: TWILIO_FROM, To: to, Body: plain }).toString(),
       });
-    } catch (e) {}
+      let body; try { body = await response.json(); } catch (_) {}
+      return { ok: response.ok && Boolean(body?.sid) && !['failed', 'undelivered'].includes(body?.status), status: response.status };
+    } catch (_) { return { ok: false, error: 'network_error' }; }
   }));
+  return { channel: 'whatsapp', configured: true, ok: deliveries.some(item => item.ok), deliveries };
 }
 export async function notify(env, text) {
-  var chatId = env.TELEGRAM_CHAT_ID || TELEGRAM_CHAT_ID_DEFAULT;
-  if (env.TELEGRAM_TOKEN && chatId) await sendTelegram(env.TELEGRAM_TOKEN, chatId, text);
-  if (env.TWILIO_ACCOUNT_SID && env.TWILIO_AUTH_TOKEN) await sendWhatsApp(env.TWILIO_ACCOUNT_SID, env.TWILIO_AUTH_TOKEN, text);
+  const chatId = env.TELEGRAM_CHAT_ID || TELEGRAM_CHAT_ID_DEFAULT;
+  const results = [];
+  if (env.TELEGRAM_TOKEN && chatId && chatId !== 'PON_AQUI_TU_CHAT_ID') results.push(await sendTelegram(env.TELEGRAM_TOKEN, chatId, text));
+  else results.push({ channel: 'telegram', configured: false, ok: false });
+  if (env.TWILIO_ACCOUNT_SID && env.TWILIO_AUTH_TOKEN) results.push(await sendWhatsApp(env.TWILIO_ACCOUNT_SID, env.TWILIO_AUTH_TOKEN, text));
+  else results.push({ channel: 'whatsapp', configured: false, ok: false });
+  // "sent" means provider accepted, not delivery to a person.
+  return { sent: results.some(item => item.configured && item.ok), results };
 }
 export async function callClaude(apiKey, model, system, messages, maxTokens) {
   var res = await fetch('https://api.anthropic.com/v1/messages', {
