@@ -12,14 +12,14 @@
   function safeReferrer(){try{var u=new URL(document.referrer);return u.origin+u.pathname;}catch(_){return '';}}
   function payload(name){return {event:name,analytics_consent:consent.analytics?'granted':'denied',advertising_consent:consent.advertising?'granted':'denied',page_location:location.origin+location.pathname,page_path:location.pathname,page_referrer:safeReferrer(),page_title:'Zoe Travel Spain'};}
   var allowedEvents=['whatsapp_click','chatbot_open','zoe_prompt_view','zoe_prompt_choice','generate_lead'];
-  function trackLead(result){if(!result || result.stored!==true || !result.requestId || leads.has(result.requestId))return;leads.add(result.requestId);track('generate_lead');}
+  function trackLead(result){if(!result || !(result.stored===true || (result.ok===true && result.notificationSent===true)) || !result.requestId || leads.has(result.requestId))return;leads.add(result.requestId);track('generate_lead');}
   function track(name, detail){
     if(!allowedEvents.includes(name) || !(consent.analytics || consent.advertising))return;
     var p=payload('zoe_web_'+name);
     if(name==='zoe_prompt_choice' && detail && ['zoe','whatsapp','close'].includes(detail.choice))p.choice=detail.choice;
     window.dataLayer.push(p);
   }
-  window.ZoeMeasurement={track:track,leadStored:trackLead,preferences:function(){return Object.assign({},consent);}};
+  window.ZoeMeasurement={track:track,leadAccepted:trackLead,leadStored:trackLead,preferences:function(){return Object.assign({},consent);}};
   function clearCookies(){
     document.cookie.split(';').forEach(function(part){var name=part.trim().split('=')[0];if(!/^(_ga($|_)|_gid$|_gat($|_)|_gcl_|_fbp$|_fbc$)/.test(name))return;
       var domains=['',location.hostname,'.'+location.hostname];var bits=location.hostname.split('.');if(bits.length>2)domains.push('.'+bits.slice(-2).join('.'));

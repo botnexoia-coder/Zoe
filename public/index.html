@@ -1009,7 +1009,7 @@ lf.addEventListener('submit', async function(e){
   var accepted = null;
   var ok = false;
   try{ accepted = await submitLead(data); ok = true; }catch(_){ accepted = _.result || null; ok = false; }
-  if(window.ZoeMeasurement) window.ZoeMeasurement.leadStored(accepted);
+  if(window.ZoeMeasurement) window.ZoeMeasurement.leadAccepted(accepted);
   currentLeadFailure = ok ? null : accepted;
   if(ok){
     lf.querySelectorAll('input,textarea,label,.row,button.submit').forEach(function(el){ el.style.display='none'; });

@@ -12,7 +12,7 @@ Los eventos de interacción entran a GTM con el prefijo `zoe_web_`; el tag GA4 l
 - `zoe_web_chatbot_open` → `chatbot_open`: transición real del widget `#vaiWidget` a `.is-open`, incluidos el botón propio del widget y los CTA.
 - `zoe_web_zoe_prompt_view` → `zoe_prompt_view`: se abre la ventana de elección de ayuda.
 - `zoe_web_zoe_prompt_choice` → `zoe_prompt_choice`: `choice` está limitada a zoe, whatsapp o close.
-- `zoe_web_generate_lead` → `generate_lead`: respuesta del endpoint confirma `stored:true` y requestId, una vez por requestId durante la página. Cuenta aunque el aviso al equipo esté pendiente; no cuenta una notificación sin guardado. Meta: Lead.
+- `zoe_web_generate_lead` → `generate_lead`: respuesta del endpoint confirma `stored:true` o bien `ok:true` junto con `notificationSent:true`, siempre con requestId y una sola vez por requestId durante la página. El primer caso acredita guardado aunque el aviso esté pendiente; el segundo acredita que el proveedor aceptó el aviso y no implica almacenamiento persistente ni lectura por el equipo. Un resultado sin guardado y sin éxito del aviso no cuenta. Meta: Lead.
 
 Todos los eventos GA requieren analítica concedida; todos los Meta requieren publicidad concedida. Una categoría no autoriza la otra. Los dos tags HTML usan NOT_NEEDED en el selector de comprobaciones adicionales de GTM porque la restricción real es el filtro de evento más la comprobación en código; no se depende de una comprobación adicional de consentimiento de GTM. No emitir etiquetas de PageView/Contact/Lead sin estos filtros. Las variables nombre/teléfono/mensaje/requestId nunca se incluyen en dataLayer. El píxel Meta puede adjuntar la URL/referrer nativos a su protocolo: no poner información personal en las URLs de la web o de campañas. No afirmar que Meta recibe exclusivamente page_location saneado.
 
@@ -24,4 +24,4 @@ Reutilizar el patrón y los eventos, nunca las cuentas/IDs de Zoe para otra web.
 
 ## Verificación
 
-`node --test tests/*.test.mjs` cubre endpoint/formulario y frontera de medición: denegación inicial, categorías separadas, eventos sin PII, guardado de lead y deduplicación, retirada/cookies/recarga. `node --check public/assets/measurement.js`. QA navegador y recepción real en GA4/Meta son comprobaciones adicionales, no sustituidas por tests locales.
+`node --test tests/*.test.mjs` cubre endpoint/formulario y frontera de medición: denegación inicial, categorías separadas, eventos sin PII, aceptación de lead por guardado o aviso exitoso y deduplicación, retirada/cookies/recarga. `node --check public/assets/measurement.js`. QA navegador y recepción real en GA4/Meta son comprobaciones adicionales, no sustituidas por tests locales.
