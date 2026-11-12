@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+<script src="/assets/measurement.js"></script>
+<link rel="stylesheet" href="/assets/measurement.css" />
 <!-- ============================================================
      ZOE TRAVEL SPAIN — Agencia de viajes (Karol)
      Bilingüe ES/EN · tema claro/oscuro · asistente "Zoe" (IA)
@@ -837,19 +839,6 @@
   <p style="margin-top:8px"><a href="/privacidad/" style="color:inherit">Política de Privacidad</a> · <button class="cookie-link" id="cookieManage" type="button" data-i18n="cookie_manage">Configurar cookies</button></p>
 </div></footer>
 
-<!-- Consentimiento de cookies -->
-<aside class="cookie-banner" id="cookieBanner" role="dialog" aria-live="polite" aria-label="Preferencias de cookies">
-  <div class="cookie-copy"><strong data-i18n="cookie_title">Tu privacidad, sin letra pequeña</strong><p data-i18n="cookie_text">Usamos almacenamiento necesario para recordar tus preferencias. Los vídeos de YouTube solo se activan si nos das permiso. <a href="/privacidad/">Más información sobre privacidad</a>.</p></div>
-  <div class="cookie-actions"><button class="cookie-primary" id="cookieAccept" type="button" data-i18n="cookie_accept">Aceptar</button><button id="cookieReject" type="button" data-i18n="cookie_reject">Rechazar</button><button class="cookie-config" id="cookieConfig" type="button" data-i18n="cookie_config">Configurar</button></div>
-</aside>
-<div class="cookie-settings" id="cookieSettings" role="dialog" aria-modal="true" aria-labelledby="cookieSettingsTitle">
-  <div class="cookie-panel"><h2 id="cookieSettingsTitle" data-i18n="cookie_settings_t">Preferencias de privacidad</h2><p data-i18n="cookie_settings_p">Tú decides qué contenido externo puede cargarse. Puedes cambiar esta elección cuando quieras.</p>
-    <div class="cookie-row"><div><b data-i18n="cookie_needed_t">Necesarias</b><span data-i18n="cookie_needed_p">Guardan el idioma, el tema y tu elección de privacidad.</span></div><span class="cookie-always" data-i18n="cookie_always">Siempre activas</span></div>
-    <div class="cookie-row"><div><b id="cookieExternalLabel" data-i18n="cookie_external_t">Contenido de YouTube</b><span data-i18n="cookie_external_p">Permite reproducir los vídeos integrados.</span></div><label class="cookie-switch"><input type="checkbox" id="cookieExternal" aria-labelledby="cookieExternalLabel" /><i></i></label></div>
-    <div class="cookie-panel-actions"><button id="cookieSave" type="button" data-i18n="cookie_save">Guardar preferencias</button></div>
-  </div>
-</div>
-
 <!-- WhatsApp flotante -->
 <button class="wa-float" id="waFloat" type="button" aria-label="WhatsApp" aria-expanded="false">
   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2Zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1-.4-.1-1-.3-1.7-.6-3-1.3-5-4.3-5.1-4.5-.2-.2-1.2-1.6-1.2-3.1s.8-2.2 1.1-2.5c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6-.3.3c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.6-.1l.7-.9c.2-.2.4-.2.6-.1l1.9.9c.3.1.5.2.5.4.1.1.1.7-.1 1.4Z"/></svg>
@@ -997,33 +986,6 @@ function applyLang(l){
 document.getElementById('langBtn').addEventListener('click', function(){ applyLang(lang === 'es' ? 'en' : 'es'); });
 applyLang(lang);
 
-/* ---------- consentimiento de cookies ---------- */
-(function(){
-  var KEY='zoe-consent-v1', banner=document.getElementById('cookieBanner'), settings=document.getElementById('cookieSettings'), external=document.getElementById('cookieExternal');
-  function read(){ try{return JSON.parse(localStorage.getItem(KEY));}catch(e){return null;} }
-  function write(value){ try{localStorage.setItem(KEY,JSON.stringify({external:value,updated:new Date().toISOString()}));}catch(e){} }
-  function videoPlaceholder(box){
-    var d=I18N[lang], ph=document.createElement('div'); ph.className='vid-consent';
-    ph.innerHTML='<div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m10 9 5 3-5 3V9Z"/></svg><b data-i18n="cookie_video_t">'+d.cookie_video_t+'</b><span data-i18n="cookie_video_p">'+d.cookie_video_p+'</span><button type="button" data-i18n="cookie_video_btn">'+d.cookie_video_btn+'</button></div>';
-    ph.querySelector('button').addEventListener('click',function(){openSettings();}); box.appendChild(ph);
-  }
-  function renderVideos(allowed){
-    document.querySelectorAll('.vid[data-video]').forEach(function(box){box.innerHTML='';if(allowed){var f=document.createElement('iframe');f.src=box.dataset.video;f.title='Zoe Travel';f.loading='lazy';f.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';f.allowFullscreen=true;box.appendChild(f);}else videoPlaceholder(box);});
-  }
-  function setConsentOverlay(open){document.body.classList.toggle('consent-open',open);}
-  function openSettings(){var c=read();external.checked=!!(c&&c.external);settings.classList.add('open');setConsentOverlay(true);}
-  function closeSettings(){settings.classList.remove('open');if(!banner.classList.contains('open'))setConsentOverlay(false);}
-  function save(value){write(value);renderVideos(value);banner.classList.remove('open');settings.classList.remove('open');setConsentOverlay(false);}
-  var saved=read(); if(saved){renderVideos(!!saved.external);}else{renderVideos(false);banner.classList.add('open');setConsentOverlay(true);}
-  document.getElementById('cookieAccept').addEventListener('click',function(){save(true);});
-  document.getElementById('cookieReject').addEventListener('click',function(){save(false);});
-  document.getElementById('cookieConfig').addEventListener('click',openSettings);
-  document.getElementById('cookieManage').addEventListener('click',openSettings);
-  document.getElementById('cookieSave').addEventListener('click',function(){save(external.checked);});
-  settings.addEventListener('click',function(e){if(e.target===settings)closeSettings();});
-  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeSettings();});
-})();
-
 /* ---------- tema ---------- */
 document.getElementById('themeBtn').addEventListener('click', function(){
   var root = document.documentElement;
@@ -1047,6 +1009,7 @@ lf.addEventListener('submit', async function(e){
   var accepted = null;
   var ok = false;
   try{ accepted = await submitLead(data); ok = true; }catch(_){ accepted = _.result || null; ok = false; }
+  if(window.ZoeMeasurement) window.ZoeMeasurement.leadStored(accepted);
   currentLeadFailure = ok ? null : accepted;
   if(ok){
     lf.querySelectorAll('input,textarea,label,.row,button.submit').forEach(function(el){ el.style.display='none'; });
@@ -1067,12 +1030,13 @@ lf.addEventListener('submit', async function(e){
   ['openZoe','openZoe2','navChat','cotChat','guiaChat'].forEach(function(id){ var el=document.getElementById(id); if(el) el.addEventListener('click', function(e){ e.preventDefault(); openVai(); }); });
   var waFloat = document.getElementById('waFloat'), waNav = document.getElementById('waNav'), waChoice = document.getElementById('waChoice');
   if(!waChoice) return;
+  function trackPrompt(choice){if(window.ZoeMeasurement)window.ZoeMeasurement.track('zoe_prompt_choice',{choice:choice});}
   function closeWaChoice(){ waChoice.classList.remove('open','from-nav'); if(waFloat) waFloat.setAttribute('aria-expanded','false'); }
-  if(waFloat) waFloat.addEventListener('click', function(){ waChoice.classList.remove('from-nav'); var open=waChoice.classList.toggle('open'); waFloat.setAttribute('aria-expanded',String(open)); });
-  if(waNav) waNav.addEventListener('click', function(e){ e.preventDefault(); waChoice.classList.add('from-nav','open'); if(waFloat) waFloat.setAttribute('aria-expanded','true'); });
-  var wcc = document.getElementById('waChoiceClose'); if(wcc) wcc.addEventListener('click', closeWaChoice);
-  var waAsk = document.getElementById('waAskZoe'); if(waAsk) waAsk.addEventListener('click', function(){ closeWaChoice(); openVai(); });
-  var waDir = document.getElementById('waDirect'); if(waDir) waDir.addEventListener('click', closeWaChoice);
+  if(waFloat) waFloat.addEventListener('click', function(){ waChoice.classList.remove('from-nav'); var open=waChoice.classList.toggle('open'); waFloat.setAttribute('aria-expanded',String(open)); if(window.ZoeMeasurement)window.ZoeMeasurement.track(open?'zoe_prompt_view':'zoe_prompt_choice',{choice:'close'}); });
+  if(waNav) waNav.addEventListener('click', function(e){ e.preventDefault(); if(!waChoice.classList.contains('open')&&window.ZoeMeasurement)window.ZoeMeasurement.track('zoe_prompt_view'); waChoice.classList.add('from-nav','open'); if(waFloat) waFloat.setAttribute('aria-expanded','true'); });
+  var wcc = document.getElementById('waChoiceClose'); if(wcc) wcc.addEventListener('click', function(){trackPrompt('close');closeWaChoice();});
+  var waAsk = document.getElementById('waAskZoe'); if(waAsk) waAsk.addEventListener('click', function(){ trackPrompt('zoe');closeWaChoice(); openVai(); });
+  var waDir = document.getElementById('waDirect'); if(waDir) waDir.addEventListener('click', function(){trackPrompt('whatsapp');closeWaChoice();});
 })();
 
 // ---- Carrusel de testimonios en video (auto: 1, 2, 3... en videos/testimonios/) ----

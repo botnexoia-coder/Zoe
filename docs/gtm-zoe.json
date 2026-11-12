@@ -1,0 +1,332 @@
+{
+  "exportFormatVersion": 2,
+  "exportTime": "2026-11-12 20:51:26",
+  "containerVersion": {
+    "accountId": "6404665864",
+    "containerId": "286601382",
+    "containerVersionId": "0",
+    "container": {
+      "path": "accounts/6404665864/containers/286601382",
+      "accountId": "6404665864",
+      "containerId": "286601382",
+      "name": "zoetravelspain.com",
+      "publicId": "GTM-MBFKB44Q",
+      "usageContext": [
+        "WEB"
+      ],
+      "fingerprint": "1794508398169",
+      "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/6404665864/containers/286601382/workspaces?apiLink=container",
+      "features": {
+        "supportUserPermissions": true,
+        "supportEnvironments": true,
+        "supportWorkspaces": true,
+        "supportGtagConfigs": false,
+        "supportBuiltInVariables": true,
+        "supportClients": false,
+        "supportFolders": true,
+        "supportTags": true,
+        "supportTemplates": true,
+        "supportTriggers": true,
+        "supportVariables": true,
+        "supportVersions": true,
+        "supportZones": true,
+        "supportTransformations": false
+      },
+      "tagIds": [
+        "GTM-MBFKB44Q"
+      ]
+    },
+    "tag": [
+      {
+        "accountId": "6404665864",
+        "containerId": "286601382",
+        "tagId": "3",
+        "name": "Zoe - GA4 - consentimiento analítica",
+        "type": "html",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "html",
+            "value": "<script>(function(){\nvar m=window.ZoeMeasurement;if(!m||!m.preferences().analytics)return;\nvar event={{Event}},url={{Zoe page location}},ref={{Zoe page referrer}};\nwindow.dataLayer=window.dataLayer||[];window.gtag=window.gtag||function(){window.dataLayer.push(arguments);};\nif(!window.__zoeGA){window.__zoeGA=true;var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=G-WERY3DLGVQ';document.head.appendChild(s);gtag('js',new Date());gtag('config','G-WERY3DLGVQ',{send_page_view:false,page_location:url,page_referrer:ref,page_title:'Zoe Travel Spain',allow_google_signals:false,allow_ad_personalization_signals:false,allow_enhanced_conversions:false});}\nvar p={send_to:'G-WERY3DLGVQ',page_location:url,page_referrer:ref,page_title:'Zoe Travel Spain'};\nif(event==='zoe_analytics_ready'){if(window.__zoePageView)return;window.__zoePageView=true;event='page_view';}\nif(event==='zoe_prompt_choice')p.choice={{Zoe choice}};\ngtag('event',event,p);\n})();</script>"
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "supportDocumentWrite",
+            "value": "false"
+          }
+        ],
+        "firingTriggerId": [
+          "20"
+        ],
+        "tagFiringOption": "ONCE_PER_EVENT",
+        "consentSettings": {
+          "consentStatus": "NOT_NEEDED"
+        }
+      },
+      {
+        "accountId": "6404665864",
+        "containerId": "286601382",
+        "tagId": "4",
+        "name": "Zoe - Meta - consentimiento publicidad",
+        "type": "html",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "html",
+            "value": "<script>(function(){\nvar m=window.ZoeMeasurement;if(!m||!m.preferences().advertising)return;\nvar event={{Event}};\nif(!window.fbq){!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=true;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=true;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');}\nif(!window.__zoeMeta){window.__zoeMeta=true;fbq('set','autoConfig',false,'1013931690201337');fbq('consent','grant');fbq('init','1013931690201337');}\nif(event==='zoe_ads_ready'){if(window.__zoeMetaPage)return;window.__zoeMetaPage=true;fbq('trackSingle','1013931690201337','PageView');}\nif(event==='whatsapp_click')fbq('trackSingle','1013931690201337','Contact');\nif(event==='generate_lead')fbq('trackSingle','1013931690201337','Lead');\n})();</script>"
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "supportDocumentWrite",
+            "value": "false"
+          }
+        ],
+        "firingTriggerId": [
+          "21"
+        ],
+        "tagFiringOption": "ONCE_PER_EVENT",
+        "consentSettings": {
+          "consentStatus": "NOT_NEEDED"
+        }
+      }
+    ],
+    "builtInVariable": [
+      {
+        "accountId": "6404665864",
+        "containerId": "286601382",
+        "type": "PAGE_URL",
+        "name": "Page URL"
+      },
+      {
+        "accountId": "6404665864",
+        "containerId": "286601382",
+        "type": "PAGE_HOSTNAME",
+        "name": "Page Hostname"
+      },
+      {
+        "accountId": "6404665864",
+        "containerId": "286601382",
+        "type": "PAGE_PATH",
+        "name": "Page Path"
+      },
+      {
+        "accountId": "6404665864",
+        "containerId": "286601382",
+        "type": "REFERRER",
+        "name": "Referrer"
+      },
+      {
+        "accountId": "6404665864",
+        "containerId": "286601382",
+        "type": "EVENT",
+        "name": "Event"
+      }
+    ],
+    "variable": [
+      {
+        "accountId": "6404665864",
+        "containerId": "286601382",
+        "variableId": "10",
+        "name": "Zoe analytics consent",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "name",
+            "value": "analytics_consent"
+          },
+          {
+            "type": "INTEGER",
+            "key": "dataLayerVersion",
+            "value": "2"
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "setDefaultValue",
+            "value": "false"
+          }
+        ]
+      },
+      {
+        "accountId": "6404665864",
+        "containerId": "286601382",
+        "variableId": "11",
+        "name": "Zoe ads consent",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "name",
+            "value": "advertising_consent"
+          },
+          {
+            "type": "INTEGER",
+            "key": "dataLayerVersion",
+            "value": "2"
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "setDefaultValue",
+            "value": "false"
+          }
+        ]
+      },
+      {
+        "accountId": "6404665864",
+        "containerId": "286601382",
+        "variableId": "12",
+        "name": "Zoe page location",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "name",
+            "value": "page_location"
+          },
+          {
+            "type": "INTEGER",
+            "key": "dataLayerVersion",
+            "value": "2"
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "setDefaultValue",
+            "value": "false"
+          }
+        ]
+      },
+      {
+        "accountId": "6404665864",
+        "containerId": "286601382",
+        "variableId": "13",
+        "name": "Zoe page referrer",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "name",
+            "value": "page_referrer"
+          },
+          {
+            "type": "INTEGER",
+            "key": "dataLayerVersion",
+            "value": "2"
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "setDefaultValue",
+            "value": "false"
+          }
+        ]
+      },
+      {
+        "accountId": "6404665864",
+        "containerId": "286601382",
+        "variableId": "14",
+        "name": "Zoe choice",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "name",
+            "value": "choice"
+          },
+          {
+            "type": "INTEGER",
+            "key": "dataLayerVersion",
+            "value": "2"
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "setDefaultValue",
+            "value": "false"
+          }
+        ]
+      }
+    ],
+    "trigger": [
+      {
+        "accountId": "6404665864",
+        "containerId": "286601382",
+        "triggerId": "20",
+        "name": "Zoe analytics allowed events",
+        "type": "CUSTOM_EVENT",
+        "customEventFilter": [
+          {
+            "type": "MATCH_REGEX",
+            "parameter": [
+              {
+                "type": "TEMPLATE",
+                "key": "arg0",
+                "value": "{{_event}}"
+              },
+              {
+                "type": "TEMPLATE",
+                "key": "arg1",
+                "value": "^(zoe_analytics_ready|whatsapp_click|chatbot_open|zoe_prompt_view|zoe_prompt_choice|generate_lead)$"
+              }
+            ]
+          }
+        ],
+        "filter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              {
+                "type": "TEMPLATE",
+                "key": "arg0",
+                "value": "{{Zoe analytics consent}}"
+              },
+              {
+                "type": "TEMPLATE",
+                "key": "arg1",
+                "value": "granted"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "accountId": "6404665864",
+        "containerId": "286601382",
+        "triggerId": "21",
+        "name": "Zoe advertising allowed events",
+        "type": "CUSTOM_EVENT",
+        "customEventFilter": [
+          {
+            "type": "MATCH_REGEX",
+            "parameter": [
+              {
+                "type": "TEMPLATE",
+                "key": "arg0",
+                "value": "{{_event}}"
+              },
+              {
+                "type": "TEMPLATE",
+                "key": "arg1",
+                "value": "^(zoe_ads_ready|whatsapp_click|generate_lead)$"
+              }
+            ]
+          }
+        ],
+        "filter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              {
+                "type": "TEMPLATE",
+                "key": "arg0",
+                "value": "{{Zoe ads consent}}"
+              },
+              {
+                "type": "TEMPLATE",
+                "key": "arg1",
+                "value": "granted"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
