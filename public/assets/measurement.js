@@ -15,7 +15,7 @@
   function trackLead(result){if(!result || result.stored!==true || !result.requestId || leads.has(result.requestId))return;leads.add(result.requestId);track('generate_lead');}
   function track(name, detail){
     if(!allowedEvents.includes(name) || !(consent.analytics || consent.advertising))return;
-    var p=payload(name);
+    var p=payload('zoe_web_'+name);
     if(name==='zoe_prompt_choice' && detail && ['zoe','whatsapp','close'].includes(detail.choice))p.choice=detail.choice;
     window.dataLayer.push(p);
   }

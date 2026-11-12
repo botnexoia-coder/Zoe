@@ -47,7 +47,7 @@
           {
             "type": "TEMPLATE",
             "key": "html",
-            "value": "<script>(function(){\nvar m=window.ZoeMeasurement;if(!m||!m.preferences().analytics)return;\nvar event={{Event}},url={{Zoe page location}},ref={{Zoe page referrer}};\nwindow.dataLayer=window.dataLayer||[];window.gtag=window.gtag||function(){window.dataLayer.push(arguments);};\nif(!window.__zoeGA){window.__zoeGA=true;var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=G-WERY3DLGVQ';document.head.appendChild(s);gtag('js',new Date());gtag('config','G-WERY3DLGVQ',{send_page_view:false,page_location:url,page_referrer:ref,page_title:'Zoe Travel Spain',allow_google_signals:false,allow_ad_personalization_signals:false,allow_enhanced_conversions:false});}\nvar p={send_to:'G-WERY3DLGVQ',page_location:url,page_referrer:ref,page_title:'Zoe Travel Spain'};\nif(event==='zoe_analytics_ready'){if(window.__zoePageView)return;window.__zoePageView=true;event='page_view';}\nif(event==='zoe_prompt_choice')p.choice={{Zoe choice}};\ngtag('event',event,p);\n})();</script>"
+            "value": "<script>(function(){\nvar m=window.ZoeMeasurement;if(!m||!m.preferences().analytics)return;\nvar event=String({{Event}}).replace(/^zoe_web_/,''),url={{Zoe page location}},ref={{Zoe page referrer}};\nwindow.dataLayer=window.dataLayer||[];window.gtag=window.gtag||function(){window.dataLayer.push(arguments);};\nif(!window.__zoeGA){window.__zoeGA=true;var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=G-WERY3DLGVQ';document.head.appendChild(s);gtag('js',new Date());gtag('config','G-WERY3DLGVQ',{send_page_view:false,page_location:url,page_referrer:ref,page_title:'Zoe Travel Spain',allow_google_signals:false,allow_ad_personalization_signals:false,allow_enhanced_conversions:false});}\nvar p={send_to:'G-WERY3DLGVQ',page_location:url,page_referrer:ref,page_title:'Zoe Travel Spain'};\nif(event==='zoe_analytics_ready'){if(window.__zoePageView)return;window.__zoePageView=true;event='page_view';}\nif(event==='zoe_prompt_choice')p.choice={{Zoe choice}};\ngtag('event',event,p);\n})();</script>"
           },
           {
             "type": "BOOLEAN",
@@ -73,7 +73,7 @@
           {
             "type": "TEMPLATE",
             "key": "html",
-            "value": "<script>(function(){\nvar m=window.ZoeMeasurement;if(!m||!m.preferences().advertising)return;\nvar event={{Event}};\nif(!window.fbq){!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=true;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=true;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');}\nif(!window.__zoeMeta){window.__zoeMeta=true;fbq('set','autoConfig',false,'1013931690201337');fbq('consent','grant');fbq('init','1013931690201337');}\nif(event==='zoe_ads_ready'){if(window.__zoeMetaPage)return;window.__zoeMetaPage=true;fbq('trackSingle','1013931690201337','PageView');}\nif(event==='whatsapp_click')fbq('trackSingle','1013931690201337','Contact');\nif(event==='generate_lead')fbq('trackSingle','1013931690201337','Lead');\n})();</script>"
+            "value": "<script>(function(){\nvar m=window.ZoeMeasurement;if(!m||!m.preferences().advertising)return;\nvar event=String({{Event}}).replace(/^zoe_web_/,'');\nif(!window.fbq){!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=true;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=true;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');}\nif(!window.__zoeMeta){window.__zoeMeta=true;fbq('set','autoConfig',false,'1013931690201337');fbq('consent','grant');fbq('init','1013931690201337');}\nif(event==='zoe_ads_ready'){if(window.__zoeMetaPage)return;window.__zoeMetaPage=true;fbq('trackSingle','1013931690201337','PageView');}\nif(event==='whatsapp_click')fbq('trackSingle','1013931690201337','Contact');\nif(event==='generate_lead')fbq('trackSingle','1013931690201337','Lead');\n})();</script>"
           },
           {
             "type": "BOOLEAN",
@@ -263,7 +263,7 @@
               {
                 "type": "TEMPLATE",
                 "key": "arg1",
-                "value": "^(zoe_analytics_ready|whatsapp_click|chatbot_open|zoe_prompt_view|zoe_prompt_choice|generate_lead)$"
+                "value": "^(zoe_analytics_ready|zoe_web_(whatsapp_click|chatbot_open|zoe_prompt_view|zoe_prompt_choice|generate_lead))$"
               }
             ]
           }
@@ -304,7 +304,7 @@
               {
                 "type": "TEMPLATE",
                 "key": "arg1",
-                "value": "^(zoe_ads_ready|whatsapp_click|generate_lead)$"
+                "value": "^(zoe_ads_ready|zoe_web_(whatsapp_click|generate_lead))$"
               }
             ]
           }
